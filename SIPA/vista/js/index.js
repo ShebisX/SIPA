@@ -1,26 +1,21 @@
+$(document).on('ready', function(){
 
+	 $("#login-button").on("click",function(event){
 
-$(document).on('ready', function () {
+	 	$.post("controlador/fachada.php",{
+			clase:'usuario',
+			oper:'autenticar',
+			user:$("#name").val(),
+			pass:$("#pass").val()
 
-    $('#btnDepto').button().on('click', function () {
-        $('#divDepto').load("vista/html/Departamento.html");
-    });
+	 	},function (data){
+	 		console.log(data);
+		 	$("#principal").html(data);
+	 	}, 'json');
 
-    $('#btnProg').button().on('click', function () {
-        $('#divPrograma').load("vista/html/programa.html");
-    });
+		event.preventDefault();
+		$('form').fadeOut(500);
+		$('.wrapper').addClass('form-success');
+	});
 
-    $('#btnEmp').button().on('click', function () {
-        $('#divEmpresa').load("vista/html/Empresa.html");
-    });
-
-   
 });
-
-
-
-
-
-
-
-
