@@ -45,9 +45,9 @@ class UtilConexion {
             self::$conexion = new self();  // llamado al constructor
             $baseDeDatos = 'sipa';
             $servidor = 'localhost';  // 127.0.0.1:80
-            $puerto = '5432';  // puerto postgres
-            $usuario = 'postgres';
-            $contrasena = 'admin';
+            $puerto = '5433';  // puerto postgres
+            $usuario = 'daniela';
+            $contrasena = '12345';
             // ver http://www.phpro.org/tutorials/Introduction-to-PHP-PDO.html
             self::$pdo = new PDO("pgsql:host=$servidor port=$puerto dbname=$baseDeDatos", $usuario, $contrasena);
         }
