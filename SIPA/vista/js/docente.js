@@ -1,15 +1,15 @@
 $(function(){
     
-    $("#btnUsuario").on("click",crearTablaUsuario);
+    $("#btnDocente").on("click",crearTablaDocente);
     
-    function crearTablaUsuario(){
+    function crearTablaDocente(){
         
-      jQuery("#tablaUsuario").jqGrid({
+      jQuery("#tablaDocente").jqGrid({
             url: 'controlador/fachada.php',
             datatype: "json",
             mtype: 'POST',
             postData: {
-                clase: 'usuario',
+                clase: 'Docente',
                 oper: 'select'
             },
             colNames: ['ID', 'NOMBRE','APELLIDO','TELEFONO','CUENTA','CONTRASEÑA','ROL'],
@@ -59,7 +59,7 @@ $(function(){
             sortorder: "asc",
             caption: "Gestión de Usuarios",
             multiselect: false,
-            editurl: "controlador/fachada.php?clase=usuario",
+            editurl: "controlador/fachada.php?clase=Usuarios",
             loadError: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
             }
@@ -108,4 +108,7 @@ $(function(){
     
     
 });
+
+
+
 
