@@ -11,7 +11,7 @@ class usuario {
             if ($fila['rol'] == 'admin'){
                 $menu = file_get_contents("../vista/html/admin.html");
             }
-            else if ($fila['rol'] == 'admin_practicayconv'){
+            else if ($fila['rol'] == 'adminpracticayconv'){
                 $menu = file_get_contents("../vista/html/admin_practicayconv.html");
             }
             else if ($fila['rol'] == 'estudiante'){
@@ -20,7 +20,7 @@ class usuario {
             else if ($fila['rol'] == 'docente'){
                 $menu = file_get_contents("../vista/html/docente.html");
             }
-            else if ($fila['rol'] == 'pers_empresarial'){
+            else if ($fila['rol'] == 'persempresarial'){
                 $menu = file_get_contents("../vista/html/pers_empresarial.html");
             }
             echo json_encode($menu);
