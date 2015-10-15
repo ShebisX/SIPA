@@ -13,6 +13,14 @@ $(function () {
         }, 'json');
     });
 
+    $("#btnDocPractica").on("click", function () {
+        $.post("controlador/fachada.php", {
+            clase: 'UtilReporPractica',
+            oper: 'abrirHoja'
+        }, function (data) {
+            console.log(data);
+        }, 'json');
+    });
 
     function crearTablaUsuario() {
 
