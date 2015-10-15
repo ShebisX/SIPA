@@ -1,14 +1,22 @@
-$(function(){
-    
-    $("#btnUsuario").on("click",crearTablaUsuario);
-    $("#btnDocente").on("click",crearTablaDocente);
-    $("#btnEstudiante").on("click",crearTablaEstudiante);
-    $("#btnAsesor").on("click",crearTablaAsesor);
-    
-    
-    function crearTablaUsuario(){
-        
-      jQuery("#tablaUsuario").jqGrid({
+$(function () {
+
+    $("#btnUsuario").on("click", crearTablaUsuario);
+    $("#btnDocente").on("click", crearTablaDocente);
+    $("#btnEstudiante").on("click", crearTablaEstudiante);
+    $("#btnAsesor").on("click", crearTablaAsesor);
+    $("#btnDocConvenio").on("click", function () {
+        $.post("controlador/fachada.php", {
+            clase: 'UtilReporConvenio',
+            oper: 'abrirHoja'
+        }, function (data) {
+            console.log(data);
+        }, 'json');
+    });
+
+
+    function crearTablaUsuario() {
+
+        jQuery("#tablaUsuario").jqGrid({
             url: 'controlador/fachada.php',
             datatype: "json",
             mtype: 'POST',
@@ -16,7 +24,7 @@ $(function(){
                 clase: 'usuario',
                 oper: 'select'
             },
-            colNames: ['ID', 'NOMBRE','APELLIDO','TELEFONO','CUENTA','CONTRASE&Ntilde;A','ROL'],
+            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'ROL'],
             colModel: [
                 {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
@@ -75,10 +83,10 @@ $(function(){
             del: true,
             search: true
         },
-        {   // Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
-            beforeSubmit: function(postdata) {
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
@@ -91,28 +99,30 @@ $(function(){
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   // Antes de enviar a Departamento->add(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   modal:true, jqModal:true,
-            width:300,
+        {modal: true, jqModal: true,
+            width: 300,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {multipleSearch:true, multipleGroup:true}
-        
-    )};
-    
-    function crearTablaDocente(){
-        
-      jQuery("#tablaDocente").jqGrid({
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    function crearTablaDocente() {
+
+        jQuery("#tablaDocente").jqGrid({
             url: 'controlador/fachada.php',
             datatype: "json",
             mtype: 'POST',
@@ -120,7 +130,7 @@ $(function(){
                 clase: 'Docente',
                 oper: 'select'
             },
-            colNames: ['ID', 'NOMBRE','APELLIDO','TELEFONO','CUENTA','CONTRASE&Ntilde;A','COD_DOCENTE','DEPENDENCIA'],
+            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'COD_DOCENTE', 'DEPENDENCIA'],
             colModel: [
                 {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
@@ -152,7 +162,6 @@ $(function(){
                             $(elemento).width(282)
                         }
                     }},
-               
                 {name: 'cod_docente', index: 'cod_docente', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
@@ -163,7 +172,6 @@ $(function(){
                             $(elemento).width(282)
                         }
                     }},
-               
             ],
             rowNum: 100,
             width: 700,
@@ -186,10 +194,10 @@ $(function(){
             del: true,
             search: true
         },
-        {   // Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
-            beforeSubmit: function(postdata) {
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
@@ -202,29 +210,31 @@ $(function(){
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   // Antes de enviar a Departamento->add(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   modal:true, jqModal:true,
-            width:300,
+        {modal: true, jqModal: true,
+            width: 300,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {multipleSearch:true, multipleGroup:true}
-        
-    )};
-    
-    
-     function crearTablaEstudiante(){
-        
-      jQuery("#tablaEstudiante").jqGrid({
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+
+    function crearTablaEstudiante() {
+
+        jQuery("#tablaEstudiante").jqGrid({
             url: 'controlador/fachada.php',
             datatype: "json",
             mtype: 'POST',
@@ -232,7 +242,7 @@ $(function(){
                 clase: 'Estudiante',
                 oper: 'select'
             },
-            colNames: ['ID', 'NOMBRE','APELLIDO','TELEFONO','CUENTA','CONTRASE&Ntilde;A','COD_ESTUDIANTE','PRACTICA'],
+            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'COD_ESTUDIANTE', 'PRACTICA'],
             colModel: [
                 {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
@@ -264,7 +274,6 @@ $(function(){
                             $(elemento).width(282)
                         }
                     }},
-               
                 {name: 'cod_estudiante', index: 'cod_estudiante', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
@@ -275,7 +284,6 @@ $(function(){
                             $(elemento).width(282)
                         }
                     }},
-               
             ],
             rowNum: 100,
             width: 700,
@@ -298,10 +306,10 @@ $(function(){
             del: true,
             search: true
         },
-        {   // Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
-            beforeSubmit: function(postdata) {
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
@@ -314,29 +322,31 @@ $(function(){
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   // Antes de enviar a Departamento->add(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   modal:true, jqModal:true,
-            width:300,
+        {modal: true, jqModal: true,
+            width: 300,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {multipleSearch:true, multipleGroup:true}
-        
-    )};
-    
-    
-        function crearTablaAsesor(){
-        
-      jQuery("#tablaAsesor").jqGrid({
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+
+    function crearTablaAsesor() {
+
+        jQuery("#tablaAsesor").jqGrid({
             url: 'controlador/fachada.php',
             datatype: "json",
             mtype: 'POST',
@@ -344,7 +354,7 @@ $(function(){
                 clase: 'Asesor',
                 oper: 'select'
             },
-            colNames: ['ID', 'NOMBRE','APELLIDO','TELEFONO','CUENTA','CONTRASE&Ntilde;A','COD_ASESOR','NIT_EMPRESA'],
+            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'COD_ASESOR', 'NIT_EMPRESA'],
             colModel: [
                 {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
@@ -376,7 +386,6 @@ $(function(){
                             $(elemento).width(282)
                         }
                     }},
-               
                 {name: 'cod_asesor', index: 'cod_asesor', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
@@ -387,7 +396,6 @@ $(function(){
                             $(elemento).width(282)
                         }
                     }},
-               
             ],
             rowNum: 100,
             width: 700,
@@ -410,10 +418,10 @@ $(function(){
             del: true,
             search: true
         },
-        {   // Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
-            beforeSubmit: function(postdata) {
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
@@ -426,27 +434,29 @@ $(function(){
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   // Antes de enviar a Departamento->add(...) se agrega un POST
-            modal:true, jqModal:true,
-            width:500,
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {   modal:true, jqModal:true,
-            width:300,
+        {modal: true, jqModal: true,
+            width: 300,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
-        {multipleSearch:true, multipleGroup:true}
-        
-    )};
-    
-    
-    
-    
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+
+
+
 });
 

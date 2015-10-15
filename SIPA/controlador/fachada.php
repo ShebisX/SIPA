@@ -21,7 +21,7 @@ ini_set('display_errors', 'Off');
 ini_set('log_errors', 'On');
 ini_set('error_log', 'Ver errores.log');
 
-define('PHPEXCEL_ROOT', '../../includes/PHPExcel/');
+define('PHPEXCEL_ROOT', '../../../includes/PHPExcel/');
 define('DOCUMENT_ROOT', substr($_SERVER['DOCUMENT_ROOT'], -1) == '/' ? $_SERVER['DOCUMENT_ROOT'] : $_SERVER['DOCUMENT_ROOT'] . '/');
 
 try {
