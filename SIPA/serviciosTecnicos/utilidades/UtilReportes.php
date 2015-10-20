@@ -6,14 +6,13 @@ class UtilReportes {
 
     public static function crearLibro() {
         self::$objPHPExcel = new PHPExcel();
+        $sheetIndex = self::$objPHPExcel->getIndex(self::$objPHPExcel->getSheetByName('Worksheet'));
+        self::$objPHPExcel->removeSheetByIndex($sheetIndex);
     }
 
     public static function guardarLibro() {
-
         $objWriter = PHPExcel_IOFactory::createWriter(self::$objPHPExcel, 'Excel2007');
         $objWriter->save("Reportes.xlsx");
-        self::$objPHPExcel->disconnectWorksheets();
-        //unset(self::$objPHPExcel);
     }
 
     public static function abrirLibro() {
@@ -22,6 +21,12 @@ class UtilReportes {
         } else {
             self::crearLibro();
         }
+    }
+
+    public static function cerrarLibro() {
+        self::guardarLibro();
+        self::$objPHPExcel->disconnectWorksheets();
+        //unset(self::$objPHPExcel);
     }
 
     /* public static function reporte() {
