@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<DBMODEL Version="1.8" TYPE="PostgreSQL">
+
+<MODELSETTINGS MDDVERSION="1.10.6 (build 1047)" ModelProject="" ModelName="SIPA_BD" ModelCompany="" ModelAuthor="" ModelCopyright="" ModelVersion="" ModelVersionAI="0" ModelSaveScriptsWithVersion="0" ModelCreated="2015-11-16 23:46:39" ModelUpdated="2015-11-18 17:40:22" Description="" Annotation="" ZoomFac="98.00" XPos="0" YPos="0" PrintLink="" GenSettings="object GenSettings1: TGenSettings\n  TextCharCase = tccMixed\n  ModelCheck = True\n  DropIfExists = True\n  NotValidConstraints = False\n  ConcurrentlyIndexes = False\n  ISQL = False\n  DBOptions = [dbgoCreate, dbgoBeginScript, dbgoEndScript]\n  ViewOptions = [viewgoCreate, viewgoCreateRule]\n  SPOptions = [spgoCreate]\n  TableOptions = [tblgoCreate, tblgoBeginScript, tblgoEndScript, tblgoComment, tblgoCreatePK, tblgoCreateFK, tblgoCreateIndex, tblgoCreateRule, tblgoCreateTrigger, tblgoCreateCHECK, tblgoFieldDefault]\n  OwnerOptions = [owngoSchema, owngoTable, owngoView, owngoSP, owngoSequence, owngoUDT]\n  ACLOptions = [aclgoSchema, aclgoTable, aclgoView, aclgoSP, aclgoSequence]\n  ModifyOptions = [mgoKeepTbls, mgoBackupTbls, mgoTraceRenaming]\n  RoleCreate = True\n  RoleWhenCreate = rocrInScript\n  SQLTypeNames = False\nend\n" DisplaySettings="object DisplaySettings1: TDisplaySettings\n  ObjectsDisplay = [edoColumns, edoInhColumns, edoIndices, edoConstraints, edoTriggers, edoRules, edoColTypes, edoFKs, rdoRefName, spdoParameters, spdoResult, spdoParamTypes, spdoParamKind, vdoAttributes, vdoTargets, vdoRules]\n  Color = clWhite\n  ShowIcons = True\n  SnapGrid = True\n  DisplaySnap = True\n  SnapSize = 10\n  ShowPages = True\n  EntityFillColor = clWhite\n  EntityLineColor = clNavy\n  SPFillColor = clCream\n  SPLineColor = clNavy\n  ViewFillColor = clMoneyGreen\n  ViewLineColor = clNavy\n  RefNotation = 0\n  RefColor = clNavy\n  RefLabelColor = clWhite\n  MinimapShapesStyle = mmssFillAndBorder\n  MinimapVisibleAreaStyle = mmvasBitmapShading\n  MinimapBackColor = clWhite\nend\n" DefaultDelete="3" DefaultUpdate="3" DefaultDataType="23" DefaultSchemaID="0" NamePatterns="" QueryDelimiter=";" DBQuoteCharacter="\A" EncloseNames="1" PKColumnsFirst="0" HPageCount="5" VPageCount="5" />
+
+<DATABASE Name="Database_1" CharacterSet="" Collate="" CType="" Tablespace="" Owner="" Template="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="0" />
+
+<STAMPS>
+</STAMPS>
+
+<ROLES>
+</ROLES>
+
+<SCHEMAS>
+<SCHEMA ID="0" Name="public" Owner="" Generate="0" Comments="" System="1" ACL=""></SCHEMA>
+</SCHEMAS>
+
+<SEQUENCES>
+</SEQUENCES>
+
+<DOMAINS>
+</DOMAINS>
+
+<COMPOSITES>
+<COMPOSITE ID="10000" Name="usuario" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1000">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10001" Name="administrador" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1002">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10002" Name="director_programa" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1005">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10003" Name="docente" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1016">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10004" Name="estudiante" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1019">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10005" Name="representante_empresarial" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1024">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10006" Name="dependencias" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1025">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10007" Name="responsable_practica" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1031">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10008" Name="practica" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1049">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10009" Name="convenio" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1057">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10010" Name="empresa" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1058">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10011" Name="localidad" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1066">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10012" Name="sucursal" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1074">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10013" Name="prorroga" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1370">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10014" Name="practica_interna" SchemaName="public" OwnerName="" Comments="" MasterTableOID="2432">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10015" Name="practica_externa" SchemaName="public" OwnerName="" Comments="" MasterTableOID="2433">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+</COMPOSITES>
+
+<SCALARS>
+</SCALARS>
+
+<ENUMS>
+</ENUMS>
+
+<TABLESPACES>
+</TABLESPACES>
+
+<METADATA>
+<ENTITIES>
+<ENTITY ID="1000" Name="usuario" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="400" YPos="20" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="1" Name="nombre" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="2" Name="apellido" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="3" Name="cedula" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="4" Name="telefono" Pos="3" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="5" Name="contrasena" Pos="4" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="6" Name="rol" Pos="5" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="7" Name="correo" Pos="6" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="8" Name="direccion" Pos="7" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="41" Name="primer" Pos="8" Datatype="16" Type="bool" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="47" />
+		<REFERENCE_BEGIN ID="49" />
+		<REFERENCE_BEGIN ID="54" />
+		<REFERENCE_BEGIN ID="57" />
+		<REFERENCE_BEGIN ID="58" />
+		<REFERENCE_BEGIN ID="63" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="1" Name="" Kind="2" Expression="" ReferenceIndex="2878" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="3"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1002" Name="administrador" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="730" YPos="30" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="9" Name="cod_administrador" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="46" Name="cedula" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="54" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="53" Name="" Kind="2" Expression="" ReferenceIndex="2871" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="9"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1005" Name="director_programa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="110" YPos="30" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="11" Name="cod_director" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="12" Name="programa" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="43" Name="cedula" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="47" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="46" Name="" Kind="2" Expression="" ReferenceIndex="2865" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="11"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1016" Name="docente" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="50" YPos="170" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="13" Name="cod_docente" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="42" Name="dependencia" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="44" Name="cedula" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="84" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="49" />
+		<REFERENCE_END ID="52" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="48" Name="" Kind="2" Expression="" ReferenceIndex="2890" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="13"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1019" Name="estudiante" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="740" YPos="250" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="14" Name="codigo" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="15" Name="programa" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="48" Name="cedula" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="79" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="58" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="56" Name="" Kind="2" Expression="" ReferenceIndex="2886" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="14"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1024" Name="representante_empresarial" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="880" YPos="120" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="16" Name="cod_responsable" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="17" Name="cargo" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="47" Name="cedula" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="59" Name="empresa" Pos="3" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="57" />
+		<REFERENCE_END ID="86" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="55" Name="" Kind="2" Expression="" ReferenceIndex="2893" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="16"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1025" Name="dependencias" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="20" YPos="390" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="18" Name="id_dependencias" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="19" Name="descripcion" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="20" Name="nombre" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="49" Name="pertenece_depencia" Pos="3" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="52" />
+		<REFERENCE_BEGIN ID="60" />
+		<REFERENCE_BEGIN ID="96" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="60" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="51" Name="" Kind="2" Expression="" ReferenceIndex="2902" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="18"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1031" Name="responsable_practica" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="400" YPos="250" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="21" Name="cod_responsable" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="22" Name="cargo" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="45" Name="cedula" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="83" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="63" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="62" Name="" Kind="2" Expression="" ReferenceIndex="2888" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="21"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1049" Name="practica" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="440" YPos="390" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="23" Name="id" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="24" Name="fecha_inicio" Pos="1" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="25" Name="fecha_fin" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="26" Name="salario" Pos="3" Datatype="1700" Type="numeric" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="27" Name="tipo" Pos="4" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="56" Name="estudiante" Pos="5" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="57" Name="doncente" Pos="6" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="58" Name="responsable" Pos="7" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="93" />
+		<REFERENCE_BEGIN ID="95" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="79" />
+		<REFERENCE_END ID="83" />
+		<REFERENCE_END ID="84" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="14" Name="" Kind="2" Expression="" ReferenceIndex="2901" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="23"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1057" Name="convenio" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="510" YPos="710" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="28" Name="id_convenio" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="29" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="30" Name="fecha_inicio" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="31" Name="fecha_fin" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="54" Name="nit_empresa" Pos="4" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="66" />
+		<REFERENCE_BEGIN ID="94" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="70" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="15" Name="" Kind="2" Expression="" ReferenceIndex="2899" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="28"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="72" Name="U_em_con" Kind="1" Expression="" ReferenceIndex="2900" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="54"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1058" Name="empresa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="810" YPos="480" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="33" Name="nit" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="34" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="70" />
+		<REFERENCE_BEGIN ID="86" />
+		<REFERENCE_BEGIN ID="88" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="28" Name="" Kind="2" Expression="" ReferenceIndex="2894" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="33"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1066" Name="localidad" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="970" YPos="420" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="35" Name="cod" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="36" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="61" Name="id_sucursal" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="90" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="29" Name="" Kind="2" Expression="" ReferenceIndex="2897" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="35"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1074" Name="sucursal" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="1010" YPos="610" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="37" Name="id_sucursal" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="38" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="39" Name="direccion" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="40" Name="telefono" Pos="3" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="60" Name="nit_empresa" Pos="4" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="90" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="88" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="30" Name="" Kind="2" Expression="" ReferenceIndex="2896" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="37"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="1370" Name="prorroga" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="810" YPos="700" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="50" Name="id_prorroga" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="51" Name="id_convenio" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="52" Name="fecha_inicio" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="53" Name="fecha_fin" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="66" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="64" Name="" Kind="2" Expression="" ReferenceIndex="2882" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="50"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+</ENTITY>
+
+<ENTITY ID="2432" Name="practica_interna" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="210" YPos="590" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="62" Name="id_practica" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="63" Name="id_dependencia" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="95" />
+		<REFERENCE_END ID="96" />
+	</REFERENCES_END>
+</ENTITY>
+
+<ENTITY ID="2433" Name="practica_externa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="480" YPos="610" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+	<COLUMNS>
+		<COLUMN ID="64" Name="id_practica" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="65" Name="id_convenio" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="93" />
+		<REFERENCE_END ID="94" />
+	</REFERENCES_END>
+</ENTITY>
+
+</ENTITIES>
+
+<REFERENCES>
+<REFERENCE ID="47" Name="Ref_director_programa_to_usuario" SOURCE="1000" DESTINATION="1005" FKIDS="3=43\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" />
+
+<REFERENCE ID="49" Name="Ref_docente_to_usuario" SOURCE="1000" DESTINATION="1016" FKIDS="3=44\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" />
+
+<REFERENCE ID="52" Name="Ref_docente_to_dependencias" SOURCE="1025" DESTINATION="1016" FKIDS="18=42\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="51" />
+
+<REFERENCE ID="54" Name="Ref_administrador_to_usuario" SOURCE="1000" DESTINATION="1002" FKIDS="3=46\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" />
+
+<REFERENCE ID="57" Name="Ref_representante_empresarial_to_usuario" SOURCE="1000" DESTINATION="1024" FKIDS="3=47\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" />
+
+<REFERENCE ID="58" Name="Ref_estudiante_to_usuario" SOURCE="1000" DESTINATION="1019" FKIDS="3=48\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" />
+
+<REFERENCE ID="60" Name="Ref_dependencias_to_dependencias" SOURCE="1025" DESTINATION="1025" FKIDS="18=49\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="51" />
+
+<REFERENCE ID="63" Name="Ref_responsable_practica_to_usuario" SOURCE="1000" DESTINATION="1031" FKIDS="3=45\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" />
+
+<REFERENCE ID="66" Name="Ref_prorroga_to_convenio" SOURCE="1057" DESTINATION="1370" FKIDS="28=51\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="15" />
+
+<REFERENCE ID="70" Name="Ref_convenio_to_empresa" SOURCE="1058" DESTINATION="1057" FKIDS="33=54\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="28" />
+
+<REFERENCE ID="79" Name="Ref_practica_to_estudiante" SOURCE="1019" DESTINATION="1049" FKIDS="14=56\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="56" />
+
+<REFERENCE ID="83" Name="Ref_practica_to_responsable_practica" SOURCE="1031" DESTINATION="1049" FKIDS="21=58\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="62" />
+
+<REFERENCE ID="84" Name="Ref_practica_to_docente" SOURCE="1016" DESTINATION="1049" FKIDS="13=57\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="48" />
+
+<REFERENCE ID="86" Name="Ref_representante_empresarial_to_empresa" SOURCE="1058" DESTINATION="1024" FKIDS="33=59\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="28" />
+
+<REFERENCE ID="88" Name="Ref_sucursal_to_empresa" SOURCE="1058" DESTINATION="1074" FKIDS="33=60\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="28" />
+
+<REFERENCE ID="90" Name="Ref_localidad_to_sucursal" SOURCE="1074" DESTINATION="1066" FKIDS="37=61\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="30" />
+
+<REFERENCE ID="93" Name="Ref_practica_externa_to_practica" SOURCE="1049" DESTINATION="2433" FKIDS="23=64\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="14" />
+
+<REFERENCE ID="94" Name="Ref_practica_externa_to_convenio" SOURCE="1057" DESTINATION="2433" FKIDS="28=65\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="15" />
+
+<REFERENCE ID="95" Name="Ref_practica_interna_to_practica" SOURCE="1049" DESTINATION="2432" FKIDS="23=62\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="14" />
+
+<REFERENCE ID="96" Name="Ref_practica_interna_to_dependencias" SOURCE="1025" DESTINATION="2432" FKIDS="18=63\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="51" />
+
+</REFERENCES>
+
+<NOTES>
+</NOTES>
+
+<STOREDPROCES>
+</STOREDPROCES>
+
+<VIEWS>
+</VIEWS>
+
+</METADATA>
+</DBMODEL>
