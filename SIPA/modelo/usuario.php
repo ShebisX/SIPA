@@ -91,7 +91,9 @@ class usuario {
               ->setBody("Su nueva contraseña es: ".$contraNueva);
 
             $result = $mailer->send($message);
-            echo json_encode("asd");
+            echo json_encode(true);
+        }else{
+            echo json_encode(false);
         }
 
 

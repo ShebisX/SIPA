@@ -1,7 +1,6 @@
 $(document).on('ready', function () {
 
-    $("#login-button").on("click", function (event) {
-
+    $("#login-form").submit(function (event) {
         $.post("controlador/fachada.php", {
             clase: 'usuario',
             oper: 'autenticar',
@@ -25,7 +24,9 @@ $(document).on('ready', function () {
             user: $("#name").val()
 
         }, function (data) {
-            console.log(data);
+            if(data){
+                console.log("contraseña reestablecida");
+            }
         }, 'json');
     });
 
