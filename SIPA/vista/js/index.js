@@ -1,13 +1,21 @@
-$(document).on('ready', function () {
+$(document).on('ready', function() {
 
-    $("#login-form").submit(function (event) {
+    $('.toggle').on('click', function() {
+        $('.container').stop().addClass('active');
+    });
+
+    $('.close').on('click', function() {
+        $('.container').stop().removeClass('active');
+    });
+
+    $("#login-form").submit(function(event) {
         $.post("controlador/fachada.php", {
-            clase: 'usuario',
+            clase: 'Usuario',
             oper: 'autenticar',
             user: $("#name").val(),
             pass: $("#pass").val()
 
-        }, function (data) {
+        }, function(data) {
             //console.log(data);
             $("#principal").html(data);
         }, 'json');
@@ -17,15 +25,19 @@ $(document).on('ready', function () {
         $('.wrapper').addClass('form-success');
     });
 
-    $("#reestablecer").on("click", function(event){
+    $("#reestablecer").on("click", function(event) {
         $.post("controlador/fachada.php", {
-            clase: 'usuario',
+            clase: 'Usuario',
             oper: 'reestablecerContrasena',
             user: $("#name").val()
 
-        }, function (data) {
-            if(data){
+        }, function(data) {
+            console.log(data);
+            if (data) {
                 console.log("contraseña reestablecida");
+            }
+            else{
+                console.log("error");
             }
         }, 'json');
     });

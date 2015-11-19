@@ -1,11 +1,11 @@
 <?php
-class usuario {
+class Usuario {
 
     public function verificarCambio($args){
         extract($args);
         session_start();
         $user = $_SESSION['user'];
-        $sql = "select primer from usuario where cuenta = '$user'";
+        $sql = "SELECT primer FROM usuario WHERE correo = '$user'";
         if($rs = UtilConexion::$pdo->query($sql)){
             $fila=$rs->fetch(PDO::FETCH_ASSOC);
             echo json_encode($fila['primer']);
@@ -36,11 +36,13 @@ class usuario {
         extract($args);
         session_start();
         $user=$_SESSION['user'];
+        echo json_encode($user);
         if($pass1==$pass2){
-            $sql="update usuario set contrasena='$pass1' where cuenta='$user'";
+            $sql="UPDATE usuario SET contrasena = '$pass1', primer = FALSE WHERE correo = '$user'";
             UtilConexion::$pdo->query($sql);
             self::redirigir($_SESSION['rol']);
         }
+        echo json_encode(false);
     }
 
     public function autenticar($args) {
@@ -49,19 +51,19 @@ class usuario {
         if($_SESSION['user']==$user){
             self::redirigir($_SESSION['rol']);
         }else{
-            $sql = "select * from usuario where cuenta = '$user' and contrasena = '$pass'";
+            $sql = "SELECT * FROM usuario WHERE correo = '$user' AND contrasena = '$pass'";
             if ($rs = UtilConexion::$pdo->query($sql) ) {
                 $menu = "";
                 $fila = $rs->fetch(PDO::FETCH_ASSOC);
                 $rol=$fila['rol'];
-                $_SESSION['user']=$fila['cuenta'];
+                $_SESSION['user']=$user;
                 $_SESSION['rol']=$rol;
                 if($fila['primer']==TRUE){
                     $menu = file_get_contents("../vista/html/cambioClave.html");
                     echo json_encode($menu);
                     return;
                 }
-                $this->redirigir($rol);
+                self::redirigir($rol);
                 //echo json_encode(['nombre'=>$fila['nombre'], 'ok'=>true]);
             }else{
                 echo json_encode(["rs"=>$rs]);
@@ -71,7 +73,7 @@ class usuario {
 
     public function reestablecerContrasena($args){
         extract($args);
-        $sql = "select correo from usuario where cuenta = '$user'";
+        $sql = "SELECT correo FROM usuario WHERE correo = '$user'";
         $correo = "";
         if ($rs = UtilConexion::$pdo->query($sql) ) {
             $fila = $rs->fetch(PDO::FETCH_ASSOC);
@@ -79,16 +81,16 @@ class usuario {
         }
         if($correo != ""){
             $contraNueva = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
-            $sql = "update usuario set contrasena='$contraNueva', primer='true' where cuenta = '$user'";
+            $sql = "UPDATE usuario SET contrasena = '$contraNueva', primer = 'true' WHERE correo = '$user'";
             UtilConexion::$pdo->query($sql);
             $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
-              ->setUsername('sipaucaldas')
-              ->setPassword('sipanopa');
+            ->setUsername('sipaucaldas')
+            ->setPassword('sipanopa');
             $mailer = Swift_Mailer::newInstance($transport);
             $message = Swift_Message::newInstance('Nueva contraseña')
-              ->setFrom(array('sipaucaldas@gmail.com' => 'SIPA'))
-              ->setTo(array($correo))
-              ->setBody("Su nueva contraseña es: ".$contraNueva);
+            ->setFrom(array('sipaucaldas@gmail.com' => 'SIPA'))
+            ->setTo(array($correo))
+            ->setBody("Su nueva contraseña es: ".$contraNueva);
 
             $result = $mailer->send($message);
             echo json_encode(true);
@@ -104,7 +106,7 @@ class usuario {
         UtilConexion::$pdo->exec("INSERT INTO usuario VALUES ('$id','$nombre','$apellido','$telefono','$cuenta','$contrasena','$rol')");
         echo UtilConexion::getEstado();
     }
-    
+
     function edit($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos,1));
@@ -113,19 +115,19 @@ class usuario {
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
     }
-    
-    
-     function del($argumentos) {
+
+
+    function del($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos,1));
-      $sql = "DELETE FROM usuario WHERE id='$id';"
-             ;
-      
+        $sql = "DELETE FROM usuario WHERE id='$id';"
+        ;
+
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
-        
-       
+
+
     }
 
     function select($argumentos) {
@@ -154,16 +156,16 @@ class usuario {
         }
 
         $respuesta = [
-            'total' => $total_pages,
-            'page' => $page,
-            'records' => $count
+        'total' => $total_pages,
+        'page' => $page,
+        'records' => $count
         ];
 
         $sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['id'],
-                'cell' => [$fila['id'], $fila['nombre']]
+            'id' => $fila['id'],
+            'cell' => [$fila['id'], $fila['nombre']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON
@@ -172,12 +174,12 @@ class usuario {
         echo json_encode($respuesta);
     }
 
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }
 
 ?>
