@@ -5,18 +5,19 @@ DROP DATABASE "Database_1";
 CREATE DATABASE "Database_1";*/
 
 
--- DROP TABLE dependencias
-DROP TABLE IF EXISTS "dependencias" CASCADE;
 
--- CREATE TABLE dependencias
-CREATE TABLE "dependencias" (
-	"id_dependencias" varchar NOT NULL,
+-- DROP TABLE dependencia
+DROP TABLE IF EXISTS "dependencia" CASCADE;
+
+-- CREATE TABLE dependencia
+CREATE TABLE "dependencia" (
+	"id_dependencia" varchar NOT NULL,
 	"descripcion" varchar,
 	"nombre" varchar,
 	"pertenece_depencia" varchar,
-	PRIMARY KEY("id_dependencias"),
+	PRIMARY KEY("id_dependencia"),
 	CONSTRAINT "Ref_dependencias_to_dependencias" FOREIGN KEY ("pertenece_depencia")
-		REFERENCES "dependencias"("id_dependencias")
+		REFERENCES "dependencia"("id_dependencia")
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -40,15 +41,15 @@ DROP TABLE IF EXISTS "usuario" CASCADE;
 
 -- CREATE TABLE usuario
 CREATE TABLE "usuario" (
+	"cedula" varchar NOT NULL,
 	"nombre" varchar,
 	"apellido" varchar,
-	"cedula" varchar NOT NULL,
 	"telefono" varchar,
 	"contrasena" varchar,
 	"rol" varchar,
 	"correo" varchar,
 	"direccion" varchar,
-	"primer" bool,
+	"primer" bool DEFAULT True,
 	PRIMARY KEY("cedula")
 );
 
@@ -197,12 +198,11 @@ DROP TABLE IF EXISTS "convenio" CASCADE;
 -- CREATE TABLE convenio
 CREATE TABLE "convenio" (
 	"id_convenio" varchar NOT NULL,
-	"nombre" varchar,
 	"fecha_inicio" date,
 	"fecha_fin" date,
 	"nit_empresa" varchar,
 	"razon" varchar,
-	"prorroga_id_prorroga" varchar NOT NULL,
+	"prorroga_id_prorroga" varchar,
 	PRIMARY KEY("id_convenio"),
 	CONSTRAINT "U_em_con" UNIQUE("nit_empresa"),
 	CONSTRAINT "Ref_convenio_to_empresa" FOREIGN KEY ("nit_empresa")
@@ -235,7 +235,7 @@ CREATE TABLE "docente" (
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_docente_to_dependencias" FOREIGN KEY ("dependencia")
-		REFERENCES "dependencias"("id_dependencias")
+		REFERENCES "dependencia"("id_dependencia")
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -253,9 +253,9 @@ CREATE TABLE "practica" (
 	"salario" numeric,
 	"tipo" varchar,
 	"estudiante" varchar,
-	"doncente" varchar,
+	"docente" varchar,
 	"responsable" varchar,
-	"prorroga_id_prorroga" varchar NOT NULL,
+	"prorroga_id_prorroga" varchar,
 	PRIMARY KEY("codigo"),
 	CONSTRAINT "Ref_practica_to_estudiante" FOREIGN KEY ("estudiante")
 		REFERENCES "estudiante"("codigo")
@@ -269,7 +269,7 @@ CREATE TABLE "practica" (
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
-	CONSTRAINT "Ref_practica_to_docente" FOREIGN KEY ("doncente")
+	CONSTRAINT "Ref_practica_to_docente" FOREIGN KEY ("docente")
 		REFERENCES "docente"("cod_docente")
 	MATCH SIMPLE
 	ON DELETE NO ACTION
@@ -318,9 +318,10 @@ CREATE TABLE "practica_interna" (
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_practica_interna_to_dependencias" FOREIGN KEY ("id_dependencia")
-		REFERENCES "dependencias"("id_dependencias")
+		REFERENCES "dependencia"("id_dependencia")
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
+
