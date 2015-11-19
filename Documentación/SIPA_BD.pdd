@@ -2,7 +2,7 @@
 
 <DBMODEL Version="1.8" TYPE="PostgreSQL">
 
-<MODELSETTINGS MDDVERSION="1.10.6 (build 1047)" ModelProject="" ModelName="SIPA_BD" ModelCompany="" ModelAuthor="" ModelCopyright="" ModelVersion="" ModelVersionAI="0" ModelSaveScriptsWithVersion="0" ModelCreated="2015-11-16 23:46:39" ModelUpdated="2015-11-18 17:40:22" Description="" Annotation="" ZoomFac="98.00" XPos="0" YPos="0" PrintLink="" GenSettings="object GenSettings1: TGenSettings\n  TextCharCase = tccMixed\n  ModelCheck = True\n  DropIfExists = True\n  NotValidConstraints = False\n  ConcurrentlyIndexes = False\n  ISQL = False\n  DBOptions = [dbgoCreate, dbgoBeginScript, dbgoEndScript]\n  ViewOptions = [viewgoCreate, viewgoCreateRule]\n  SPOptions = [spgoCreate]\n  TableOptions = [tblgoCreate, tblgoBeginScript, tblgoEndScript, tblgoComment, tblgoCreatePK, tblgoCreateFK, tblgoCreateIndex, tblgoCreateRule, tblgoCreateTrigger, tblgoCreateCHECK, tblgoFieldDefault]\n  OwnerOptions = [owngoSchema, owngoTable, owngoView, owngoSP, owngoSequence, owngoUDT]\n  ACLOptions = [aclgoSchema, aclgoTable, aclgoView, aclgoSP, aclgoSequence]\n  ModifyOptions = [mgoKeepTbls, mgoBackupTbls, mgoTraceRenaming]\n  RoleCreate = True\n  RoleWhenCreate = rocrInScript\n  SQLTypeNames = False\nend\n" DisplaySettings="object DisplaySettings1: TDisplaySettings\n  ObjectsDisplay = [edoColumns, edoInhColumns, edoIndices, edoConstraints, edoTriggers, edoRules, edoColTypes, edoFKs, rdoRefName, spdoParameters, spdoResult, spdoParamTypes, spdoParamKind, vdoAttributes, vdoTargets, vdoRules]\n  Color = clWhite\n  ShowIcons = True\n  SnapGrid = True\n  DisplaySnap = True\n  SnapSize = 10\n  ShowPages = True\n  EntityFillColor = clWhite\n  EntityLineColor = clNavy\n  SPFillColor = clCream\n  SPLineColor = clNavy\n  ViewFillColor = clMoneyGreen\n  ViewLineColor = clNavy\n  RefNotation = 0\n  RefColor = clNavy\n  RefLabelColor = clWhite\n  MinimapShapesStyle = mmssFillAndBorder\n  MinimapVisibleAreaStyle = mmvasBitmapShading\n  MinimapBackColor = clWhite\nend\n" DefaultDelete="3" DefaultUpdate="3" DefaultDataType="23" DefaultSchemaID="0" NamePatterns="" QueryDelimiter=";" DBQuoteCharacter="\A" EncloseNames="1" PKColumnsFirst="0" HPageCount="5" VPageCount="5" />
+<MODELSETTINGS MDDVERSION="1.9.1 (build 926)" ModelProject="" ModelName="SIPA_BD" ModelCompany="" ModelAuthor="" ModelCopyright="" ModelVersion="" ModelVersionAI="0" ModelSaveScriptsWithVersion="0" ModelCreated="2015-11-16 23:46:39" ModelUpdated="2015-11-19 09:35:22" Description="" Annotation="" ZoomFac="75.00" XPos="0" YPos="0" PrintLink="" GenSettings="object GenSettings1: TGenSettings\n  TextCharCase = tccMixed\n  ModelCheck = True\n  DropIfExists = True\n  ISQL = False\n  DBOptions = [dbgoCreate, dbgoBeginScript, dbgoEndScript]\n  ViewOptions = [viewgoCreate, viewgoCreateRule]\n  SPOptions = [spgoCreate]\n  TableOptions = [tblgoCreate, tblgoBeginScript, tblgoEndScript, tblgoComment, tblgoCreatePK, tblgoCreateFK, tblgoCreateIndex, tblgoCreateRule, tblgoCreateTrigger, tblgoCreateCHECK, tblgoFieldDefault]\n  OwnerOptions = [owngoSchema, owngoTable, owngoView, owngoSP, owngoSequence, owngoUDT]\n  ACLOptions = [aclgoSchema, aclgoTable, aclgoView, aclgoSP, aclgoSequence]\n  ModifyOptions = [mgoKeepTbls, mgoBackupTbls, mgoTraceRenaming]\n  RoleCreate = True\n  RoleWhenCreate = rocrInScript\n  SQLTypeNames = False\nend\n" DisplaySettings="object DisplaySettings1: TDisplaySettings\n  ObjectsDisplay = [edoColumns, edoInhColumns, edoIndices, edoConstraints, edoTriggers, edoRules, edoColTypes, edoFKs, rdoRefName, spdoParameters, spdoResult, spdoParamTypes, spdoParamKind, vdoAttributes, vdoTargets, vdoRules]\n  Color = clWhite\n  ShowIcons = True\n  SnapGrid = True\n  DisplaySnap = True\n  SnapSize = 10\n  ShowPages = True\n  EntityFillColor = clWhite\n  EntityLineColor = clNavy\n  SPFillColor = clCream\n  SPLineColor = clNavy\n  ViewFillColor = clMoneyGreen\n  ViewLineColor = clNavy\n  RefNotation = 0\n  RefColor = clNavy\n  RefLabelColor = clWhite\n  MinimapShapesStyle = mmssFillAndBorder\n  MinimapVisibleAreaStyle = mmvasBitmapShading\n  MinimapBackColor = clWhite\nend\n" DefaultDelete="3" DefaultUpdate="3" DefaultDataType="23" DefaultSchemaID="0" NamePatterns="" QueryDelimiter=";" DBQuoteCharacter="\A" EncloseNames="1" HPageCount="5" VPageCount="5" />
 
 <DATABASE Name="Database_1" CharacterSet="" Collate="" CType="" Tablespace="" Owner="" Template="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="0" />
 
@@ -121,11 +121,18 @@
 		<REFERENCE_BEGIN ID="63" />
 	</REFERENCES_BEGIN>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="1" Name="" Kind="2" Expression="" ReferenceIndex="2878" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="1" Name="" Kind="2" Expression="" ReferenceIndex="2435" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="3"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2435" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="1" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cedula"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
 <ENTITY ID="1002" Name="administrador" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="730" YPos="30" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
@@ -137,11 +144,18 @@
 		<REFERENCE_END ID="54" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="53" Name="" Kind="2" Expression="" ReferenceIndex="2871" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="53" Name="" Kind="2" Expression="" ReferenceIndex="2439" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="9"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2439" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="53" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cod_administrador"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
 <ENTITY ID="1005" Name="director_programa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="110" YPos="30" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
@@ -154,11 +168,18 @@
 		<REFERENCE_END ID="47" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="46" Name="" Kind="2" Expression="" ReferenceIndex="2865" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="46" Name="" Kind="2" Expression="" ReferenceIndex="2436" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="11"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2436" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="46" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cod_director"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
 <ENTITY ID="1016" Name="docente" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="50" YPos="170" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
@@ -175,11 +196,18 @@
 		<REFERENCE_END ID="52" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="48" Name="" Kind="2" Expression="" ReferenceIndex="2890" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="48" Name="" Kind="2" Expression="" ReferenceIndex="2437" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="13"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2437" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="48" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cod_docente"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
 <ENTITY ID="1019" Name="estudiante" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="740" YPos="250" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
@@ -195,16 +223,23 @@
 		<REFERENCE_END ID="58" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="56" Name="" Kind="2" Expression="" ReferenceIndex="2886" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="56" Name="" Kind="2" Expression="" ReferenceIndex="2441" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="14"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2441" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="56" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="codigo"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
 <ENTITY ID="1024" Name="representante_empresarial" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="880" YPos="120" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
-		<COLUMN ID="16" Name="cod_responsable" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="16" Name="cod_representante" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="17" Name="cargo" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="47" Name="cedula" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="59" Name="empresa" Pos="3" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -214,11 +249,18 @@
 		<REFERENCE_END ID="86" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="55" Name="" Kind="2" Expression="" ReferenceIndex="2893" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="55" Name="" Kind="2" Expression="" ReferenceIndex="2459" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="16"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2459" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="55" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cod_representante"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
 <ENTITY ID="1025" Name="dependencias" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="20" YPos="390" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
@@ -237,11 +279,18 @@
 		<REFERENCE_END ID="60" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="51" Name="" Kind="2" Expression="" ReferenceIndex="2902" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="51" Name="" Kind="2" Expression="" ReferenceIndex="2438" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="18"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2438" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="51" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_dependencias"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
 <ENTITY ID="1031" Name="responsable_practica" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="400" YPos="250" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
@@ -257,16 +306,23 @@
 		<REFERENCE_END ID="63" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="62" Name="" Kind="2" Expression="" ReferenceIndex="2888" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="62" Name="" Kind="2" Expression="" ReferenceIndex="2442" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="21"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2442" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="62" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cod_responsable"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="1049" Name="practica" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="440" YPos="390" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="1049" Name="practica" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="400" YPos="390" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
-		<COLUMN ID="23" Name="id" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="23" Name="codigo" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="24" Name="fecha_inicio" Pos="1" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="25" Name="fecha_fin" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="26" Name="salario" Pos="3" Datatype="1700" Type="numeric" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -274,6 +330,7 @@
 		<COLUMN ID="56" Name="estudiante" Pos="5" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="57" Name="doncente" Pos="6" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="58" Name="responsable" Pos="7" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="71" Name="prorroga_id_prorroga" Pos="8" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
 		<REFERENCE_BEGIN ID="93" />
@@ -283,46 +340,67 @@
 		<REFERENCE_END ID="79" />
 		<REFERENCE_END ID="83" />
 		<REFERENCE_END ID="84" />
+		<REFERENCE_END ID="120" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="14" Name="" Kind="2" Expression="" ReferenceIndex="2901" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="14" Name="" Kind="2" Expression="" ReferenceIndex="2457" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="23"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2457" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="14" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="codigo"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="1057" Name="convenio" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="510" YPos="710" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="1057" Name="convenio" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="370" YPos="680" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="28" Name="id_convenio" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="29" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="30" Name="fecha_inicio" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="31" Name="fecha_fin" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="54" Name="nit_empresa" Pos="4" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="68" Name="razon" Pos="5" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="70" Name="prorroga_id_prorroga" Pos="6" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
-	<REFERENCES_BEGIN>
-		<REFERENCE_BEGIN ID="66" />
-		<REFERENCE_BEGIN ID="94" />
-	</REFERENCES_BEGIN>
 	<REFERENCES_END>
 		<REFERENCE_END ID="70" />
+		<REFERENCE_END ID="119" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="15" Name="" Kind="2" Expression="" ReferenceIndex="2899" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="15" Name="" Kind="2" Expression="" ReferenceIndex="2487" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="28"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
-		<CONSTRAINT ID="72" Name="U_em_con" Kind="1" Expression="" ReferenceIndex="2900" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="72" Name="U_em_con" Kind="1" Expression="" ReferenceIndex="2451" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="54"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2451" Name="U_em_con_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="72" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="nit_empresa"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="2487" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="15" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_convenio"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="1058" Name="empresa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="810" YPos="480" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="1058" Name="empresa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="750" YPos="420" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="33" Name="nit" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="34" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="66" Name="tipo" Pos="2" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="67" Name="razon_social" Pos="3" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_BEGIN>
 		<REFERENCE_BEGIN ID="70" />
@@ -330,14 +408,21 @@
 		<REFERENCE_BEGIN ID="88" />
 	</REFERENCES_BEGIN>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="28" Name="" Kind="2" Expression="" ReferenceIndex="2894" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="28" Name="" Kind="2" Expression="" ReferenceIndex="2434" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="33"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2434" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="28" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="nit"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="1066" Name="localidad" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="970" YPos="420" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="1066" Name="localidad" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="980" YPos="260" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="35" Name="cod" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="36" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -347,14 +432,21 @@
 		<REFERENCE_END ID="90" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="29" Name="" Kind="2" Expression="" ReferenceIndex="2897" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="29" Name="" Kind="2" Expression="" ReferenceIndex="2449" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="35"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2449" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="29" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cod"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="1074" Name="sucursal" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="1010" YPos="610" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="1074" Name="sucursal" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="980" YPos="540" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="37" Name="id_sucursal" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="38" Name="nombre" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -364,37 +456,53 @@
 	</COLUMNS>
 	<REFERENCES_BEGIN>
 		<REFERENCE_BEGIN ID="90" />
+		<REFERENCE_BEGIN ID="118" />
 	</REFERENCES_BEGIN>
 	<REFERENCES_END>
 		<REFERENCE_END ID="88" />
 	</REFERENCES_END>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="30" Name="" Kind="2" Expression="" ReferenceIndex="2896" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="30" Name="" Kind="2" Expression="" ReferenceIndex="2448" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="37"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2448" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="30" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_sucursal"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="1370" Name="prorroga" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="810" YPos="700" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="1370" Name="prorroga" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="60" YPos="660" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="50" Name="id_prorroga" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="51" Name="id_convenio" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="51" Name="id_convenio" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="52" Name="fecha_inicio" Pos="2" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="53" Name="fecha_fin" Pos="3" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
-	<REFERENCES_END>
-		<REFERENCE_END ID="66" />
-	</REFERENCES_END>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="119" />
+		<REFERENCE_BEGIN ID="120" />
+	</REFERENCES_BEGIN>
 	<CONSTRAINTS>
-		<CONSTRAINT ID="64" Name="" Kind="2" Expression="" ReferenceIndex="2882" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+		<CONSTRAINT ID="64" Name="" Kind="2" Expression="" ReferenceIndex="2445" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
 			<CONSTRAINTCOLUMNS COMMATEXT="50"></CONSTRAINTCOLUMNS>
 			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
 		</CONSTRAINT>
 	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="2445" Name="_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="64" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_prorroga"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="2432" Name="practica_interna" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="210" YPos="590" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="2432" Name="practica_interna" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="60" YPos="560" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="62" Name="id_practica" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="63" Name="id_dependencia" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
@@ -405,14 +513,14 @@
 	</REFERENCES_END>
 </ENTITY>
 
-<ENTITY ID="2433" Name="practica_externa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="480" YPos="610" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="2433" Name="practica_externa" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="640" YPos="670" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="64" Name="id_practica" Pos="0" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
-		<COLUMN ID="65" Name="id_convenio" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="69" Name="sucursal_id_sucursal" Pos="1" Datatype="1043" Type="varchar" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 	</COLUMNS>
 	<REFERENCES_END>
 		<REFERENCE_END ID="93" />
-		<REFERENCE_END ID="94" />
+		<REFERENCE_END ID="118" />
 	</REFERENCES_END>
 </ENTITY>
 
@@ -435,8 +543,6 @@
 
 <REFERENCE ID="63" Name="Ref_responsable_practica_to_usuario" SOURCE="1000" DESTINATION="1031" FKIDS="3=45\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="1" />
 
-<REFERENCE ID="66" Name="Ref_prorroga_to_convenio" SOURCE="1057" DESTINATION="1370" FKIDS="28=51\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="15" />
-
 <REFERENCE ID="70" Name="Ref_convenio_to_empresa" SOURCE="1058" DESTINATION="1057" FKIDS="33=54\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="28" />
 
 <REFERENCE ID="79" Name="Ref_practica_to_estudiante" SOURCE="1019" DESTINATION="1049" FKIDS="14=56\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="56" />
@@ -453,11 +559,15 @@
 
 <REFERENCE ID="93" Name="Ref_practica_externa_to_practica" SOURCE="1049" DESTINATION="2433" FKIDS="23=64\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="14" />
 
-<REFERENCE ID="94" Name="Ref_practica_externa_to_convenio" SOURCE="1057" DESTINATION="2433" FKIDS="28=65\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="15" />
-
 <REFERENCE ID="95" Name="Ref_practica_interna_to_practica" SOURCE="1049" DESTINATION="2432" FKIDS="23=62\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="14" />
 
 <REFERENCE ID="96" Name="Ref_practica_interna_to_dependencias" SOURCE="1025" DESTINATION="2432" FKIDS="18=63\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="51" />
+
+<REFERENCE ID="118" Name="Ref_practica_externa_to_sucursal" SOURCE="1074" DESTINATION="2433" FKIDS="37=69\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="30" />
+
+<REFERENCE ID="119" Name="Ref_convenio_to_prorroga" SOURCE="1370" DESTINATION="1057" FKIDS="50=70\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="64" />
+
+<REFERENCE ID="120" Name="Ref_practica_to_prorroga" SOURCE="1370" DESTINATION="1049" FKIDS="50=71\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="64" />
 
 </REFERENCES>
 

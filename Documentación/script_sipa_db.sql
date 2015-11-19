@@ -1,222 +1,326 @@
-﻿DROP TABLE docentes_practicas;
-DROP TABLE admin_general;
-DROP TABLE estudiante;
-DROP TABLE asesor_empresarial;
-DROP TABLE docente;
-DROP TABLE practica;
-DROP TABLE dependencia;
-DROP TABLE convenio;
-DROP TABLE usuario;
-DROP TABLE empresa;
+﻿/*-- DROP DATABASE Database_1
+DROP DATABASE "Database_1";
+
+-- CREATE DATABASE Database_1
+CREATE DATABASE "Database_1";*/
 
 
-CREATE TABLE empresa (
-	nit varchar NOT NULL,
-	nombre varchar,
-	localidad varchar,
-	PRIMARY KEY(nit)
-);
+-- DROP TABLE dependencias
+DROP TABLE IF EXISTS "dependencias" CASCADE;
 
-
-
-CREATE TABLE dependencia (
-	id_dependencia int4 NOT NULL,
-	nombre varchar,
-	descripcion varchar,
-	fk_dependencia_pertenece int4,
-	PRIMARY KEY(id_dependencia),
-	CONSTRAINT ref_dependencia_to_dependencia FOREIGN KEY (fk_dependencia_pertenece)
-		REFERENCES dependencia(id_dependencia)
+-- CREATE TABLE dependencias
+CREATE TABLE "dependencias" (
+	"id_dependencias" varchar NOT NULL,
+	"descripcion" varchar,
+	"nombre" varchar,
+	"pertenece_depencia" varchar,
+	PRIMARY KEY("id_dependencias"),
+	CONSTRAINT "Ref_dependencias_to_dependencias" FOREIGN KEY ("pertenece_depencia")
+		REFERENCES "dependencias"("id_dependencias")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
 
+-- DROP TABLE empresa
+DROP TABLE IF EXISTS "empresa" CASCADE;
 
-
-CREATE TABLE usuario (
-	id varchar NOT NULL,
-	nombre varchar,
-	apellido varchar,
-	telefono varchar,
-	cuenta varchar,
-	contrasena varchar,
-	rol varchar,
-	PRIMARY KEY(id)
+-- CREATE TABLE empresa
+CREATE TABLE "empresa" (
+	"nit" varchar NOT NULL,
+	"nombre" varchar,
+	"tipo" varchar,
+	"razon_social" varchar,
+	PRIMARY KEY("nit")
 );
 
+-- DROP TABLE usuario
+DROP TABLE IF EXISTS "usuario" CASCADE;
 
+-- CREATE TABLE usuario
+CREATE TABLE "usuario" (
+	"nombre" varchar,
+	"apellido" varchar,
+	"cedula" varchar NOT NULL,
+	"telefono" varchar,
+	"contrasena" varchar,
+	"rol" varchar,
+	"correo" varchar,
+	"direccion" varchar,
+	"primer" bool,
+	PRIMARY KEY("cedula")
+);
 
-CREATE TABLE convenio (
-	id_convenio SERIAL NOT NULL,
-	nombre varchar,
-	empresa_nit varchar NOT NULL,
-	fecha_inicial date,
-	fecha_final date,
-	prorroga date,
-	PRIMARY KEY(id_convenio),
-	CONSTRAINT ref_convenio_to_empresa FOREIGN KEY (empresa_nit)
-		REFERENCES empresa(nit)
+-- DROP TABLE prorroga
+DROP TABLE IF EXISTS "prorroga" CASCADE;
+
+-- CREATE TABLE prorroga
+CREATE TABLE "prorroga" (
+	"id_prorroga" varchar NOT NULL,
+	"id_convenio" varchar,
+	"fecha_inicio" date,
+	"fecha_fin" date,
+	PRIMARY KEY("id_prorroga")
+);
+
+-- DROP TABLE responsable_practica
+DROP TABLE IF EXISTS "responsable_practica" CASCADE;
+
+-- CREATE TABLE responsable_practica
+CREATE TABLE "responsable_practica" (
+	"cod_responsable" varchar NOT NULL,
+	"cargo" varchar,
+	"cedula" varchar,
+	PRIMARY KEY("cod_responsable"),
+	CONSTRAINT "Ref_responsable_practica_to_usuario" FOREIGN KEY ("cedula")
+		REFERENCES "usuario"("cedula")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
 
+-- DROP TABLE sucursal
+DROP TABLE IF EXISTS "sucursal" CASCADE;
 
-
-
-CREATE TABLE practica (
-	id_practica int4 NOT NULL,
-	fecha_inicio date,
-	fecha_fin date,
-	salario int4,
-	fk_convenio int4 NOT NULL,
-	PRIMARY KEY(id_practica),
-	CONSTRAINT ref_practica_to_convenio FOREIGN KEY (fk_convenio)
-		REFERENCES convenio(id_convenio)
+-- CREATE TABLE sucursal
+CREATE TABLE "sucursal" (
+	"id_sucursal" varchar NOT NULL,
+	"nombre" varchar,
+	"direccion" varchar,
+	"telefono" varchar,
+	"nit_empresa" varchar,
+	PRIMARY KEY("id_sucursal"),
+	CONSTRAINT "Ref_sucursal_to_empresa" FOREIGN KEY ("nit_empresa")
+		REFERENCES "empresa"("nit")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
 
+-- DROP TABLE localidad
+DROP TABLE IF EXISTS "localidad" CASCADE;
 
-
-CREATE TABLE admin_general (
-	cod_admingeneral varchar NOT NULL,
-	usuario_id varchar NOT NULL,
-	PRIMARY KEY(cod_admingeneral),
-	CONSTRAINT ref_admin_general_to_usuario FOREIGN KEY (usuario_id)
-		REFERENCES usuario(id)
+-- CREATE TABLE localidad
+CREATE TABLE "localidad" (
+	"cod" varchar NOT NULL,
+	"nombre" varchar,
+	"id_sucursal" varchar,
+	PRIMARY KEY("cod"),
+	CONSTRAINT "Ref_localidad_to_sucursal" FOREIGN KEY ("id_sucursal")
+		REFERENCES "sucursal"("id_sucursal")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
 
+-- DROP TABLE estudiante
+DROP TABLE IF EXISTS "estudiante" CASCADE;
 
-
-CREATE TABLE estudiante (
-	cod_estudiante varchar NOT NULL,
-	usuario_id varchar NOT NULL,
-	fk_practica int4 NOT NULL,
-	PRIMARY KEY(cod_estudiante),
-	CONSTRAINT ref_estudiante_to_usuario FOREIGN KEY (usuario_id)
-		REFERENCES usuario(id)
+-- CREATE TABLE estudiante
+CREATE TABLE "estudiante" (
+	"codigo" varchar NOT NULL,
+	"programa" varchar,
+	"cedula" varchar,
+	PRIMARY KEY("codigo"),
+	CONSTRAINT "Ref_estudiante_to_usuario" FOREIGN KEY ("cedula")
+		REFERENCES "usuario"("cedula")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+);
+
+-- DROP TABLE director_programa
+DROP TABLE IF EXISTS "director_programa" CASCADE;
+
+-- CREATE TABLE director_programa
+CREATE TABLE "director_programa" (
+	"cod_director" varchar NOT NULL,
+	"programa" varchar,
+	"cedula" varchar,
+	PRIMARY KEY("cod_director"),
+	CONSTRAINT "Ref_director_programa_to_usuario" FOREIGN KEY ("cedula")
+		REFERENCES "usuario"("cedula")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+);
+
+-- DROP TABLE administrador
+DROP TABLE IF EXISTS "administrador" CASCADE;
+
+-- CREATE TABLE administrador
+CREATE TABLE "administrador" (
+	"cod_administrador" varchar NOT NULL,
+	"cedula" varchar,
+	PRIMARY KEY("cod_administrador"),
+	CONSTRAINT "Ref_administrador_to_usuario" FOREIGN KEY ("cedula")
+		REFERENCES "usuario"("cedula")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+);
+
+-- DROP TABLE representante_empresarial
+DROP TABLE IF EXISTS "representante_empresarial" CASCADE;
+
+-- CREATE TABLE representante_empresarial
+CREATE TABLE "representante_empresarial" (
+	"cod_representante" varchar NOT NULL,
+	"cargo" varchar,
+	"cedula" varchar,
+	"empresa" varchar,
+	PRIMARY KEY("cod_representante"),
+	CONSTRAINT "Ref_representante_empresarial_to_usuario" FOREIGN KEY ("cedula")
+		REFERENCES "usuario"("cedula")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
-	CONSTRAINT ref_estudiante_to_practica FOREIGN KEY (fk_practica)
-		REFERENCES practica(id_practica)
+	CONSTRAINT "Ref_representante_empresarial_to_empresa" FOREIGN KEY ("empresa")
+		REFERENCES "empresa"("nit")
 	MATCH SIMPLE
-	ON DELETE CASCADE
-	ON UPDATE NO ACTION
-	NOT DEFERRABLE
-	);
-
-
-CREATE TABLE asesor_empresarial (
-	cod_asesoremp varchar NOT NULL,
-	usuario_id varchar NOT NULL,
-	empresa_nit varchar NOT NULL,
-	PRIMARY KEY(cod_asesoremp),
-	CONSTRAINT ref_pers_empresarial_to_usuario FOREIGN KEY (usuario_id)
-		REFERENCES usuario(id)
-	MATCH SIMPLE
-	ON DELETE CASCADE
-	ON UPDATE NO ACTION
-	NOT DEFERRABLE,
-	CONSTRAINT ref_pers_empresarial_to_empresa FOREIGN KEY (empresa_nit)
-		REFERENCES empresa(nit)
-	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
 
+-- DROP TABLE convenio
+DROP TABLE IF EXISTS "convenio" CASCADE;
 
-CREATE TABLE docente (
-	cod_docente varchar NOT NULL,
-	fk_usuario_id varchar NOT NULL,
-	fk_dependecia int4,
-	PRIMARY KEY(cod_docente),
-	CONSTRAINT unique_id UNIQUE(fk_usuario_id),
-	CONSTRAINT ref_docente_to_usuario FOREIGN KEY (fk_usuario_id)
-		REFERENCES usuario(id)
+-- CREATE TABLE convenio
+CREATE TABLE "convenio" (
+	"id_convenio" varchar NOT NULL,
+	"nombre" varchar,
+	"fecha_inicio" date,
+	"fecha_fin" date,
+	"nit_empresa" varchar,
+	"razon" varchar,
+	"prorroga_id_prorroga" varchar NOT NULL,
+	PRIMARY KEY("id_convenio"),
+	CONSTRAINT "U_em_con" UNIQUE("nit_empresa"),
+	CONSTRAINT "Ref_convenio_to_empresa" FOREIGN KEY ("nit_empresa")
+		REFERENCES "empresa"("nit")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
-	CONSTRAINT ref_docente_to_dependencia FOREIGN KEY (fk_dependecia)
-		REFERENCES dependencia(id_dependencia)
+	CONSTRAINT "Ref_convenio_to_prorroga" FOREIGN KEY ("prorroga_id_prorroga")
+		REFERENCES "prorroga"("id_prorroga")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
 
+-- DROP TABLE docente
+DROP TABLE IF EXISTS "docente" CASCADE;
 
-CREATE TABLE docentes_practicas (
-	id_practicas_docente SERIAL NOT NULL,
-	fk_docente varchar,
-	fk_practica int4,
-	PRIMARY KEY(id_practicas_docente),
-	CONSTRAINT docente_practica_unique UNIQUE(fk_docente,fk_practica),
-	CONSTRAINT ref_docentes_practicas_to_docente FOREIGN KEY (fk_docente)
-		REFERENCES docente(cod_docente)
+-- CREATE TABLE docente
+CREATE TABLE "docente" (
+	"cod_docente" varchar NOT NULL,
+	"dependencia" varchar NOT NULL,
+	"cedula" varchar,
+	PRIMARY KEY("cod_docente"),
+	CONSTRAINT "Ref_docente_to_usuario" FOREIGN KEY ("cedula")
+		REFERENCES "usuario"("cedula")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
-	CONSTRAINT ref_docentes_practicas_to_practica FOREIGN KEY (fk_practica)
-		REFERENCES practica(id_practica)
+	CONSTRAINT "Ref_docente_to_dependencias" FOREIGN KEY ("dependencia")
+		REFERENCES "dependencias"("id_dependencias")
 	MATCH SIMPLE
-	ON DELETE CASCADE
+	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE
 );
 
-insert into usuario values('1','admin','admin','admin','admin','admin','admin');
+-- DROP TABLE practica
+DROP TABLE IF EXISTS "practica" CASCADE;
 
-insert into dependencia values (1,'Artes y Humanidades','Creatividad y conocimiento');
-insert into dependencia values (2,'Ciencias Agropecuarias','Creatividad y conocimiento');
-insert into dependencia values (3,'Ciencias Exactas y Naturales','Creatividad y conocimiento');
-insert into dependencia values (4,'Ciencias Juridicas','Creatividad y conocimiento');
-insert into dependencia values (5,'Ciencias para la salud','Creatividad y conocimiento');
-insert into dependencia values (6,'Ingeniería','Creatividad y conocimiento');
+-- CREATE TABLE practica
+CREATE TABLE "practica" (
+	"codigo" varchar NOT NULL,
+	"fecha_inicio" date,
+	"fecha_fin" date,
+	"salario" numeric,
+	"tipo" varchar,
+	"estudiante" varchar,
+	"doncente" varchar,
+	"responsable" varchar,
+	"prorroga_id_prorroga" varchar NOT NULL,
+	PRIMARY KEY("codigo"),
+	CONSTRAINT "Ref_practica_to_estudiante" FOREIGN KEY ("estudiante")
+		REFERENCES "estudiante"("codigo")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "Ref_practica_to_responsable_practica" FOREIGN KEY ("responsable")
+		REFERENCES "responsable_practica"("cod_responsable")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "Ref_practica_to_docente" FOREIGN KEY ("doncente")
+		REFERENCES "docente"("cod_docente")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "Ref_practica_to_prorroga" FOREIGN KEY ("prorroga_id_prorroga")
+		REFERENCES "prorroga"("id_prorroga")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+);
 
-insert into dependencia values (7,'Departamento Música','Creatividad y conocimiento',1);
-insert into dependencia values (8,'Departamento Diseño Visual','Creatividad y conocimiento',1);
-insert into dependencia values (9,'Departamento Producción Agropecuarias','Creatividad y conocimiento',2);
-insert into dependencia values (10,'Departamento Salud Animal','Creatividad y conocimiento',2);
-insert into dependencia values (11,'Departamento Matemáticas','Creatividad y conocimiento',3);
-insert into dependencia values (12,'Departamento Química','Creatividad y conocimiento',3);
-insert into dependencia values (13,'Departamento Desarrollo Humano','Creatividad y conocimiento',4);
-insert into dependencia values (14,'Departamento Jurídico','Creatividad y conocimiento',4);
-insert into dependencia values (15,'Departamento Salud Publica','Creatividad y conocimiento',5);
-insert into dependencia values (16,'Departamento Clinica','Creatividad y conocimiento',5);
-insert into dependencia values (17,'Departamento Sistemas','Creatividad y conocimiento',6);
-insert into dependencia values (18,'Departamento Ingeniería','Creatividad y conocimiento',6);
+-- DROP TABLE practica_externa
+DROP TABLE IF EXISTS "practica_externa" CASCADE;
 
+-- CREATE TABLE practica_externa
+CREATE TABLE "practica_externa" (
+	"id_practica" varchar,
+	"sucursal_id_sucursal" varchar NOT NULL,
+	CONSTRAINT "Ref_practica_externa_to_practica" FOREIGN KEY ("id_practica")
+		REFERENCES "practica"("codigo")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "Ref_practica_externa_to_sucursal" FOREIGN KEY ("sucursal_id_sucursal")
+		REFERENCES "sucursal"("id_sucursal")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+);
 
+-- DROP TABLE practica_interna
+DROP TABLE IF EXISTS "practica_interna" CASCADE;
 
-
-insert into practica values (1,'20/02/2014','20/07/2014',800000,1);
-insert into practica values (2,'20/02/2014','20/07/2014',500000,2);
-insert into practica values (3,'20/02/2014','20/07/2014',600000,3);
-insert into practica values (4,'20/02/2014','20/07/2014',700000,4);
-insert into practica values (5,'20/02/2014','20/07/2014',900000,5);
-insert into practica values (6,'20/02/2014','20/07/2014',800000,6);
-
-
-
-
-insert into convenio (nombre,empresa_nit,fecha_inicial,fecha_final,prorroga) values ('Teatro Manizales','123','20/02/2014','20/07/2014','25/07/2014');
-insert into convenio (nombre,empresa_nit,fecha_inicial,fecha_final,prorroga) values ('Mabe','456','20/02/2014','20/07/2014','25/07/2014');
-insert into convenio (nombre,empresa_nit,fecha_inicial,fecha_final,prorroga) values ('Hospital de Caldas','465','20/02/2014','20/07/2014','25/07/2014');
-insert into convenio (nombre,empresa_nit,fecha_inicial,fecha_final,prorroga) values ('Bios','552','20/02/2014','20/07/2014','25/07/2014');
-insert into convenio (nombre,empresa_nit,fecha_inicial,fecha_final,prorroga) values ('Ecopetrol','789','20/02/2014','20/07/2014','25/07/2014');
-insert into convenio (nombre,empresa_nit,fecha_inicial,fecha_final,prorroga) values ('Rancho Alegre','898','20/02/2014','20/07/2014','25/07/2014');
+-- CREATE TABLE practica_interna
+CREATE TABLE "practica_interna" (
+	"id_practica" varchar,
+	"id_dependencia" varchar,
+	CONSTRAINT "Ref_practica_interna_to_practica" FOREIGN KEY ("id_practica")
+		REFERENCES "practica"("codigo")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "Ref_practica_interna_to_dependencias" FOREIGN KEY ("id_dependencia")
+		REFERENCES "dependencias"("id_dependencias")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+);
