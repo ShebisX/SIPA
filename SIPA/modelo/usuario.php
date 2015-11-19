@@ -1,45 +1,105 @@
 <?php
-
 class usuario {
+
+    public function verificarCambio($args){
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+        $sql = "select primer from usuario where cuenta = '$user'";
+        if($rs = UtilConexion::$pdo->query($sql)){
+            $fila=$rs->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($fila['primer']);
+        }
+    }
+
+    public function redirigir($rol){
+        $menu = "";
+        if ($rol == 'admin'){
+            $menu = file_get_contents("../vista/html/admin.html");
+        }
+        else if ($rol == 'admin_practicayconv'){
+            $menu = file_get_contents("../vista/html/admin_practicayconv.html");
+        }
+        else if ($rol == 'estudiante'){
+            $menu = file_get_contents("../vista/html/estudiante.html");
+        }
+        else if ($rol == 'docente'){
+            $menu = file_get_contents("../vista/html/docente.html");
+        }
+        else if ($rol == 'pers_empresarial'){
+            $menu = file_get_contents("../vista/html/pers_empresarial.html");
+        }
+        echo json_encode($menu);
+    }
+
+    public function cambiarContrasena($args){
+        extract($args);
+        session_start();
+        $user=$_SESSION['user'];
+        if($pass1==$pass2){
+            $sql="update usuario set contrasena='$pass1' where cuenta='$user'";
+            UtilConexion::$pdo->query($sql);
+            self::redirigir($_SESSION['rol']);
+        }
+    }
 
     public function autenticar($args) {
         extract($args);
-        $sql = "select * from usuario where cuenta = '$user' and contrasena = '$pass'";
-        if ($rs = UtilConexion::$pdo->query($sql) ) {
-            $menu = "";
-            $fila = $rs->fetch(PDO::FETCH_ASSOC);
-            if ($fila['rol'] == 'admin'){
-                $menu = file_get_contents("../vista/html/admin.html");
-            }
-            else if ($fila['rol'] == 'admin_practicayconv'){
-                $menu = file_get_contents("../vista/html/admin_practicayconv.html");
-            }
-            else if ($fila['rol'] == 'estudiante'){
-                $menu = file_get_contents("../vista/html/estudiante.html");
-            }
-            else if ($fila['rol'] == 'docente'){
-                $menu = file_get_contents("../vista/html/docente.html");
-            }
-            else if ($fila['rol'] == 'pers_empresarial'){
-                $menu = file_get_contents("../vista/html/pers_empresarial.html");
-            }
-            echo json_encode($menu);
-            //echo json_encode(['nombre'=>$fila['nombre'], 'ok'=>true]);
+        session_start();
+        if($_SESSION['user']==$user){
+            self::redirigir($_SESSION['rol']);
         }else{
-            echo json_encode(["rs"=>$rs]);
+            $sql = "select * from usuario where cuenta = '$user' and contrasena = '$pass'";
+            if ($rs = UtilConexion::$pdo->query($sql) ) {
+                $menu = "";
+                $fila = $rs->fetch(PDO::FETCH_ASSOC);
+                $rol=$fila['rol'];
+                $_SESSION['user']=$fila['cuenta'];
+                $_SESSION['rol']=$rol;
+                if($fila['primer']==TRUE){
+                    $menu = file_get_contents("../vista/html/cambioClave.html");
+                    echo json_encode($menu);
+                    return;
+                }
+                $this->redirigir($rol);
+                //echo json_encode(['nombre'=>$fila['nombre'], 'ok'=>true]);
+            }else{
+                echo json_encode(["rs"=>$rs]);
+            }
         }
+    }
+
+    public function reestablecerContrasena($args){
+        extract($args);
+        $sql = "select correo from usuario where cuenta = '$user'";
+        $correo = "";
+        if ($rs = UtilConexion::$pdo->query($sql) ) {
+            $fila = $rs->fetch(PDO::FETCH_ASSOC);
+            $correo=$fila['correo'];
+        }
+        if($correo != ""){
+            $contraNueva = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
+            $sql = "update usuario set contrasena='$contraNueva', primer='true' where cuenta = '$user'";
+            UtilConexion::$pdo->query($sql);
+            $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+              ->setUsername('sipaucaldas')
+              ->setPassword('sipanopa');
+            $mailer = Swift_Mailer::newInstance($transport);
+            $message = Swift_Message::newInstance('Nueva contraseña')
+              ->setFrom(array('sipaucaldas@gmail.com' => 'SIPA'))
+              ->setTo(array($correo))
+              ->setBody("Su nueva contraseña es: ".$contraNueva);
+
+            $result = $mailer->send($message);
+            echo json_encode("asd");
+        }
+
+
     }
 
     function add($argumentos) {
         extract($argumentos);
         UtilConexion::$pdo->exec("INSERT INTO usuario VALUES ('$id','$nombre','$apellido','$telefono','$cuenta','$contrasena','$rol')");
-//        
-        /*$sql = "WITH funcionario as (
-                   INSERT INTO usuario(id, nombre, apellido, telefono, cuenta, contrasena,rol)
-                      VALUES ('$id', '$nombre', '$apellido','$telefono', '$cuenta','$contrasena','$rol') RETURNING id
-                ) INSERT INTO docentes(cod_docente, usuario_id, practica_id_practica) VALUES ((SELECT id FROM funcionario), '$usuario_id', $practica_id_practica);";
-        UtilConexion::$pdo->exec($sql);*/
-        
         echo UtilConexion::getEstado();
     }
     
@@ -65,8 +125,6 @@ class usuario {
         
        
     }
-     
-
 
     function select($argumentos) {
         extract($argumentos);

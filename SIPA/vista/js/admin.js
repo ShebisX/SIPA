@@ -460,11 +460,6 @@ $(function () {
         {multipleSearch: true, multipleGroup: true}
 
         )
-    }
-    ;
-
-
-
-
+    };
 });
 

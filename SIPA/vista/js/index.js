@@ -18,4 +18,15 @@ $(document).on('ready', function () {
         $('.wrapper').addClass('form-success');
     });
 
+    $("#reestablecer").on("click", function(event){
+        $.post("controlador/fachada.php", {
+            clase: 'usuario',
+            oper: 'reestablecerContrasena',
+            user: $("#name").val()
+
+        }, function (data) {
+            console.log(data);
+        }, 'json');
+    });
+
 });

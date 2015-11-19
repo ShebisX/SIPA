@@ -25,6 +25,7 @@ define('PHPEXCEL_ROOT', '../../../includes/PHPExcel/');
 define('DOCUMENT_ROOT', substr($_SERVER['DOCUMENT_ROOT'], -1) == '/' ? $_SERVER['DOCUMENT_ROOT'] : $_SERVER['DOCUMENT_ROOT'] . '/');
 
 try {
+    require_once '../../../includes/swiftMailer/swift_required.php';
     spl_autoload_register('__autoload');
     $args = $_REQUEST;                   // Cambiar a $_POST para producción, por ahora dejarlo así vulnerable
     //error_log(print_r($args, TRUE));   // Quite el comentario para guardar en ERRORES.LOG lo que llega de la capa de presentación
