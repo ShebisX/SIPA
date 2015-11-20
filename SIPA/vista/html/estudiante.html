@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Estudiante</title>
 	<title>Estudiante</title>
-	<link rel="stylesheet" type="text/css" href="Css/materialize.min.css">
-	<link rel="stylesheet" type="text/css" href="Css/estudiante.css">
+	<link rel="stylesheet" type="text/css" href="../../../../includes/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../includes/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/estudiante.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
@@ -13,17 +14,23 @@
 	<header>
 		<nav>
 		    <div class="infoEstudiante nav-wrapper">
-		      <a href="#" class="brand-logo">Logo</a>
+		      <a href="#" class="logo brand-logo">Logo</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a> <i class="material-icons">settings</i> </a></li>
-		        <li><a> <i class="material-icons">power_settings_new</i> </a></li>
+		        <li><a href="#contenedorComentariosEstudiante"> <i id="iconos" class="material-icons">settings</i> </a></li>
+		        <li><a href="#"> <i id="iconos" class="material-icons">view_headline</i> </a></li>
 		      </ul>
 		    </div>
-	    </nav>
-        
+	    </nav>        
 	</header>
 
-	<section>
+	<section id="bloques">
+		<section id="contenedorInformacionEstudiante" class="col-xs-12">
+			<section id="contenedorInfo" class="contenedor card col-xs-4"></section>
+			
+		</section>
+		<section id="contenedorComentariosEstudiante" class="col-xs-12">
+			<section id="contenedorComent" class="contenedor card col-xs-4"></section>			
+		</section>
 		
 	</section>
 
