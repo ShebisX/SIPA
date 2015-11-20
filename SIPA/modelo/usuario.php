@@ -36,13 +36,13 @@ class Usuario {
         extract($args);
         session_start();
         $user=$_SESSION['user'];
-        echo json_encode($user);
         if($pass1==$pass2){
             $sql="UPDATE usuario SET contrasena = '$pass1', primer = FALSE WHERE correo = '$user'";
             UtilConexion::$pdo->query($sql);
             self::redirigir($_SESSION['rol']);
+        }else{
+            echo json_encode(false);
         }
-        echo json_encode(false);
     }
 
     public function autenticar($args) {
@@ -85,7 +85,7 @@ class Usuario {
             UtilConexion::$pdo->query($sql);
             $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
             ->setUsername('sipaucaldas')
-            ->setPassword('sipanopa');
+            ->setPassword('IngSoft2015-2');
             $mailer = Swift_Mailer::newInstance($transport);
             $message = Swift_Message::newInstance('Nueva contraseña')
             ->setFrom(array('sipaucaldas@gmail.com' => 'SIPA'))

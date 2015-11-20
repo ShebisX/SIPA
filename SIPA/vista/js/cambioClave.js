@@ -8,12 +8,11 @@ $(function() {
 	});
 
 	$('#form-cambio').submit(function(event) {
-		$.post("controlador/fachada.php", {
+        $.post("controlador/fachada.php", {
             clase: 'Usuario',
             oper: 'cambiarContrasena',
-            pass1: $("#pass").val(),
-            pass2: $("#pass1").val()
-
+            pass1: $("#pass1").val(),
+            pass2: $("#pass2").val()
         }, function(data) {
             console.log(data);
             $("#principal").html(data);

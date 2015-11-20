@@ -32,7 +32,6 @@ $(document).on('ready', function() {
             user: $("#name").val()
 
         }, function(data) {
-            console.log(data);
             if (data) {
                 console.log("contraseña reestablecida");
             }
