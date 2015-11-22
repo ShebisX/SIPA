@@ -12,6 +12,13 @@ class Usuario {
         }
     }
 
+    public function verificarSesion(){
+        session_start();
+        if($_SESSION['user']!=""){
+            self::redirigir($_SESSION['rol']);
+        }
+    }
+
     public function redirigir($rol){
         $menu = "";
         if ($rol == 'admin'){
@@ -48,27 +55,24 @@ class Usuario {
     public function autenticar($args) {
         extract($args);
         session_start();
-        if($_SESSION['user']==$user){
-            self::redirigir($_SESSION['rol']);
-        }else{
-            $sql = "SELECT * FROM usuario WHERE correo = '$user' AND contrasena = '$pass'";
-            if ($rs = UtilConexion::$pdo->query($sql) ) {
-                $menu = "";
-                $fila = $rs->fetch(PDO::FETCH_ASSOC);
-                $rol=$fila['rol'];
-                $_SESSION['user']=$user;
-                $_SESSION['rol']=$rol;
-                if($fila['primer']==TRUE){
-                    $menu = file_get_contents("../vista/html/cambioClave.html");
-                    echo json_encode($menu);
-                    return;
-                }
-                self::redirigir($rol);
-                //echo json_encode(['nombre'=>$fila['nombre'], 'ok'=>true]);
-            }else{
-                echo json_encode(["rs"=>$rs]);
+        $sql = "SELECT * FROM usuario WHERE correo = '$user' AND contrasena = '$pass'";
+        if ($rs = UtilConexion::$pdo->query($sql) ) {
+            $menu = "";
+            $fila = $rs->fetch(PDO::FETCH_ASSOC);
+            $rol=$fila['rol'];
+            $_SESSION['user']=$user;
+            $_SESSION['rol']=$rol;
+            if($fila['primer']==TRUE){
+                $menu = file_get_contents("../vista/html/cambioClave.html");
+                echo json_encode($menu);
+                return;
             }
+            self::redirigir($rol);
+                //echo json_encode(['nombre'=>$fila['nombre'], 'ok'=>true]);
+        }else{
+            echo json_encode(["rs"=>$rs]);
         }
+
     }
 
     public function reestablecerContrasena($args){

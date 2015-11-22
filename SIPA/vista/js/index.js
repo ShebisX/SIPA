@@ -1,5 +1,14 @@
 $(document).on('ready', function() {
 
+    $.post("controlador/fachada.php", {
+        clase: 'Usuario',
+        oper: 'verificarSesion'
+    }, function(data) {
+        if(data){
+            $("#principal").html(data);
+        }
+    }, 'json');
+
     $('.toggle').on('click', function() {
         $('.container').stop().addClass('active');
     });
