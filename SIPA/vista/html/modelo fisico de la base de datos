@@ -1,0 +1,61 @@
+modelo fisico de la base de datos
+
+
+COMPONENTES LOGICOS           COMPONENTES FISICOS
+
+
+DATABASE
+------------------
+TABLESPACE   -----------------DATA FILE
+	X			 -				 -
+SEGMENT          -     			 -
+				 -				 x
+	X            -            OS BLOCK 
+				 - 				 x
+EXTENT			 -				 -
+	X            -               -
+ORACLE BLOCK     -----------------
+	
+en una base de datos vamos a encontrar un conjunto de tableSpaces; como minimo van a haber 3 tableSpace y de forma practica igual o mayor a 5.
+
+tableSpace: concepto logico, lo podemos ver com ouna caja  para alamacenar objectos y diferenciar objectos que estan en ptras cajas; alamacenas de acuerdo a un propocsito (almacenamiento concepto logico )
+
+esquemas: aspecto loguco  de la base de datos(logica de objetos)
+
+
+un tableSpace contiene segmentos
+
+segemento: espacio ocupado por un objeto.
+
+
+TIPOS DE SEGMENTOS:
+
+(SEGMENTO DE DATOS): corresponden en mayoria a los objetos tipo tabla.
+(SEGMENTOS DE INDICES) : corresponde al espacio ocupado por ese arbol B
+(SEGMENTOS DE CLUSTER)
+
+
+un table space esta compuesto por minimo 0 segementos y maximo n
+
+un segemento esta formado por extends  (en la practica un segmento esta conformado por n segmentos)
+
+un extends esta conformado por bloques oracle (unidad minima de oracle)
+
+la relacion logica-fisica se da a traves de los tablespace
+un table space esta conformado por minimo 1 datafile y maximo n 
+
+,
+
+crear un tableSpace
+
+CREATE TABLESPACE nombre_tablespace
+DATAFILE '/data/ts_nomina.dbf'
+SIZE  50 gb;
+
+
+
+
+
+
+
+
