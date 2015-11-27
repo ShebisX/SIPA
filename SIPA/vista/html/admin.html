@@ -7,10 +7,12 @@
     <body>
         <header><h1>Administrador sistema</h1></header>
         <nav>
-            <button id="btnUsuario">Administrar usuarios</button>
+            <!--<button id="btnUsuario">Administrar usuarios</button>-->
             <button id="btnDocente">Administrar docente</button>
             <button id="btnEstudiante">Administrar Estudiante</button>
-            <button id="btnAsesor">Administrar Asesor</button>
+            <button id="btnResponsable">Administrar Responsable Practica</button>
+            <button id="btnRepresentante">Administrar Representante Empresa</button>
+            <button id="btnDirector">Administrar Director Programa</button>
             <button id="btnDocPractica">Crear Hoja Excel de Practica</button>
             <button id="btnDocConvenio">Crear Hoja Excel de Convenios</button>
 
@@ -19,7 +21,7 @@
 
         </nav>
         <div>
-            <table id="tablaUsuario">Tabla Usuarios</table>
+            <table id="tablaUsuario"></table>
             <div id="pTablaUsuario"></div>
 
         </div>
@@ -38,13 +40,27 @@
         </div>
         <br>
         <div>
-            <table id="tablaAsesor"></table>
-            <div id="pTablaAsesor"></div>
+            <table id="tablaResponsable"></table>
+            <div id="pTablaResponsable"></div>
+
+        </div>
+        <br>
+        <div>
+            <table id="tablaRepresentante"></table>
+            <div id="pTablaRepresentante"></div>
+
+        </div>
+
+        <br>
+        <div>
+            <table id="tablaDirector"></table>
+            <div id="pTablaDirector"></div>
 
         </div>
 
 
 
         <script src="vista/js/admin.js"></script>
+        <script src="vista/js/usuario.js"></script>
     </body>
 </html>

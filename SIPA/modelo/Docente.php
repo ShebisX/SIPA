@@ -1,52 +1,53 @@
 <?php
 
-
 class Docente {
-     function add($argumentos) {
+
+    function add($argumentos) {
         extract($argumentos);
-        error_log(print_r($argumentos,1));
-        
+        error_log(print_r($argumentos, 1));
+
         //UtilConexion::$pdo->exec("INSERT INTO usuario VALUES ('$id','$nombre','$apellido','$telefono','$cuenta','$contrasena','$rol')");
 //        
-        $sql ="WITH funcionario as (
-                   INSERT INTO usuario(id, nombre, apellido, telefono, cuenta, contrasena,rol)
-                      VALUES ('$id', '$nombre', '$apellido','$telefono', '$cuenta','$contrasena','docente') RETURNING id
-                ) INSERT INTO docente(cod_docente,fk_usuario_id,fk_dependecia) VALUES ((SELECT id FROM funcionario), '$cod_docente',$departamento);";
+        $sql = "WITH funcionario as (
+                   INSERT INTO usuario(cedula, nombre, apellido, telefono,contrasena,rol,correo,direccion)
+                      VALUES ('$cedula', '$nombre', '$apellido','$telefono','$contrasena','docente','$correo','$direccion') RETURNING cedula
+                ) INSERT INTO docente (cod_docente,dependencia,cedula) VALUES ('$cod_docente','$dependencia',(SELECT cedula FROM funcionario));";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
-        
+
         echo UtilConexion::getEstado();
-    }
-    
-    function edit($argumentos) {
-        extract($argumentos);
-        error_log(print_r($argumentos,1));
-      $sql = "UPDATE usuario SET id='$idNuevo', nombre='$nombre', apellido='$apellido', telefono='$telefono', cuenta='$cuenta',contrasena='$contrasena' WHERE  id='$id' ;";
-        
-        error_log($sql);
-        UtilConexion::$pdo->exec($sql);
-        echo UtilConexion::getEstado();
-    }
-    
-    
-     function del($argumentos) {
-        extract($argumentos);
-        error_log(print_r($argumentos,1));
-      $sql = "DELETE FROM usuario WHERE id='$id';"
-             ;
-      
-        error_log($sql);
-        UtilConexion::$pdo->exec($sql);
-        echo UtilConexion::getEstado();
-        
-       
     }
 
+    function edit($argumentos) {
+        extract($argumentos);
+        error_log(print_r($argumentos, 1));
+        $sql = "UPDATE usuario SET cedula='$cedulaNueva', nombre='$nombre', apellido='$apellido', telefono='$telefono',contrasena='$contrasena',correo='$correo',direccion='$direccion' WHERE  cedula='$cedula' ;";
+        /* $sql = "WITH funcionario as(
+          UPDATE usuario SET nombre='$nombre',apellido='$apellido', telefono='$telefono',contrasena='$contrasena',correo='$correo',direccion='$direccion'
+          WHERE cedula='$cedula'
+          RETURNING cedula ) UPDATE docente SET dependencia='$dependecia'
+          WHERE cedula= (SELECT cedula FROM funcionario);"; */
+
+        error_log($sql);
+        UtilConexion::$pdo->exec($sql);
+        echo UtilConexion::getEstado();
+    }
+
+    function del($argumentos) {
+        extract($argumentos);
+        error_log(print_r($argumentos, 1));
+        $sql = "DELETE FROM usuario WHERE cedula='$cedula';";
+
+
+        error_log($sql);
+        UtilConexion::$pdo->exec($sql);
+        echo UtilConexion::getEstado();
+    }
 
     function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
-        $count = UtilConexion::$pdo->query("SELECT id FROM usuario $where")->rowCount();
+        $count = UtilConexion::$pdo->query("SELECT cedula FROM usuario $where")->rowCount();
         // Calcula el total de páginas por consulta
         if ($count > 0) {
             $total_pages = ceil($count / $rows);
@@ -74,26 +75,25 @@ class Docente {
             'records' => $count
         ];
 
-        $sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        //$sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        $sql = "SELECT usuario.*, cod_docente, dependencia FROM usuario 
+                inner join docente on usuario.cedula=docente.cedula
+                $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+
+        //echo($sql);
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['id'],
-                'cell' => [$fila['id'], $fila['nombre'],$fila['apellido'],$fila['telefono'],$fila['cuenta'],$fila['rol']]
+                'cedula' => $fila['cedula'],
+                'cell' => [$fila['cedula'], $fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['cod_docente'], $fila['dependencia']]
             ];
         }
+
         // Quite los comentarios para ver el array original y el array codificado en JSON
         // error_log(print_r($respuesta, TRUE));
         // error_log(print_r(json_encode($respuesta), TRUE));
         echo json_encode($respuesta);
     }
 
-    
-    
-    
-    
-    
-    
 }
 
 ?>
-

@@ -1,9 +1,12 @@
 $(function () {
 
-    $("#btnUsuario").on("click", crearTablaUsuario);
+    //$("#btnUsuario").on("click", crearTablaUsuario);
     $("#btnDocente").on("click", crearTablaDocente);
     $("#btnEstudiante").on("click", crearTablaEstudiante);
-    $("#btnAsesor").on("click", crearTablaAsesor);
+    $("#btnResponsable").on("click", crearTablaResponsable);
+    $("#btnRepresentante").on("click", crearTablaRepresentante);
+    $("#btnDirector").on("click", crearTablaDirector);
+
     $("#btnDocConvenio").on("click", function () {
         $.post("controlador/fachada.php", {
             clase: 'UtilReporConvenio',
@@ -22,111 +25,115 @@ $(function () {
         }, 'json');
     });
 
-    function crearTablaUsuario() {
-
-        jQuery("#tablaUsuario").jqGrid({
-            url: 'controlador/fachada.php',
-            datatype: "json",
-            mtype: 'POST',
-            postData: {
-                clase: 'usuario',
-                oper: 'select'
-            },
-            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'ROL'],
-            colModel: [
-                {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-                {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-                {name: 'apellido', index: 'apellido', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-                {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-                {name: 'cuenta', index: 'cuenta', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-                {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-                {name: 'rol', index: 'rol', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-            ],
-            rowNum: 100,
-            width: 700,
-            rowList: [50, 150, 1000],
-            pager: '#pTablaUsuario',
-            sortname: 'nit',
-            viewrecords: true,
-            sortorder: "asc",
-            caption: "GestiÃ³n de Usuarios",
-            multiselect: false,
-            editurl: "controlador/fachada.php?clase=usuario",
-            loadError: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.responseText);
-            }
-
-        }).jqGrid('navGrid', '#pTablaUsuario', {
-            refresh: true,
-            edit: true,
-            add: true,
-            del: true,
-            search: true
-        },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
-//              acceder a los datos de la fila seleccionada:
-//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
-
-//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
-
-        )
-    }
-    ;
+    /*  function crearTablaUsuario() {
+     
+     jQuery("#tablaUsuario").jqGrid({
+     url: 'controlador/fachada.php',
+     datatype: "json",
+     mtype: 'POST',
+     postData: {
+     clase: 'usuario',
+     oper: 'select'
+     },
+     colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'ROL', 'CORREO', 'DIRECCION'],
+     colModel: [
+     {name: 'cedula', index: 'cedula', width: 55, align: 'center', editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     {name: 'apellido', index: 'apellido', width: 500, editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     {name: 'rol', index: 'rol', width: 500, editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     {name: 'correo', index: 'correo', width: 500, editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
+     dataInit: function (elemento) {
+     $(elemento).width(282)
+     }
+     }},
+     ],
+     rowNum: 100,
+     width: 700,
+     rowList: [50, 150, 1000],
+     pager: '#pTablaUsuario',
+     sortname: 'nit',
+     viewrecords: true,
+     sortorder: "asc",
+     caption: "GestiÃ³n de Usuarios",
+     multiselect: false,
+     editurl: "controlador/fachada.php?clase=usuario",
+     loadError: function (jqXHR, textStatus, errorThrown) {
+     alert(jqXHR.responseText);
+     }
+     
+     }).jqGrid('navGrid', '#pTablaUsuario', {
+     refresh: true,
+     edit: true,
+     add: true,
+     del: true,
+     search: true
+     },
+     {// Antes de enviar a Departamento->edit(...) se agrega un POST
+     modal: true, jqModal: true,
+     width: 500,
+     beforeSubmit: function (postdata) {
+     //              acceder a los datos de la fila seleccionada:
+     //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+     
+     //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+     postdata.cedulaNueva = $('#cedula').val();
+     return[true, ''];
+     },
+     afterSubmit: function (response, postdata) {
+     var respuesta = jQuery.parseJSON(response.responseText);
+     return [respuesta.ok, respuesta.mensaje, ''];
+     }
+     },
+     {// Antes de enviar a Departamento->add(...) se agrega un POST
+     modal: true, jqModal: true,
+     width: 500,
+     afterSubmit: function (response, postdata) {
+     var respuesta = jQuery.parseJSON(response.responseText);
+     return [respuesta.ok, respuesta.mensaje, ''];
+     }
+     },
+     {modal: true, jqModal: true,
+     width: 300,
+     afterSubmit: function (response, postdata) {
+     var respuesta = jQuery.parseJSON(response.responseText);
+     return [respuesta.ok, respuesta.mensaje, ''];
+     }
+     },
+     {multipleSearch: true, multipleGroup: true}
+     
+     )
+     };*/
 
     function crearTablaDocente() {
 
@@ -138,9 +145,9 @@ $(function () {
                 clase: 'Docente',
                 oper: 'select'
             },
-            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'COD_DOCENTE', 'DEPENDENCIA'],
+            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'COD_DOCENTE', 'DEPENDENCIA'],
             colModel: [
-                {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
+                {name: 'cedula', index: 'cedula', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -160,12 +167,17 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'cuenta', index: 'cuenta', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'correo', index: 'correo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -175,7 +187,7 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'departamento', index: 'departamento', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'dependencia', index: 'dependencia', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -210,7 +222,7 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
+                postdata.cedulaNueva = $('#cedula').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -250,9 +262,9 @@ $(function () {
                 clase: 'Estudiante',
                 oper: 'select'
             },
-            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'COD_ESTUDIANTE', 'PRACTICA'],
+            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'CODIGO'],
             colModel: [
-                {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
+                {name: 'cedula', index: 'cedula', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -272,22 +284,22 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'cuenta', index: 'cuenta', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
                 {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'cod_estudiante', index: 'cod_estudiante', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'correo', index: 'correo', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'practica', index: 'practica', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'codigo', index: 'codigo', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -322,7 +334,123 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
+                postdata.cedulaNueva = $('#cedula').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    };
+
+
+    function crearTablaResponsable() {
+
+        jQuery("#tablaResponsable").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Responsable_practica',
+                oper: 'select'
+            },
+            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'COD_RESPONSABLE', 'CARGO'],
+            colModel: [
+                {name: 'cedula', index: 'cedula', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'apellido', index: 'apellido', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'correo', index: 'correo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'cod_responsable', index: 'cod_responsable', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'cargo', index: 'cargo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaResponsable',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Responsable_Practica",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Responsable_practica",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaResponsable', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.cedulaNueva = $('#cedula').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -351,20 +479,19 @@ $(function () {
     }
     ;
 
+    function crearTablaRepresentante() {
 
-    function crearTablaAsesor() {
-
-        jQuery("#tablaAsesor").jqGrid({
+        jQuery("#tablaRepresentante").jqGrid({
             url: 'controlador/fachada.php',
             datatype: "json",
             mtype: 'POST',
             postData: {
-                clase: 'Asesor',
+                clase: 'Representante_empresarial',
                 oper: 'select'
             },
-            colNames: ['ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CUENTA', 'CONTRASE&Ntilde;A', 'COD_ASESOR', 'NIT_EMPRESA'],
+            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'COD_REPRESENTANTE', 'CARGO', 'EMPRESA'],
             colModel: [
-                {name: 'id', index: 'id', width: 55, align: 'center', editable: true, editoptions: {size: 37,
+                {name: 'cedula', index: 'cedula', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -384,22 +511,32 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'cuenta', index: 'cuenta', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
                 {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'cod_asesor', index: 'cod_asesor', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'correo', index: 'correo', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'nit_empresa', index: 'nit_empresa', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'cod_representante', index: 'cod_representante', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'cargo', index: 'cargo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'empresa', index: 'empresa', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -408,18 +545,18 @@ $(function () {
             rowNum: 100,
             width: 700,
             rowList: [50, 150, 1000],
-            pager: '#pTablaAsesor',
+            pager: '#pTablaRepresentante',
             sortname: 'nit',
             viewrecords: true,
             sortorder: "asc",
-            caption: "Gesti&oacute;n de Asesor",
+            caption: "Gesti&oacute;n de Representante_Empresarial",
             multiselect: false,
-            editurl: "controlador/fachada.php?clase=Asesor",
+            editurl: "controlador/fachada.php?clase=Representante_empresarial",
             loadError: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
             }
 
-        }).jqGrid('navGrid', '#pTablaAsesor', {
+        }).jqGrid('navGrid', '#pTablaRepresentante', {
             refresh: true,
             edit: true,
             add: true,
@@ -434,7 +571,7 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
+                postdata.cedulaNueva = $('#cedula').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -461,5 +598,121 @@ $(function () {
 
         )
     };
+    
+    function crearTablaDirector() {
+
+        jQuery("#tablaDirector").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Director_programa',
+                oper: 'select'
+            },
+            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'COD_DIRECTOR','PROGRAMA'],
+            colModel: [
+                {name: 'cedula', index: 'cedula', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'apellido', index: 'apellido', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'contrasena', index: 'contrasena', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'correo', index: 'correo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'cod_director', index: 'cod_director', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                  {name: 'programa', index: 'programa', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaDirector',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Director Programa",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Director_programa",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaDirector', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.cedulaNueva = $('#cedula').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    };
+
 });
 

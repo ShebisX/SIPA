@@ -1,6 +1,6 @@
 <?php
 
-class Estudiante {
+class Responsable_practica {
 
     function add($argumentos) {
         extract($argumentos);
@@ -10,8 +10,8 @@ class Estudiante {
 //        
         $sql = "WITH funcionario as (
                    INSERT INTO usuario(cedula, nombre, apellido, telefono,contrasena,rol,correo,direccion)
-                      VALUES ('$cedula', '$nombre', '$apellido','$telefono','$contrasena','estudiante','$correo','$direccion') RETURNING cedula
-                ) INSERT INTO estudiante (codigo,programa,cedula) VALUES ('$codigo','$programa',(SELECT cedula FROM funcionario));";
+                      VALUES ('$cedula', '$nombre', '$apellido','$telefono','$contrasena','Responsable_practica','$correo','$direccion') RETURNING cedula
+                ) INSERT INTO responsable_practica (cod_responsable,cargo,cedula) VALUES ('$cod_responsable','$cargo',(SELECT cedula FROM funcionario));";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
 
@@ -24,7 +24,7 @@ class Estudiante {
         $sql = "WITH funcionario as(
 	UPDATE usuario SET nombre='$nombre',apellido='$apellido', telefono='$telefono',contrasena='$contrasena',correo='$correo',direccion='$direccion'
 	WHERE cedula='$cedula'
-        RETURNING cedula ) UPDATE estudiante SET programa='$programa'
+        RETURNING cedula ) UPDATE responsable_practica SET cargo='$cargo'
 	WHERE cedula= (SELECT cedula FROM funcionario);";
 
         error_log($sql);
@@ -75,15 +75,15 @@ class Estudiante {
         ];
 
         //$sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
-        $sql ="SELECT usuario.*, codigo, programa FROM usuario 
-                inner join estudiante on usuario.cedula=estudiante.cedula
+        $sql ="SELECT usuario.*, cod_responsable, cargo FROM usuario 
+                inner join responsable_practica on usuario.cedula=responsable_practica.cedula
                 $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
 
         //echo($sql);
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'cedula' => $fila['cedula'],
-                'cell' => [$fila['cedula'],$fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['codigo']]
+                'cell' => [$fila['cedula'],$fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['cod_responsable'], $fila['cargo']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON
