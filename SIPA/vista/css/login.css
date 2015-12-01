@@ -88,7 +88,7 @@ body {
 }
 
 /* Container */
-.container {
+.container2 {
   position: relative;
   max-width: 460px;
   width: 100%;
@@ -158,6 +158,7 @@ body {
 
 /* Card */
 .card {
+  margin-top: 7%;
   position: relative;
   background: #ffffff;
   border-radius: 5px;
@@ -172,13 +173,7 @@ body {
   /* Footer */
   /* Alt Card */
 }
-.card:first-child {
-  background: #fafafa;
-  height: 10px;
-  border-radius: 5px 5px 0 0;
-  margin: 0 10px;
-  padding: 0;
-}
+
 .card .title {
   position: relative;
   z-index: 1;
