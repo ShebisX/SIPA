@@ -26,13 +26,14 @@ $(document).on('ready', function() {
             pass: $("#pass").val()
 
         }, function(data) {
-            //console.log(data);
-            $("#principal").html(data);
+            if(data){
+                $("#principal").html(data);
+            }
         }, 'json');
 
         event.preventDefault();
-        $('form').fadeOut(500);
-        $('.wrapper').addClass('form-success');
+        //$('form').fadeOut(500);
+        //$('.wrapper').addClass('form-success');
     });
 
     $("#reestablecer").on("click", function(event) {

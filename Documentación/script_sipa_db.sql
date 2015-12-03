@@ -17,7 +17,7 @@ CREATE TABLE "dependencia" (
 	"pertenece_depencia" varchar,
 	PRIMARY KEY("id_dependencia"),
 	CONSTRAINT "Ref_dependencias_to_dependencias" FOREIGN KEY ("pertenece_depencia")
-		REFERENCES "dependencia"("id_dependencia")
+		REFERENCES "dependencia"("id_dependencia") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -75,7 +75,7 @@ CREATE TABLE "responsable_practica" (
 	"cedula" varchar,
 	PRIMARY KEY("cod_responsable"),
 	CONSTRAINT "Ref_responsable_practica_to_usuario" FOREIGN KEY ("cedula")
-		REFERENCES "usuario"("cedula")
+		REFERENCES "usuario"("cedula") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -94,7 +94,7 @@ CREATE TABLE "sucursal" (
 	"nit_empresa" varchar,
 	PRIMARY KEY("id_sucursal"),
 	CONSTRAINT "Ref_sucursal_to_empresa" FOREIGN KEY ("nit_empresa")
-		REFERENCES "empresa"("nit")
+		REFERENCES "empresa"("nit") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -111,7 +111,7 @@ CREATE TABLE "localidad" (
 	"id_sucursal" varchar,
 	PRIMARY KEY("cod"),
 	CONSTRAINT "Ref_localidad_to_sucursal" FOREIGN KEY ("id_sucursal")
-		REFERENCES "sucursal"("id_sucursal")
+		REFERENCES "sucursal"("id_sucursal") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -128,7 +128,7 @@ CREATE TABLE "estudiante" (
 	"cedula" varchar,
 	PRIMARY KEY("codigo"),
 	CONSTRAINT "Ref_estudiante_to_usuario" FOREIGN KEY ("cedula")
-		REFERENCES "usuario"("cedula")
+		REFERENCES "usuario"("cedula") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -145,7 +145,7 @@ CREATE TABLE "director_programa" (
 	"cedula" varchar,
 	PRIMARY KEY("cod_director"),
 	CONSTRAINT "Ref_director_programa_to_usuario" FOREIGN KEY ("cedula")
-		REFERENCES "usuario"("cedula")
+		REFERENCES "usuario"("cedula") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -161,7 +161,7 @@ CREATE TABLE "administrador" (
 	"cedula" varchar,
 	PRIMARY KEY("cod_administrador"),
 	CONSTRAINT "Ref_administrador_to_usuario" FOREIGN KEY ("cedula")
-		REFERENCES "usuario"("cedula")
+		REFERENCES "usuario"("cedula") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -179,13 +179,13 @@ CREATE TABLE "representante_empresarial" (
 	"empresa" varchar,
 	PRIMARY KEY("cod_representante"),
 	CONSTRAINT "Ref_representante_empresarial_to_usuario" FOREIGN KEY ("cedula")
-		REFERENCES "usuario"("cedula")
+		REFERENCES "usuario"("cedula") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_representante_empresarial_to_empresa" FOREIGN KEY ("empresa")
-		REFERENCES "empresa"("nit")
+		REFERENCES "empresa"("nit") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -206,13 +206,13 @@ CREATE TABLE "convenio" (
 	PRIMARY KEY("id_convenio"),
 	CONSTRAINT "U_em_con" UNIQUE("nit_empresa"),
 	CONSTRAINT "Ref_convenio_to_empresa" FOREIGN KEY ("nit_empresa")
-		REFERENCES "empresa"("nit")
+		REFERENCES "empresa"("nit") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_convenio_to_prorroga" FOREIGN KEY ("prorroga_id_prorroga")
-		REFERENCES "prorroga"("id_prorroga")
+		REFERENCES "prorroga"("id_prorroga") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -229,13 +229,13 @@ CREATE TABLE "docente" (
 	"cedula" varchar,
 	PRIMARY KEY("cod_docente"),
 	CONSTRAINT "Ref_docente_to_usuario" FOREIGN KEY ("cedula")
-		REFERENCES "usuario"("cedula")
+		REFERENCES "usuario"("cedula") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_docente_to_dependencias" FOREIGN KEY ("dependencia")
-		REFERENCES "dependencia"("id_dependencia")
+		REFERENCES "dependencia"("id_dependencia") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -258,25 +258,25 @@ CREATE TABLE "practica" (
 	"prorroga_id_prorroga" varchar,
 	PRIMARY KEY("codigo"),
 	CONSTRAINT "Ref_practica_to_estudiante" FOREIGN KEY ("estudiante")
-		REFERENCES "estudiante"("codigo")
+		REFERENCES "estudiante"("codigo") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_practica_to_responsable_practica" FOREIGN KEY ("responsable")
-		REFERENCES "responsable_practica"("cod_responsable")
+		REFERENCES "responsable_practica"("cod_responsable") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_practica_to_docente" FOREIGN KEY ("docente")
-		REFERENCES "docente"("cod_docente")
+		REFERENCES "docente"("cod_docente") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_practica_to_prorroga" FOREIGN KEY ("prorroga_id_prorroga")
-		REFERENCES "prorroga"("id_prorroga")
+		REFERENCES "prorroga"("id_prorroga") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -291,13 +291,13 @@ CREATE TABLE "practica_externa" (
 	"id_practica" varchar,
 	"sucursal_id_sucursal" varchar NOT NULL,
 	CONSTRAINT "Ref_practica_externa_to_practica" FOREIGN KEY ("id_practica")
-		REFERENCES "practica"("codigo")
+		REFERENCES "practica"("codigo") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_practica_externa_to_sucursal" FOREIGN KEY ("sucursal_id_sucursal")
-		REFERENCES "sucursal"("id_sucursal")
+		REFERENCES "sucursal"("id_sucursal") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
@@ -312,13 +312,13 @@ CREATE TABLE "practica_interna" (
 	"id_practica" varchar,
 	"id_dependencia" varchar,
 	CONSTRAINT "Ref_practica_interna_to_practica" FOREIGN KEY ("id_practica")
-		REFERENCES "practica"("codigo")
+		REFERENCES "practica"("codigo") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE,
 	CONSTRAINT "Ref_practica_interna_to_dependencias" FOREIGN KEY ("id_dependencia")
-		REFERENCES "dependencia"("id_dependencia")
+		REFERENCES "dependencia"("id_dependencia") ON DELETE CASCADE
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION
