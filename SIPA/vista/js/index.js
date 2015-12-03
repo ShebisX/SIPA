@@ -1,4 +1,5 @@
 $(document).on('ready', function() {
+    
 
     $.post("controlador/fachada.php", {
         clase: 'Usuario',
