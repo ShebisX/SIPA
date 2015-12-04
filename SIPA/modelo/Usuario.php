@@ -1,12 +1,6 @@
 <?php
 class Usuario {
 
-    public function cerrarSesion(){
-        session_start();
-        session_destroy();
-        echo json_encode("");
-    }
-
     public function verificarCambio($args){
         extract($args);
         session_start();

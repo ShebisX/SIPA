@@ -9,6 +9,14 @@
     <meta name="author" content="Grayrids">
 		<title>SIPA</title>
 
+    <!-- css template pluto-->
+   <link href="../../includes/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="vista/fonts/font-awesome.min.css" type="text/css" media="screen">
+   <link href="../../includes/css/material.min.css" rel="stylesheet">
+   <link href="../../includes/css/ripples.min.css" rel="stylesheet">
+   <link href="../../includes/css/main.css" rel="stylesheet">
+   <link href="../../includes/css/responsive.css" rel="stylesheet">
+   <link href="../../includes/css/animate.min.css" rel="stylesheet">
 
   </head>
 
@@ -20,7 +28,7 @@
       </div>
 
       <ul class="nav navbar-nav main-navigation">
-        <li><a href="#Bienvenido" id="cerrarSesion">Cerrar Sesion</a></li>
+        <li><a href="#Bienvenido">Cerrar Sesion</a></li>
         <li class="active"><a href="#MiPerfil">Mi Perfil</a></li>
         <li><a href="#infoPractica">Información Práctica</a></li>
         <li><a href="#comentarios">Comentarios</a></li>
@@ -28,7 +36,7 @@
         <li><a href="#cambiarContrasena">Cambiar Contraseña</a></li>
       </ul>
         <button class="close-button" id="close-button">Close Menu</button>
-    </div>        
+    </div>      	
 
     <!-- bienvenido -->    
     <div class="content-wrap">
@@ -379,7 +387,14 @@
     <script src="../../includes/js/jquery.nav.js"></script>      
     <script src="../../includes/js/smooth-on-scroll.js"></script>
     <script src="../../includes/js/smooth-scroll.js"></script>
-    <script src="vista/js/estudiante/estudiante.js"></script>
+    
+
+    <script>
+        $(document).ready(function() {
+            // This command is used to initialize some elements and make them work properly
+            $.material.init();
+        });
+    </script>
 
   </body>
 
