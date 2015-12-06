@@ -10,10 +10,10 @@
 // Sidebar toggle
 //
 // -------------------
-$(document).ready(function() {
+$(document).ready(function () {
     var overlay = $('.sidebar-overlay');
 
-    $('.sidebar-toggle').on('click', function() {
+    $('.sidebar-toggle').on('click', function () {
         var sidebar = $('#sidebar');
         sidebar.toggleClass('open');
         if ((sidebar.hasClass('sidebar-fixed-left') || sidebar.hasClass('sidebar-fixed-right')) && sidebar.hasClass('open')) {
@@ -23,7 +23,7 @@ $(document).ready(function() {
         }
     });
 
-    overlay.on('click', function() {
+    overlay.on('click', function () {
         $(this).removeClass('active');
         $('#sidebar').removeClass('open');
     });
@@ -33,7 +33,7 @@ $(document).ready(function() {
 // Sidebar constructor
 //
 // -------------------
-$(document).ready(function() {
+$(document).ready(function () {
 
     var sidebar = $('#sidebar');
     var sidebarHeader = $('#sidebar .sidebar-header');
@@ -46,8 +46,8 @@ $(document).ready(function() {
 
 
     // Sidebar position
-    $('#sidebar-position').change(function() {
-        var value = $( this ).val();
+    $('#sidebar-position').change(function () {
+        var value = $(this).val();
         sidebar.removeClass('sidebar-fixed-left sidebar-fixed-right sidebar-stacked').addClass(value).addClass('open');
         if (value == 'sidebar-fixed-left' || value == 'sidebar-fixed-right') {
             $('.sidebar-overlay').addClass('active');
@@ -64,13 +64,13 @@ $(document).ready(function() {
     });
 
     // Sidebar theme
-    $('#sidebar-theme').change(function() {
-        var value = $( this ).val();
+    $('#sidebar-theme').change(function () {
+        var value = $(this).val();
         sidebar.removeClass('sidebar-default sidebar-inverse sidebar-colored sidebar-colored-inverse').addClass(value)
     });
 
     // Header cover
-    $('#sidebar-header').change(function() {
+    $('#sidebar-header').change(function () {
         var value = $(this).val();
 
         $('.sidebar-header').removeClass('header-cover').addClass(value);
@@ -81,6 +81,7 @@ $(document).ready(function() {
             sidebarHeader.css('background-image', '')
         }
     });
+
 });
 
 /**
@@ -89,43 +90,60 @@ $(document).ready(function() {
  * Add JQuery animation to bootstrap dropdown elements.
  */
 
-(function($) {
+(function ($) {
     var dropdown = $('.dropdown');
 
     // Add slidedown animation to dropdown
-    dropdown.on('show.bs.dropdown', function(e){
+    dropdown.on('show.bs.dropdown', function (e) {
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
     });
 
     // Add slideup animation to dropdown
-    dropdown.on('hide.bs.dropdown', function(e){
+    dropdown.on('hide.bs.dropdown', function (e) {
         $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
     });
 })(jQuery);
 
 
 
-(function(removeClass) {
+(function (removeClass) {
 
-	jQuery.fn.removeClass = function( value ) {
-		if ( value && typeof value.test === "function" ) {
-			for ( var i = 0, l = this.length; i < l; i++ ) {
-				var elem = this[i];
-				if ( elem.nodeType === 1 && elem.className ) {
-					var classNames = elem.className.split( /\s+/ );
+    jQuery.fn.removeClass = function (value) {
+        if (value && typeof value.test === "function") {
+            for (var i = 0, l = this.length; i < l; i++) {
+                var elem = this[i];
+                if (elem.nodeType === 1 && elem.className) {
+                    var classNames = elem.className.split(/\s+/);
 
-					for ( var n = classNames.length; n--; ) {
-						if ( value.test(classNames[n]) ) {
-							classNames.splice(n, 1);
-						}
-					}
-					elem.className = jQuery.trim( classNames.join(" ") );
-				}
-			}
-		} else {
-			removeClass.call(this, value);
-		}
-		return this;
-	}
+                    for (var n = classNames.length; n--; ) {
+                        if (value.test(classNames[n])) {
+                            classNames.splice(n, 1);
+                        }
+                    }
+                    elem.className = jQuery.trim(classNames.join(" "));
+                }
+            }
+        } else {
+            removeClass.call(this, value);
+        }
+        return this;
+    }
 
 })(jQuery.fn.removeClass);
+
+function perfil() {
+    $.post("controlador/fachada.php", {
+        clase: 'Usuario',
+        oper: 'perfil',
+    }, function (data) {
+        //console.log(data);
+        var html = '<h1>' + data['Nombre'] + ' ' + data['Apellido'] + '</h1>';
+        $.each(data, function (key, value) {
+            if (key != 'Nombre' || key != 'Apellido') {
+                html += '<br><p><b>' + key + ':</b> ' + value + '</p>';
+            }
+        });
+
+        $("#contenido").html(html);
+    }, 'json');
+}
