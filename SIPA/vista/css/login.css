@@ -1,6 +1,5 @@
 body {
-  background: #e9e9e9;
-  color: #666666;
+  background-color: #2F7373;
   font-family: 'RobotoDraft', 'Roboto', sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
@@ -22,10 +21,10 @@ body {
   font-size: 12px;
 }
 .pen-title span .fa {
-  color: #1de9b6;
+  color: #3ab4a6;
 }
 .pen-title span a {
-  color: #1de9b6;
+  color: #3ab4a6;
   font-weight: 600;
   text-decoration: none;
 }
@@ -38,7 +37,7 @@ body {
 .rerun a {
   cursor: pointer;
   display: inline-block;
-  background: #1de9b6;
+  background: #3ab4a6;
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 10px 20px;
@@ -77,7 +76,7 @@ body {
 #portfolio {
   bottom: 96px;
   right: 36px;
-  background: #1de9b6;
+  background: #3ab4a6;
   width: 44px;
   height: 44px;
   -webkit-animation: buttonFadeInUp 1s ease;
@@ -177,10 +176,10 @@ body {
 .card .title {
   position: relative;
   z-index: 1;
-  border-left: 5px solid #1de9b6;
+  border-left: 5px solid #3ab4a6;
   margin: 0 0 35px;
   padding: 10px 0 10px 50px;
-  color: #1de9b6;
+  color: #3ab4a6;
   font-size: 32px;
   font-weight: 600;
   text-transform: uppercase;
@@ -238,7 +237,7 @@ body {
 .card .input-container .bar:before, .card .input-container .bar:after {
   content: '';
   position: absolute;
-  background: #1de9b6;
+  background: #3ab4a6;
   width: 0;
   height: 2px;
   -webkit-transition: .2s ease;
@@ -261,7 +260,7 @@ body {
   display: inline-block;
   background: 0;
   width: 240px;
-  border: 2px solid #e3e3e3;
+  border: 2px solid #757575;
   padding: 20px 0;
   font-size: 24px;
   font-weight: 600;
@@ -274,7 +273,7 @@ body {
 .card .button-container button span {
   position: relative;
   z-index: 1;
-  color: #ddd;
+  color: #757575;
   -webkit-transition: .3s ease;
           transition: .3s ease;
 }
@@ -284,7 +283,7 @@ body {
   top: 50%;
   left: 50%;
   display: block;
-  background: #1de9b6;
+  background: #3ab4a6;
   width: 30px;
   height: 30px;
   border-radius: 100%;
@@ -294,10 +293,10 @@ body {
           transition: .3s ease;
 }
 .card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
-  border-color: #1de9b6;
+  border-color: #3ab4a6;
 }
 .card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
-  color: #1de9b6;
+  color: #3ab4a6;
 }
 .card .button-container button:active span, .card .button-container button:focus span {
   color: #ffffff;
@@ -310,7 +309,7 @@ body {
 }
 .card .footer {
   margin: 40px 0 0;
-  color: #d3d3d3;
+  color: #757575;
   font-size: 24px;
   font-weight: 300;
   text-align: center;
@@ -322,7 +321,7 @@ body {
           transition: .3s ease;
 }
 .card .footer a:hover {
-  color: #b9b9b9;
+  color: #3ab4a6;
 }
 .card.alt {
   position: absolute;
@@ -344,7 +343,7 @@ body {
 }
 .card.alt .toggle {
   position: relative;
-  background: #1de9b6;
+  background: #3ab4a6;
   width: 140px;
   height: 140px;
   border-radius: 100%;
@@ -416,7 +415,7 @@ body {
   border-color: #ffffff;
 }
 .card.alt .button-container button span {
-  color: #1de9b6;
+  color: #3ab4a6;
 }
 .card.alt .button-container button:hover {
   background: rgba(255, 255, 255, 0.9);
