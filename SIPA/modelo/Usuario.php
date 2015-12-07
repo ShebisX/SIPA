@@ -65,7 +65,7 @@ class Usuario {
         extract($args);
         session_start();
         $user = $_SESSION['user'];
-        if ($pass1 == $pass2) {
+        if ($pass1 == $pass2 && strlen($pass1) >= 6) {
             $sql = "UPDATE usuario SET contrasena = '$pass1', primer = FALSE WHERE correo = '$user'";
             UtilConexion::$pdo->query($sql);
             self::redirigir($_SESSION['rol']);

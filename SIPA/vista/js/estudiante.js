@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
 
     $('#comentarios').on('click', function () {
-
+        
     });
 
     $('#reportes').on('click', function () {

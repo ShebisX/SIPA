@@ -1,5 +1,6 @@
 $(document).on('ready', function () {
 
+
     $.post("controlador/fachada.php", {
         clase: 'Usuario',
         oper: 'verificarSesion'
@@ -27,6 +28,8 @@ $(document).on('ready', function () {
         }, function (data) {
             if (data) {
                 $("#principal").html(data);
+            }else{
+                alert("datos de inicio de sesion incorrectos");
             }
         }, 'json');
 
