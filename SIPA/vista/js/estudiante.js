@@ -6,7 +6,18 @@ $(window).on('load', function () {
     });
 
     $('#practica').on('click', function () {
+        $.post("controlador/fachada.php", {
+            clase: 'Estudiante',
+            oper: 'infoPractica'
+        }, function (data) {
+            //console.log(data);
+            var html = '';
+            $.each(data, function (key, value) {
+                html += '<br><p><b>' + key + ':</b> ' + value + '</p>';
+            });
 
+            $("#contenido").html(html);
+        }, 'json');
     });
 
     $('#comentarios').on('click', function () {
@@ -18,7 +29,6 @@ $(window).on('load', function () {
     });
 
     $("#cerrarSesion").on('click', function () {
-        console.log("Si");
         $.post("controlador/fachada.php", {
             clase: 'Usuario',
             oper: 'cerrarSesion'

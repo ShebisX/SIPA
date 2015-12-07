@@ -2,6 +2,39 @@
 
 class Estudiante {
 
+    function infoPractica($args) {
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $sql = "SELECT p.* FROM practica p, estudiante e, usuario u "
+                . "WHERE u.correo = '$user' and u.cedula = e.cedula and p.estudiante = e.codigo;";
+        if ($rs = UtilConexion::$pdo->query($sql)) {
+            foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
+                $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+            }
+
+            $tipo = $respuesta['Tipo'];
+            $codigo = $respuesta['Codigo'];
+
+            if ($tipo == 'Interna') {
+                $sql = "SELECT d.* FROM practica p, practica_interna pi, dependencia d "
+                        . "WHERE p.codigo = '$codigo' and pi.id_practica = p.codigo and pi.id_dependencia =  d.id_dependencia;";
+            } else if ($tipo == 'Externa') {
+                $sql = "";
+            }
+
+            if ($rs = UtilConexion::$pdo->query($sql)) {
+                foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
+                    $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+                }
+                echo json_encode($respuesta);
+            } else
+                echo UtilConexion::getEstado();
+        } else
+            echo UtilConexion::getEstado();
+    }
+
     function add($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
@@ -75,7 +108,7 @@ class Estudiante {
         ];
 
         //$sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
-        $sql ="SELECT usuario.*, codigo, programa FROM usuario 
+        $sql = "SELECT usuario.*, codigo, programa FROM usuario 
                 inner join estudiante on usuario.cedula=estudiante.cedula
                 $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
 
@@ -83,7 +116,7 @@ class Estudiante {
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'cedula' => $fila['cedula'],
-                'cell' => [$fila['cedula'],$fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['codigo']]
+                'cell' => [$fila['cedula'], $fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['codigo']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

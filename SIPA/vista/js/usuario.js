@@ -137,13 +137,6 @@ function perfil() {
         oper: 'perfil',
     }, function (data) {
         //console.log(data);
-        var html = '<h1>' + data['Nombre'] + ' ' + data['Apellido'] + '</h1>';
-        $.each(data, function (key, value) {
-            if (key != 'Nombre' || key != 'Apellido') {
-                html += '<br><p><b>' + key + ':</b> ' + value + '</p>';
-            }
-        });
-
-        $("#contenido").html(html);
+        $("#contenido").html(data);
     }, 'json');
 }

@@ -7,11 +7,16 @@ class Usuario {
         session_start();
         $user = $_SESSION['user'];
         $rol = $_SESSION['rol'];
+
         $sql = "SELECT u.nombre, u.apellido, u.telefono, u.direccion, t.* FROM $rol t JOIN Usuario u on u.cedula = t.cedula WHERE u.correo = '$user';";
 
         if ($rs = UtilConexion::$pdo->query($sql)) {
-            foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
-                $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+            $rs = $rs->fetch(PDO::FETCH_ASSOC);
+
+            $respuesta = '<h1>' . $rs['nombre'] . ' ' . $rs['apellido'] . '</h1>';
+            foreach ($rs as $key => $value) {
+                if ($key != 'nombre' && $key != 'apellido')
+                    $respuesta .= '<br><p><b>' . ucfirst(strtolower($key)) . ':</b> ' . ucfirst(strtolower($value)) . '</p>';
             }
             echo json_encode($respuesta);
         } else
