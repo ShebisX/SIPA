@@ -18,6 +18,7 @@ $(document).on('ready', function() {
     });
 
     $("#login-form").submit(function(event) {
+        alert('hola');
         $.post("controlador/fachada.php", {
             clase: 'Usuario',
             oper: 'autenticar',

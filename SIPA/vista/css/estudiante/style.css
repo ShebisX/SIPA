@@ -18,6 +18,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+header {
+  font-family: cursive;
+  font-size: 35px;
+  text-align: center;
+  height: 100px;
+  padding-top: 1.7%;
+  background-color: #14BCB4;
+}
 body{
   background-color: white;
 }
