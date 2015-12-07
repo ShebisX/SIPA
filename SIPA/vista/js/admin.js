@@ -1,5 +1,14 @@
 $(function () {
 
+    $("#btnCerrar").on("click", function () {
+        $.post("controlador/fachada.php", {
+            clase: 'Usuario',
+            oper: 'cerrarSesion'
+        }, function (data) {
+            location.reload();
+        }, 'json');
+    });
+
     //$("#btnUsuario").on("click", crearTablaUsuario);
     $("#btnDocente").on("click", crearTablaDocente);
     $("#btnEstudiante").on("click", crearTablaEstudiante);
@@ -1409,7 +1418,7 @@ $(function () {
         )
     }
     ;
-    
+
     function crearTablaPracticaE() {
         //alert('holaaaaaa');
 
