@@ -130,13 +130,3 @@ $(document).ready(function () {
     }
 
 })(jQuery.fn.removeClass);
-
-function perfil() {
-    $.post("controlador/fachada.php", {
-        clase: 'Usuario',
-        oper: 'perfil',
-    }, function (data) {
-        //console.log(data);
-        $("#contenido").html(data);
-    }, 'json');
-}

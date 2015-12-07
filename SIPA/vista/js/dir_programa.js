@@ -26,4 +26,14 @@ $(window).on('load', function () {
             location.reload();
         }, 'json');
     });
+
+    function perfil() {
+        $.post("controlador/fachada.php", {
+            clase: 'Usuario',
+            oper: 'perfil',
+        }, function (data) {
+            //console.log(data);
+            $("#contenido").html(data);
+        }, 'json');
+    }
 });

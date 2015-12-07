@@ -21,7 +21,9 @@ class Estudiante {
                 $sql = "SELECT d.* FROM practica p, practica_interna pi, dependencia d "
                         . "WHERE p.codigo = '$codigo' and pi.id_practica = p.codigo and pi.id_dependencia =  d.id_dependencia;";
             } else if ($tipo == 'Externa') {
-                $sql = "";
+                $sql = "SELECT s.nombre, s.direccion, s.telefono, e.* FROM practica p, practica_externa pe, sucursal s, empresa e "
+                        . "WHERE p.codigo = '$codigo' and pe.id_practica = p.codigo and pe.id_sucursal =  s.id_sucursal "
+                        . "and e.nit = s.nit_empresa;";
             }
 
             if ($rs = UtilConexion::$pdo->query($sql)) {
