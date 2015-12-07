@@ -22,7 +22,7 @@ class Estudiante {
                         . "WHERE p.codigo = '$codigo' and pi.id_practica = p.codigo and pi.id_dependencia =  d.id_dependencia;";
             } else if ($tipo == 'Externa') {
                 $sql = "SELECT s.nombre, s.direccion, s.telefono, e.* FROM practica p, practica_externa pe, sucursal s, empresa e "
-                        . "WHERE p.codigo = '$codigo' and pe.id_practica = p.codigo and pe.id_sucursal =  s.id_sucursal "
+                        . "WHERE p.codigo = '$codigo' and pe.id_practica = p.codigo and pe.sucursal_id_sucursal =  s.sid_sucursal "
                         . "and e.nit = s.nit_empresa;";
             }
 
@@ -37,21 +37,21 @@ class Estudiante {
             echo UtilConexion::getEstado();
     }
 
-    /*function comentariosPractica($args) {
-        extract($args);
-        session_start();
-        $user = $_SESSION['user'];
+    /* function comentariosPractica($args) {
+      extract($args);
+      session_start();
+      $user = $_SESSION['user'];
 
-        $sql = "";
-        if ($rs = UtilConexion::$pdo->query($sql)) {
-            foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
-                $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
-            }
-            
-            echo json_encode($respuesta);
-        } else
-            echo UtilConexion::getEstado();
-    }*/
+      $sql = "";
+      if ($rs = UtilConexion::$pdo->query($sql)) {
+      foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
+      $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+      }
+
+      echo json_encode($respuesta);
+      } else
+      echo UtilConexion::getEstado();
+      } */
 
     function add($argumentos) {
         extract($argumentos);
@@ -88,9 +88,9 @@ class Estudiante {
         error_log(print_r($argumentos, 1));
         $sql = "DELETE FROM usuario WHERE cedula = '$id'";
         UtilConexion::$pdo->exec($sql);
-        
+
         error_log($sql);
-        
+
         echo UtilConexion::getEstado();
     }
 

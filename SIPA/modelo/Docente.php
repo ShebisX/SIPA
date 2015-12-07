@@ -7,16 +7,62 @@ class Docente {
         session_start();
         $user = $_SESSION['user'];
 
-        $sql = "SELECT p.*, u. FROM usuario u, docente d, estudiante e, practica p "
-                . "WHERE u.correo = $user and u.cedula = d.cedula and d.cod_docente = p.docente;";
-        /* if ($rs = UtilConexion::$pdo->query($sql)) {
-          foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
-          $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
-          }
+        $sql = "SELECT DISTINCT p.codigo, u2.nombre FROM usuario u, usuario u2, docente d, estudiante e, practica p "
+                . "WHERE u.correo = '$user' and u.cedula = d.cedula and d.cod_docente = p.docente and "
+                . "p.estudiante = e.codigo and u2.cedula = e.cedula;";
+        if ($rs = UtilConexion::$pdo->query($sql)) {
+            foreach ($rs as $row) {
 
-          echo json_encode($respuesta);
-          } else
-          echo UtilConexion::getEstado(); */
+                $respuesta .= '<option value="' . $row['codigo'] . '">' . $row['nombre'] . '</option>';
+                //$respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+            }
+
+            echo json_encode($respuesta);
+        } else
+            echo UtilConexion::getEstado();
+    }
+
+    function getPractica($args) {
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $sql = "SELECT DISTINCT u.nombre, u.apellido, u.cedula, e.codigo, e.programa, "
+                . "u.direccion, u.telefono, u.correo, p.fecha_inicio, p.fecha_fin, p.tipo, p.prorroga_id_prorroga "
+                . "FROM practica p, estudiante e, usuario u WHERE p.codigo = '$idPractica' "
+                . "and p.estudiante = e.codigo and e.cedula = u.cedula;";
+
+        if ($rs = UtilConexion::$pdo->query($sql)) {
+            $rs = $rs->fetch(PDO::FETCH_ASSOC);
+
+            $respuesta = '<h1>' . $rs['nombre'] . ' ' . $rs['apellido'] . '</h1>';
+            foreach ($rs as $key => $value) {
+                if ($key != 'nombre' && $key != 'apellido')
+                    $respuesta .= '<br><p><b>' . ucfirst(strtolower($key)) . ':</b> ' . ucfirst(strtolower($value)) . '</p>';
+            }
+
+            echo json_encode($respuesta);
+            /* $tipo = $respuesta['Tipo'];
+              $codigo = $respuesta['Codigo'];
+
+              if ($tipo == 'Interna') {
+              $sql = "SELECT d.* FROM practica p, practica_interna pi, dependencia d "
+              . "WHERE p.codigo = '$codigo' and pi.id_practica = p.codigo and pi.id_dependencia =  d.id_dependencia;";
+              } else if ($tipo == 'Externa') {
+              $sql = "SELECT s.nombre, s.direccion, s.telefono, e.* FROM practica p, practica_externa pe, sucursal s, empresa e "
+              . "WHERE p.codigo = '$codigo' and pe.id_practica = p.codigo and pe.sucursal_id_sucursal =  s.sid_sucursal "
+              . "and e.nit = s.nit_empresa;";
+              } */
+
+            /* if ($rs = UtilConexion::$pdo->query($sql)) {
+              foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
+              $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+              }
+              echo json_encode($rs);
+              /* else
+              echo UtilConexion::getEstado(); */
+        } else
+            echo UtilConexion::getEstado();
     }
 
     function add($argumentos) {

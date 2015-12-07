@@ -1,4 +1,4 @@
-$(window).on('load', function () {
+$( function () {
     perfil();
 
     $('#perfil').on('click', function () {
