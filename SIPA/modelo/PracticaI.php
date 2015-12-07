@@ -1,52 +1,51 @@
 <?php
 
+class PracticaI {
 
-class Asesor {
-     function add($argumentos) {
+    function add($argumentos) {
         extract($argumentos);
-        error_log(print_r($argumentos,1));
-        
+        error_log(print_r($argumentos, 1));
+
         //UtilConexion::$pdo->exec("INSERT INTO usuario VALUES ('$id','$nombre','$apellido','$telefono','$cuenta','$contrasena','$rol')");
 //        
-        $sql ="WITH funcionario as (
-                   INSERT INTO usuario(id, nombre, apellido, telefono, cuenta, contrasena,rol)
-                      VALUES ('$id', '$nombre', '$apellido','$telefono', '$cuenta','$contrasena','asesor') RETURNING id
-                ) INSERT INTO asesor_empresarial (cod_asesoremp,usuario_id,empresa_nit) VALUES ((SELECT id FROM funcionario), '$cod_asesor','$nit_empresa');";
+        $sql = "WITH Tipo as (
+                   INSERT INTO practica(codigo, fecha_inicio, fecha_fin, salario,tipo,estudiante,docente,responsable,prorroga_id_prorroga)
+                      VALUES ('$codigo', '$fecha_inicio', '$fecha_fin','$salario','Practica Interna','$estudiante','$docente','$responsable','$prorroga_id_prorroga') RETURNING codigo
+                ) INSERT INTO practica_interna (id_practica,id_dependencia) VALUES ((SELECT codigo FROM Tipo),'$id_dependencia');";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
-        
+
         echo UtilConexion::getEstado();
     }
-    
+
     function edit($argumentos) {
         extract($argumentos);
-        error_log(print_r($argumentos,1));
-      $sql = "UPDATE usuario SET id='$idNuevo', nombre='$nombre', apellido='$apellido', telefono='$telefono', cuenta='$cuenta',contrasena='$contrasena' WHERE  id='$id' ;";
-        
+        error_log(print_r($argumentos, 1));
+
+        $sql = "UPDATE practica SET fecha_inicio='$fecha_inicio',fecha_fin='$fecha_fin', salario='$salario',estudiante='$estudiante',docente='$docente', responsable='$responsable', prorroga_id_prorroga='$prorroga_id_prorroga'
+	WHERE codigo='$codigo'";
+
+
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
     }
-    
-    
-     function del($argumentos) {
+
+    function del($argumentos) {
         extract($argumentos);
-        error_log(print_r($argumentos,1));
-      $sql = "DELETE FROM usuario WHERE id='$id';";
-             
-      
-        error_log($sql);
+        error_log(print_r($argumentos, 1));
+        $sql = "DELETE FROM practica WHERE codigo = '$id'";
         UtilConexion::$pdo->exec($sql);
+
+        error_log($sql);
+
         echo UtilConexion::getEstado();
-        
-       
     }
-    
-    
-     function select($argumentos) {
+
+    function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
-        $count = UtilConexion::$pdo->query("SELECT id FROM usuario $where")->rowCount();
+        $count = UtilConexion::$pdo->query("SELECT codigo FROM practica $where")->rowCount();
         // Calcula el total de páginas por consulta
         if ($count > 0) {
             $total_pages = ceil($count / $rows);
@@ -74,11 +73,16 @@ class Asesor {
             'records' => $count
         ];
 
-        $sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        //$sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        $sql = "SELECT practica.*, id_dependencia FROM practica 
+                inner join practica_interna on practica.codigo=practica_interna.id_practica
+                $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+
+        //echo($sql);
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['id'],
-                 'cell' => [$fila['id'], $fila['nombre'],$fila['apellido'],$fila['telefono'],$fila['cuenta'],$fila['rol']]
+                'id' => $fila['codigo'],
+                'cell' => [$fila['codigo'], $fila['fecha_inicio'], $fila['fecha_fin'], $fila['salario'], $fila['estudiante'], $fila['docente'], $fila['responsable'], $fila['prorroga_id_prorroga'], $fila['id_dependencia']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON
@@ -86,10 +90,6 @@ class Asesor {
         // error_log(print_r(json_encode($respuesta), TRUE));
         echo json_encode($respuesta);
     }
-
-    
-    
-    
 
 }
 
