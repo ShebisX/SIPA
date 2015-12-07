@@ -1,4 +1,4 @@
-$( function () {
+$(document).ready(function () {
     perfil();
 
     $('#perfil').on('click', function () {
@@ -18,7 +18,6 @@ $( function () {
     });
 
     $("#cerrarSesion").on('click', function () {
-        console.log("Si");
         $.post("controlador/fachada.php", {
             clase: 'Usuario',
             oper: 'cerrarSesion'
