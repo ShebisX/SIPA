@@ -6,7 +6,7 @@ $(window).on('load', function () {
     });
 
     $('#practica').on('click', function () {
-
+        $('#contenido').load('vista/html/docente_practicas.html');
     });
 
     $('#comentarios').on('click', function () {
@@ -26,7 +26,7 @@ $(window).on('load', function () {
             location.reload();
         }, 'json');
     });
-    
+
     function perfil() {
         $.post("controlador/fachada.php", {
             clase: 'Usuario',

@@ -2,6 +2,23 @@
 
 class Docente {
 
+    function practicas($args) {
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $sql = "SELECT p.*, u. FROM usuario u, docente d, estudiante e, practica p "
+                . "WHERE u.correo = $user and u.cedula = d.cedula and d.cod_docente = p.docente;";
+        /* if ($rs = UtilConexion::$pdo->query($sql)) {
+          foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
+          $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+          }
+
+          echo json_encode($respuesta);
+          } else
+          echo UtilConexion::getEstado(); */
+    }
+
     function add($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
