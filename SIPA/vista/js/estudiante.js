@@ -1,4 +1,4 @@
-$(window).on('load', function () {
+$(document).ready(function () {
     perfil();
 
     $('#perfil').on('click', function () {
@@ -6,11 +6,22 @@ $(window).on('load', function () {
     });
 
     $('#practica').on('click', function () {
-        $('#contenido').load('vista/html/docente_practicas.html');
+        $.post("controlador/fachada.php", {
+            clase: 'Estudiante',
+            oper: 'infoPractica'
+        }, function (data) {
+            //console.log(data);
+            var html = '';
+            $.each(data, function (key, value) {
+                html += '<br><p><b>' + key + ':</b> ' + value + '</p>';
+            });
+
+            $("#contenido").html(html);
+        }, 'json');
     });
 
     $('#comentarios').on('click', function () {
-
+        
     });
 
     $('#reportes').on('click', function () {
@@ -18,7 +29,7 @@ $(window).on('load', function () {
     });
 
     $("#cerrarSesion").on('click', function () {
-        console.log("Si");
+        console.log("data");
         $.post("controlador/fachada.php", {
             clase: 'Usuario',
             oper: 'cerrarSesion'
@@ -36,4 +47,5 @@ $(window).on('load', function () {
             $("#contenido").html(data);
         }, 'json');
     }
+
 });
