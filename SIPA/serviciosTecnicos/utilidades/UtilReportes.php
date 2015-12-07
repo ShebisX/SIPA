@@ -37,6 +37,22 @@ class UtilReportes {
       //$objWorksheet->setCellValue("A3", 'mundo');
       self::guardarLibro();
       } */
+
+    public static function generarConvenio($args) {
+        $args['datos'] = ['/@nombre/' => 'Anyela Salinas', '/@ciudad/' => 'Manizales', '/@cedula/' => '12345', '/@resolucion/' => '876543', '/@fecha/' => '12/12/2015'];
+        $conv = self::generarDocumento($args);
+        error_log($conv);
+        echo json_encode($conv);
+    }
+
+    public static function generarDocumento($param) {
+        extract($param);
+
+        $plantilla = file_get_contents('../vista/html/' . $tipo . '.html');
+
+        return preg_replace(array_keys($datos), array_values($datos), $plantilla);
+    }
+
 }
 
 ?>

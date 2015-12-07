@@ -21,11 +21,20 @@ $(document).ready(function () {
     });
 
     $('#comentarios').on('click', function () {
-        
+
     });
 
     $('#reportes').on('click', function () {
-        $("#contenido").load("vista/html/cambioClave.html")
+        //$("#contenido").load("vista/html/cambioClave.html");
+        $.post("controlador/fachada.php", {
+            clase: 'UtilReportes',
+            oper: 'generarConvenio',
+            tipo: 'plantilla_convenio'
+        }, function (data) {
+            console.log(data);
+            $('#contenido').html(data);
+            //location.reload();
+        }, 'json');
     });
 
     $("#cerrarSesion").on('click', function () {
