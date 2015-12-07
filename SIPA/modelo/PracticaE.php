@@ -1,6 +1,6 @@
 <?php
 
-class Convenio {
+class PracticaE {
 
     function add($argumentos) {
         extract($argumentos);
@@ -8,7 +8,10 @@ class Convenio {
 
         //UtilConexion::$pdo->exec("INSERT INTO usuario VALUES ('$id','$nombre','$apellido','$telefono','$cuenta','$contrasena','$rol')");
 //        
-        $sql = "INSERT INTO convenio VALUES('$id_convenio', '$fecha_inicio', '$fecha_fin', '$nit_empresa','$razon','$prorroga_id_prorroga');";
+        $sql = "WITH Tipo as (
+                   INSERT INTO practica(codigo, fecha_inicio, fecha_fin, salario,tipo,estudiante,docente,responsable,prorroga_id_prorroga)
+                      VALUES ('$codigo', '$fecha_inicio', '$fecha_fin','$salario','Practica Externa','$estudiante','$docente','$responsable','$prorroga_id_prorroga') RETURNING codigo
+                ) INSERT INTO practica_externa (id_practica,sucursal_id_sucursal) VALUES ((SELECT codigo FROM Tipo),'$sucursal_id_sucursal');";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
 
@@ -18,8 +21,10 @@ class Convenio {
     function edit($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
-        $sql = "UPDATE convenio SET fecha_inicio='$fecha_inicio',fecha_fin='$fecha_fin', nit_empresa='$nit_empresa',razon='$razon'
-	WHERE id_convenio='$id_convenio';";
+
+        $sql = "UPDATE practica SET fecha_inicio='$fecha_inicio',fecha_fin='$fecha_fin', salario='$salario',estudiante='$estudiante',docente='$docente', responsable='$responsable', prorroga_id_prorroga='$prorroga_id_prorroga'
+	WHERE codigo='$codigo'";
+
 
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
@@ -29,18 +34,18 @@ class Convenio {
     function del($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
-        $sql = "DELETE FROM convenio WHERE id_convenio='$id';";
-
+        $sql = "DELETE FROM practica WHERE codigo = '$id'";
+        UtilConexion::$pdo->exec($sql);
 
         error_log($sql);
-        UtilConexion::$pdo->exec($sql);
+
         echo UtilConexion::getEstado();
     }
 
     function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
-        $count = UtilConexion::$pdo->query("SELECT id_convenio FROM convenio $where")->rowCount();
+        $count = UtilConexion::$pdo->query("SELECT codigo FROM practica $where")->rowCount();
         // Calcula el total de páginas por consulta
         if ($count > 0) {
             $total_pages = ceil($count / $rows);
@@ -68,13 +73,16 @@ class Convenio {
             'records' => $count
         ];
 
-        $sql = "SELECT * FROM convenio $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        //$sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        $sql = "SELECT practica.*, sucursal_id_sucursal FROM practica 
+                inner join practica_externa on practica.codigo=practica_externa.id_practica
+                $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
 
         //echo($sql);
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['id_convenio'],
-                'cell' => [$fila['id_convenio'], $fila['fecha_inicio'], $fila['fecha_fin'], $fila['nit_empresa'], $fila['razon'], $fila['prorroga_id_prorroga']]
+                'id' => $fila['codigo'],
+                'cell' => [$fila['codigo'], $fila['fecha_inicio'], $fila['fecha_fin'], $fila['salario'], $fila['estudiante'], $fila['docente'], $fila['responsable'], $fila['prorroga_id_prorroga'], $fila['sucursal_id_sucursal']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

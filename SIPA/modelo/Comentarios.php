@@ -1,46 +1,49 @@
 <?php
 
-class Convenio {
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+class Comentarios {
 
     function add($argumentos) {
         extract($argumentos);
-        error_log(print_r($argumentos, 1));
-
-        //UtilConexion::$pdo->exec("INSERT INTO usuario VALUES ('$id','$nombre','$apellido','$telefono','$cuenta','$contrasena','$rol')");
-//        
-        $sql = "INSERT INTO convenio VALUES('$id_convenio', '$fecha_inicio', '$fecha_fin', '$nit_empresa','$razon','$prorroga_id_prorroga');";
-        error_log($sql);
-        UtilConexion::$pdo->exec($sql);
-
+        UtilConexion::$pdo->exec("INSERT INTO comentarios VALUES ('$cod','$practica_fk','$comentario','$usuario_fk')");
+//        otra manera de hacer lo mismo para cuando se necesite conocer el ID último
+//        $st = UtilConexion::$pdo->prepare("INSERT INTO departamento(id, nombre) VALUES(?, ?) RETURNING id");
+//        $st->execute(array($id, $nombre));
+//        $filaEvaluacion = $st->fetch();
+//        error_log(print_r($filaEvaluacion,1));
+//        error_log($filaEvaluacion['id']);
         echo UtilConexion::getEstado();
     }
-
+    
     function edit($argumentos) {
         extract($argumentos);
-        error_log(print_r($argumentos, 1));
-        $sql = "UPDATE convenio SET fecha_inicio='$fecha_inicio',fecha_fin='$fecha_fin', nit_empresa='$nit_empresa',razon='$razon'
-	WHERE id_convenio='$id_convenio';";
-
+        error_log(print_r($argumentos,1));
+        $sql = "UPDATE comentarios SET comentario='$comentario' WHERE  cod='$cod'";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
     }
 
-    function del($argumentos) {
+     function del($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
-        $sql = "DELETE FROM convenio WHERE id_convenio='$id';";
-
-
-        error_log($sql);
+        $sql = "DELETE FROM comentarios WHERE cod= '$id'";
         UtilConexion::$pdo->exec($sql);
+        
+        error_log($sql);
+        
         echo UtilConexion::getEstado();
-    }
+     }
 
     function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
-        $count = UtilConexion::$pdo->query("SELECT id_convenio FROM convenio $where")->rowCount();
+        $count = UtilConexion::$pdo->query("SELECT cod FROM comentarios $where")->rowCount();
         // Calcula el total de páginas por consulta
         if ($count > 0) {
             $total_pages = ceil($count / $rows);
@@ -68,13 +71,11 @@ class Convenio {
             'records' => $count
         ];
 
-        $sql = "SELECT * FROM convenio $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
-
-        //echo($sql);
+        $sql = "SELECT * FROM comentarios $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['id_convenio'],
-                'cell' => [$fila['id_convenio'], $fila['fecha_inicio'], $fila['fecha_fin'], $fila['nit_empresa'], $fila['razon'], $fila['prorroga_id_prorroga']]
+                'id' => $fila['cod'],
+                'cell' => [$fila['cod'], $fila['practica_fk'], $fila['comentarios'], $fila['usuario_fk']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

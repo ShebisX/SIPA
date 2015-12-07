@@ -2,7 +2,7 @@
 
 class Estudiante {
 
-    function infoPractica($args) {
+    function inforactica($args) {
         extract($args);
         session_start();
         $user = $_SESSION['user'];
@@ -86,11 +86,11 @@ class Estudiante {
     function del($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
-        $sql = "DELETE FROM usuario WHERE cedula='$cedula';";
-
-
-        error_log($sql);
+        $sql = "DELETE FROM usuario WHERE cedula = '$id'";
         UtilConexion::$pdo->exec($sql);
+        
+        error_log($sql);
+        
         echo UtilConexion::getEstado();
     }
 
@@ -133,8 +133,8 @@ class Estudiante {
         //echo($sql);
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'cedula' => $fila['cedula'],
-                'cell' => [$fila['cedula'], $fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['codigo']]
+                'id' => $fila['cedula'],
+                'cell' => [$fila['cedula'], $fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['codigo'], $fila['programa']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

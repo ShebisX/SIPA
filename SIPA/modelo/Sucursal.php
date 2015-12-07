@@ -1,34 +1,49 @@
-<?php 
+<?php
 
-class programa {
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-	function add($argumentos) {
+class Sucursal {
+
+    function add($argumentos) {
         extract($argumentos);
-        UtilConexion::$pdo->exec("INSERT into programa values ($id, '$nombre', '$modalidad','$fk_departamento')");
+        UtilConexion::$pdo->exec("INSERT INTO sucursal VALUES ('$id_sucursal','$nombre','$direccion','$telefono','$nit_empresa')");
+//        otra manera de hacer lo mismo para cuando se necesite conocer el ID último
+//        $st = UtilConexion::$pdo->prepare("INSERT INTO departamento(id, nombre) VALUES(?, ?) RETURNING id");
+//        $st->execute(array($id, $nombre));
+//        $filaEvaluacion = $st->fetch();
+//        error_log(print_r($filaEvaluacion,1));
+//        error_log($filaEvaluacion['id']);
         echo UtilConexion::getEstado();
     }
-
-    /**
-     * Actualiza una fila.
-     * @param <type> $argumentos Un array con el id a buscar y el nuevo tema
-     */
+    
     function edit($argumentos) {
         extract($argumentos);
-        $sql="UPDATE programa set id=$id, nombre='$nombre', fk_departamento='$fk_departamento', modalidad='$modalidad' where id=$id";
-        UtilConexion::$pdo->exec($sql);
-        echo UtilConexion::getEstado();
-    }
-    function del($argumentos) {
-    	extract($argumentos);
-    	$sql="DELETE FROM programa where id=$id";
+        error_log(print_r($argumentos,1));
+        $sql = "UPDATE sucursal SET nombre='$nombre',direccion='$direccion',telefono='$telefono', nit_empresa='$nit_empresa' WHERE  id_sucursal='$id_sucursal'";
+        error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
     }
 
-	function select($argumentos) {
+     function del($argumentos) {
+        extract($argumentos);
+        error_log(print_r($argumentos, 1));
+        $sql = "DELETE FROM sucursal WHERE id_sucursal= '$id'";
+        UtilConexion::$pdo->exec($sql);
+        
+        error_log($sql);
+        
+        echo UtilConexion::getEstado();
+     }
+
+    function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
-        $count = UtilConexion::$pdo->query("SELECT id FROM programa $where")->rowCount();
+        $count = UtilConexion::$pdo->query("SELECT id_sucursal FROM sucursal $where")->rowCount();
         // Calcula el total de páginas por consulta
         if ($count > 0) {
             $total_pages = ceil($count / $rows);
@@ -56,11 +71,11 @@ class programa {
             'records' => $count
         ];
 
-        $sql = "SELECT p.id, p.nombre as nombreprograma, d.nombre as nombredepartamento, modalidad FROM programa p inner join departamento d on fk_departamento=d.id $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        $sql = "SELECT * FROM sucursal $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['id'],
-                'cell' => [$fila['id'], $fila['nombreprograma'],$fila['nombredepartamento'],$fila['modalidad']]
+                'id' => $fila['id_sucursal'],
+                'cell' => [$fila['id_sucursal'], $fila['nombre'], $fila['direccion'], $fila['telefono'], $fila['nit_empresa']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON
@@ -69,15 +84,6 @@ class programa {
         echo json_encode($respuesta);
     }
 
-    public function getSelect() {
-        $select = "<select>";
-        $select .= "<option value='0'>Seleccione un departamento</option>";
-        foreach (UtilConexion::$pdo->query("SELECT id, nombre FROM departamento ORDER BY nombre") as $fila) {
-            $select .= "<option value='{$fila['id']}'>{$fila['nombre']}</option>";
-        }
-        echo ($select . "</select>");
-    }
-
 }
 
- ?>
+?>

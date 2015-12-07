@@ -10,7 +10,7 @@ class Empresa {
 
     function add($argumentos) {
         extract($argumentos);
-        UtilConexion::$pdo->exec("INSERT INTO empresa VALUES ('$nit','$nombre',$localidad)");
+        UtilConexion::$pdo->exec("INSERT INTO empresa VALUES ('$nit','$nombre','$tipo','$razon_social')");
 //        otra manera de hacer lo mismo para cuando se necesite conocer el ID último
 //        $st = UtilConexion::$pdo->prepare("INSERT INTO departamento(id, nombre) VALUES(?, ?) RETURNING id");
 //        $st->execute(array($id, $nombre));
@@ -23,17 +23,27 @@ class Empresa {
     function edit($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos,1));
-        $sql = "UPDATE departamento SET id='$idNuevo', nombre=$nombre WHERE  id='$id' ";
+        $sql = "UPDATE empresa SET nombre='$nombre', tipo='$tipo', razon_social='$razon_social' WHERE  nit='$nit'";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
     }
 
+     function del($argumentos) {
+        extract($argumentos);
+        error_log(print_r($argumentos, 1));
+        $sql = "DELETE FROM empresa WHERE nit= '$id'";
+        UtilConexion::$pdo->exec($sql);
+        
+        error_log($sql);
+        
+        echo UtilConexion::getEstado();
+     }
 
     function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
-        $count = UtilConexion::$pdo->query("SELECT id FROM empresa $where")->rowCount();
+        $count = UtilConexion::$pdo->query("SELECT nit FROM empresa $where")->rowCount();
         // Calcula el total de páginas por consulta
         if ($count > 0) {
             $total_pages = ceil($count / $rows);
@@ -64,8 +74,8 @@ class Empresa {
         $sql = "SELECT * FROM empresa $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['id'],
-                'cell' => [$fila['id'], $fila['nombre']]
+                'id' => $fila['nit'],
+                'cell' => [$fila['nit'], $fila['nombre'], $fila['tipo'], $fila['razon_social']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

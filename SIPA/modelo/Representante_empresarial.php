@@ -35,7 +35,7 @@ class Representante_empresarial {
     function del($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
-        $sql = "DELETE FROM usuario WHERE cedula='$cedula'"; 
+        $sql = "DELETE FROM usuario WHERE cedula='$id'"; 
                
 
         error_log($sql);
@@ -82,7 +82,7 @@ class Representante_empresarial {
         //echo($sql);
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'cedula' => $fila['cedula'],
+                'id' => $fila['cedula'],
                 'cell' => [$fila['cedula'], $fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['cod_representante'], $fila['cargo'], $fila['empresa']]
             ];
         }

@@ -1,13 +1,31 @@
 $(function () {
 
+    $("#btnCerrar").on("click", function () {
+        $.post("controlador/fachada.php", {
+            clase: 'Usuario',
+            oper: 'cerrarSesion'
+        }, function (data) {
+            location.reload();
+        }, 'json');
+    });
+
     //$("#btnUsuario").on("click", crearTablaUsuario);
     $("#btnDocente").on("click", crearTablaDocente);
     $("#btnEstudiante").on("click", crearTablaEstudiante);
     $("#btnResponsable").on("click", crearTablaResponsable);
     $("#btnRepresentante").on("click", crearTablaRepresentante);
     $("#btnDirector").on("click", crearTablaDirector);
+    $("#btnEmpresa").on("click", crearTablaEmpresa);
+    $("#btnConvenio").on("click", crearTablaConvenio);
+    $("#btnProrroga").on("click", crearTablaProrroga);
+    $("#btnSucursal").on("click", crearTablaSucursal);
+    $("#btnDependencia").on("click", crearTablaDependencia);
+    $("#btnLocalidad").on("click", crearTablaLocalidad);
+    $("#btnPracticaI").on("click", crearTablaPracticaI);
+    $("#btnPracticaE").on("click", crearTablaPracticaE);
 
     $("#btnDocConvenio").on("click", function () {
+
         $.post("controlador/fachada.php", {
             clase: 'UtilReporConvenio',
             oper: 'abrirHoja'
@@ -222,7 +240,7 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.cedulaNueva = $('#cedula').val();
+                postdata.idNuevo = $('#id').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -242,6 +260,7 @@ $(function () {
             width: 300,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
+                //cosole.log(respuesta);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
@@ -262,7 +281,7 @@ $(function () {
                 clase: 'Estudiante',
                 oper: 'select'
             },
-            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'CODIGO'],
+            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'CODIGO', 'PROGRAMA'],
             colModel: [
                 {name: 'cedula', index: 'cedula', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
@@ -304,6 +323,11 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
+                {name: 'programa', index: 'programa', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
             ],
             rowNum: 100,
             width: 700,
@@ -334,7 +358,7 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.cedulaNueva = $('#cedula').val();
+                postdata.idNuevo = $('#id').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -354,13 +378,15 @@ $(function () {
             width: 300,
             afterSubmit: function (response, postdata) {
                 var respuesta = jQuery.parseJSON(response.responseText);
+                console.log(respuesta);
                 return [respuesta.ok, respuesta.mensaje, ''];
             }
         },
         {multipleSearch: true, multipleGroup: true}
 
         )
-    };
+    }
+    ;
 
 
     function crearTablaResponsable() {
@@ -450,7 +476,7 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.cedulaNueva = $('#cedula').val();
+                postdata.idNuevo = $('#id').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -571,7 +597,7 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.cedulaNueva = $('#cedula').val();
+                postdata.idNuevo = $('#id').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -597,8 +623,9 @@ $(function () {
         {multipleSearch: true, multipleGroup: true}
 
         )
-    };
-    
+    }
+    ;
+
     function crearTablaDirector() {
 
         jQuery("#tablaDirector").jqGrid({
@@ -609,7 +636,7 @@ $(function () {
                 clase: 'Director_programa',
                 oper: 'select'
             },
-            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'COD_DIRECTOR','PROGRAMA'],
+            colNames: ['CEDULA', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'CONTRASE&Ntilde;A', 'CORREO', 'DIRECCION', 'COD_DIRECTOR', 'PROGRAMA'],
             colModel: [
                 {name: 'cedula', index: 'cedula', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
@@ -651,7 +678,7 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
-                  {name: 'programa', index: 'programa', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'programa', index: 'programa', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -686,7 +713,7 @@ $(function () {
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.cedulaNueva = $('#cedula').val();
+                postdata.idNuevo = $('#id').val();
                 return[true, ''];
             },
             afterSubmit: function (response, postdata) {
@@ -712,7 +739,802 @@ $(function () {
         {multipleSearch: true, multipleGroup: true}
 
         )
-    };
+    }
+    ;
+    function crearTablaEmpresa() {
+
+        jQuery("#tablaEmpresa").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Empresa',
+                oper: 'select'
+            },
+            colNames: ['NIT', 'NOMBRE', 'TIPO', 'RAZON_SOCIAL'],
+            colModel: [
+                {name: 'nit', index: 'nit', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'tipo', index: 'tipo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'razon_social', index: 'razon_social', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaEmpresa',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Empresa",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Empresa",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaEmpresa', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    function crearTablaConvenio() {
+        //alert('holaaaaaa');
+        jQuery("#tablaConvenio").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Convenio',
+                oper: 'select'
+            },
+            colNames: ['ID_CONVENIO', 'FECHA_INICIO', 'FECHA_FIN', 'NIT_EMPRESA', 'RAZON', 'ID_PRORROGA'],
+            colModel: [
+                {name: 'id_convenio', index: 'id_convenio', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_inicio', index: 'fecha_incio', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_fin', index: 'fecha_fin', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nit_empresa', index: 'nit_empresa', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'razon', index: 'razon', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'prorroga_id_prorroga', index: 'prorroga_id_prorroga', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaConvenio',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Convenio",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Convenio",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaConvenio', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    function crearTablaProrroga() {
+        //alert('holaaaaaa');
+
+        jQuery("#tablaProrroga").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Prorroga',
+                oper: 'select'
+            },
+            colNames: ['ID_PRORROGA', 'NOMBRE_CONVENIO', 'FECHA_INICIO', 'FECHA_FIN'],
+            colModel: [
+                {name: 'id_prorroga', index: 'id_prorroga', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nombre_convenio', index: 'nombre_convenio', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_inicio', index: 'fecha_inicio', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_fin', index: 'fecha_fin', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaProrroga',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Prorroga",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Prorroga",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaProrroga', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    function crearTablaSucursal() {
+        //alert('holaaaaaa');
+
+        jQuery("#tablaSucursal").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Sucursal',
+                oper: 'select'
+            },
+            colNames: ['ID_SUCURSAL', 'NOMBRE', 'DIRECCION', 'TELEFONO', 'NIT_EMPRESA'],
+            colModel: [
+                {name: 'id_sucursal', index: 'id_sucursal', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nit_empresa', index: 'nit_empresa', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaSucursal',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Sucursal",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Sucursal",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaSucursal', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+
+    function crearTablaDependencia() {
+        //alert('holaaaaaa');
+
+        jQuery("#tablaDependencia").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Dependencia',
+                oper: 'select'
+            },
+            colNames: ['ID_DEPENDENCIA', 'DESCRIPCION', 'NOMBRE', 'PERTENECE A DEPENDENCIA'],
+            colModel: [
+                {name: 'id_dependencia', index: 'id_dependencia', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'descripcion', index: 'descripcion', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'pertenece_dependencia', index: 'pertenece_dependencia', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaDependencia',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Dependencia",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Dependencia",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaDependencia', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    function crearTablaLocalidad() {
+        //alert('holaaaaaa');
+
+        jQuery("#tablaLocalidad").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Localidad',
+                oper: 'select'
+            },
+            colNames: ['CODIGO', 'NOMBRE', 'ID_SUCURSAL'],
+            colModel: [
+                {name: 'cod', index: 'cod', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'nombre', index: 'nombre', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'id_sucursal', index: 'id_sucursal', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaLocalidad',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Localidad",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Localidad",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaLocalidad', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    function crearTablaPracticaI() {
+        //alert('holaaaaaa');
+
+        jQuery("#tablaPracticaI").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'PracticaI',
+                oper: 'select'
+            },
+            colNames: ['CODIGO', 'FECHA_INICIO', 'FECHA_FIN', 'SALARIO', 'ESTUDIANTE', 'DOCENTE', 'RESPONSABLE', 'ID_PRORROGA', 'ID_DEPENDENCIA'],
+            colModel: [
+                {name: 'codigo', index: 'codigo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_inicio', index: 'fecha_inicio', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_fin', index: 'fecha_fin', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'salario', index: 'salario', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'estudiante', index: 'estudiante', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'docente', index: 'docente', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'responsable', index: 'responsable', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'prorroga_id_prorroga', index: 'prorroga_id_prorroga', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'id_dependencia', index: 'id_dependencia', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaPracticaI',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Practica Interna",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=PracticaI",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaPracticaI', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    function crearTablaPracticaE() {
+        //alert('holaaaaaa');
+
+        jQuery("#tablaPracticaE").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'PracticaE',
+                oper: 'select'
+            },
+            colNames: ['CODIGO', 'FECHA_INICIO', 'FECHA_FIN', 'SALARIO', 'ESTUDIANTE', 'DOCENTE', 'RESPONSABLE', 'ID_PRORROGA', 'ID_SUCURSAL'],
+            colModel: [
+                {name: 'codigo', index: 'codigo', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_inicio', index: 'fecha_inicio', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'fecha_fin', index: 'fecha_fin', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'salario', index: 'salario', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'estudiante', index: 'estudiante', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'docente', index: 'docente', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'responsable', index: 'responsable', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'prorroga_id_prorroga', index: 'prorroga_id_prorroga', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'sucursal_id_sucursal', index: 'sucursal_id_sucursal', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaPracticaE',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Practica Externa",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=PracticaE",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaPracticaE', {
+            refresh: true,
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        },
+        {// Antes de enviar a Departamento->edit(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                postdata.idNuevo = $('#id').val();
+                return[true, ''];
+            },
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {// Antes de enviar a Departamento->add(...) se agrega un POST
+            modal: true, jqModal: true,
+            width: 500,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {modal: true, jqModal: true,
+            width: 300,
+            afterSubmit: function (response, postdata) {
+                var respuesta = jQuery.parseJSON(response.responseText);
+                return [respuesta.ok, respuesta.mensaje, ''];
+            }
+        },
+        {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
 
 });
 
