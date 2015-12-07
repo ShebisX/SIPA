@@ -47,7 +47,7 @@ CREATE TABLE "usuario" (
 	"telefono" varchar,
 	"contrasena" varchar,
 	"rol" varchar,
-	"correo" varchar,
+	"correo" varchar UNIQUE,
 	"direccion" varchar,
 	"primer" bool DEFAULT True,
 	PRIMARY KEY("cedula")
