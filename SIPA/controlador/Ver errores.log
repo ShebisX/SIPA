@@ -1,0 +1,21 @@
+[07-Dec-2015 18:10:35 America/Bogota] Array
+(
+    [clase] => Director_programa
+    [cedula] => 1234
+    [nombre] => Luz Enith
+    [apellido] => Guerrero
+    [telefono] => 555555
+    [contrasena] => luz
+    [correo] => luz@sipa
+    [direccion] => call4b 
+    [cod_director] => 1
+    [programa] => Ingeniería de Sistemas y Computación
+    [oper] => add
+    [id] => _empty
+    [error] => 
+)
+
+[07-Dec-2015 18:10:35 America/Bogota] WITH funcionario as (
+                   INSERT INTO usuario(cedula, nombre, apellido, telefono,contrasena,rol,correo,direccion)
+                      VALUES ('1234', 'Luz Enith', 'Guerrero','555555','luz','Director_programa','luz@sipa','call4b ') RETURNING cedula
+                ) INSERT INTO director_programa (cod_director,programa,cedula) VALUES ('1','Ingeniería de Sistemas y Computación',(SELECT cedula FROM funcionario));

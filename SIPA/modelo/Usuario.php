@@ -57,7 +57,10 @@ class Usuario {
             $menu = file_get_contents("../vista/html/docente.html");
         } else if ($rol == 'pers_empresarial') {
             $menu = file_get_contents("../vista/html/pers_empresarial.html");
+        }else if ($rol == 'Director_programa'){
+            $menu = file_get_contents("../vista/html/dir_programa.html");
         }
+
         echo json_encode($menu);
     }
 

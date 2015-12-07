@@ -7,13 +7,13 @@ class Docente {
         session_start();
         $user = $_SESSION['user'];
 
-        $sql = "SELECT DISTINCT p.codigo, u2.nombre FROM usuario u, usuario u2, docente d, estudiante e, practica p "
+        $sql = "SELECT DISTINCT p.codigo, u2.nombre, u2.apellido FROM usuario u, usuario u2, docente d, estudiante e, practica p "
                 . "WHERE u.correo = '$user' and u.cedula = d.cedula and d.cod_docente = p.docente and "
                 . "p.estudiante = e.codigo and u2.cedula = e.cedula;";
         if ($rs = UtilConexion::$pdo->query($sql)) {
             foreach ($rs as $row) {
 
-                $respuesta .= '<option value="' . $row['codigo'] . '">' . $row['nombre'] . '</option>';
+                $respuesta .= '<option value="' . $row['codigo'] . '">' . $row['nombre'] . ' ' . $row['apellido'] . '</option>';
                 //$respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
             }
 

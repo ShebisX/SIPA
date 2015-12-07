@@ -18,7 +18,7 @@ $(function () {
             idPractica: $('#practicas').val()
         }, function (data) {
             console.log(data);
-            $('#contenido').html(data);
+            $('#contenidoPractica').html(data);
         }, 'json');
     });
 });
