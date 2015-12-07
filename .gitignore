@@ -1,4 +1,4 @@
 *.vpp~*
 *.zargo~*
 *~*.docx
-SIPA/serviciosTecnicos/utilidades/UtilConexion.php
+*UtilConexion.php
