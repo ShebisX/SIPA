@@ -1,4 +1,4 @@
-$(window).on('load', function () {
+$(document).ready(function () {
     perfil();
 
     $('#perfil').on('click', function () {
@@ -29,6 +29,7 @@ $(window).on('load', function () {
     });
 
     $("#cerrarSesion").on('click', function () {
+        console.log("data");
         $.post("controlador/fachada.php", {
             clase: 'Usuario',
             oper: 'cerrarSesion'
@@ -46,4 +47,5 @@ $(window).on('load', function () {
             $("#contenido").html(data);
         }, 'json');
     }
+
 });
