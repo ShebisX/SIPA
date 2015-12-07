@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
 
     $('#reportes').on('click', function () {
-
+        $("#contenido").load("vista/html/cambioClave.html")
     });
 
     $("#cerrarSesion").on('click', function () {
