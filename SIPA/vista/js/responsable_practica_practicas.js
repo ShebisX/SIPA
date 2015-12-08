@@ -1,7 +1,7 @@
 $(function () {
 
     $.post("controlador/fachada.php", {
-        clase: 'Docente',
+        clase: 'Responsable_practica',
         oper: 'practicas',
     }, function (data) {
         //console.log(data);

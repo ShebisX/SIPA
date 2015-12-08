@@ -2,6 +2,69 @@
 
 class Responsable_practica {
 
+    function practicas($args) {
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $sql = "SELECT DISTINCT p.codigo, u2.nombre, u2.apellido FROM usuario u, usuario u2, responsable_practica r, estudiante e, practica p "
+                . "WHERE u.correo = '$user' and u.cedula = r.cedula and r.cod_responsable = p.responsable"
+                . " and p.estudiante = e.codigo and u2.cedula = e.cedula;";
+        if ($rs = UtilConexion::$pdo->query($sql)) {
+            foreach ($rs as $row) {
+
+                $respuesta .= '<option value="' . $row['codigo'] . '">' . $row['nombre'] . ' ' . $row['apellido'] . '</option>';
+                //$respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+            }
+
+            echo json_encode($respuesta);
+        } else
+            echo UtilConexion::getEstado();
+    }
+
+    function getPractica($args) {
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $sql = "SELECT DISTINCT u.nombre, u.apellido, u.cedula, e.codigo, e.programa, "
+                . "u.direccion, u.telefono, u.correo, p.fecha_inicio, p.fecha_fin, p.tipo, p.prorroga_id_prorroga "
+                . "FROM practica p, estudiante e, usuario u WHERE p.codigo = '$idPractica' "
+                . "and p.estudiante = e.codigo and e.cedula = u.cedula;";
+
+        if ($rs = UtilConexion::$pdo->query($sql)) {
+            $rs = $rs->fetch(PDO::FETCH_ASSOC);
+
+            $respuesta = '<h1>' . $rs['nombre'] . ' ' . $rs['apellido'] . '</h1>';
+            foreach ($rs as $key => $value) {
+                if ($key != 'nombre' && $key != 'apellido')
+                    $respuesta .= '<br><p><b>' . ucfirst(strtolower($key)) . ':</b> ' . ucfirst(strtolower($value)) . '</p>';
+            }
+
+            echo json_encode($respuesta);
+            /* $tipo = $respuesta['Tipo'];
+              $codigo = $respuesta['Codigo'];
+
+              if ($tipo == 'Interna') {
+              $sql = "SELECT d.* FROM practica p, practica_interna pi, dependencia d "
+              . "WHERE p.codigo = '$codigo' and pi.id_practica = p.codigo and pi.id_dependencia =  d.id_dependencia;";
+              } else if ($tipo == 'Externa') {
+              $sql = "SELECT s.nombre, s.direccion, s.telefono, e.* FROM practica p, practica_externa pe, sucursal s, empresa e "
+              . "WHERE p.codigo = '$codigo' and pe.id_practica = p.codigo and pe.sucursal_id_sucursal =  s.sid_sucursal "
+              . "and e.nit = s.nit_empresa;";
+              } */
+
+            /* if ($rs = UtilConexion::$pdo->query($sql)) {
+              foreach ($rs->fetch(PDO::FETCH_ASSOC) as $key => $value) {
+              $respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+              }
+              echo json_encode($rs);
+              /* else
+              echo UtilConexion::getEstado(); */
+        } else
+            echo UtilConexion::getEstado();
+    }
+
     function add($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
@@ -75,7 +138,7 @@ class Responsable_practica {
         ];
 
         //$sql = "SELECT * FROM usuario $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
-        $sql ="SELECT usuario.*, cod_responsable, cargo FROM usuario 
+        $sql = "SELECT usuario.*, cod_responsable, cargo FROM usuario 
                 inner join responsable_practica on usuario.cedula=responsable_practica.cedula
                 $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
 
@@ -83,7 +146,7 @@ class Responsable_practica {
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'id' => $fila['cedula'],
-                'cell' => [$fila['cedula'],$fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['cod_responsable'], $fila['cargo']]
+                'cell' => [$fila['cedula'], $fila['nombre'], $fila['apellido'], $fila['telefono'], $fila['contrasena'], $fila['correo'], $fila['direccion'], $fila['cod_responsable'], $fila['cargo']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

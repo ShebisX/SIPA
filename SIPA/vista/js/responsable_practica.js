@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 
     $('#practica').on('click', function () {
-        $('#contenido').load('vista/html/docente_practicas.html');
+        $('#contenido').load('vista/html/responsable_practica_practicas.html');
     });
 
     $('#comentarios').on('click', function () {
