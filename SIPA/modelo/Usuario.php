@@ -49,7 +49,7 @@ class Usuario {
 
     public function redirigir($rol) {
         $menu = "";
-        switch ($rol) {
+        switch (strtolower($rol)) {
             case 'admin':
                 $menu = file_get_contents("../vista/html/admin.html");
                 break;
@@ -59,13 +59,13 @@ class Usuario {
             case 'docente':
                 $menu = file_get_contents("../vista/html/docente.html");
                 break;
-            case 'Representante_empresa':
+            case 'representante_empresa':
                 $menu = file_get_contents("../vista/html/pers_empresarial.html");
                 break;
-            case 'Director_programa':
+            case 'director_programa':
                 $menu = file_get_contents("../vista/html/dir_programa.html");
                 break;
-            case 'Responsable_practica':
+            case 'responsable_practica':
                 //OJO! falta vista!
                 $menu = file_get_contents("../vista/html/responsable_practica.html");
                 break;
