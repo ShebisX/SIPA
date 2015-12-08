@@ -81,6 +81,7 @@ class Convenio {
         // error_log(print_r($respuesta, TRUE));
         // error_log(print_r(json_encode($respuesta), TRUE));
         echo json_encode($respuesta);
+        return $respuesta;
     }
 
 }

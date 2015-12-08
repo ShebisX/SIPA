@@ -1,25 +1,28 @@
 <?php
 
-class UtilReporConvenio extends UtilReportes {
+class UtilReporPracticaE extends UtilReportes {
 
     private static $objWorksheet;
 
-    public function abrirHoja() {
+    public static function abrirHoja($args) {
         self::abrirLibro();
-        self::$objWorksheet = self::$objPHPExcel->getSheetByName('convenio');
+        self::$objWorksheet = self::$objPHPExcel->getSheetByName('practicas_externas');
 
         if (self::$objWorksheet == null) {
             self::crearHoja();
         }
 
-        self::$objWorksheet->setCellValueByColumnAndRow(0, 1, "Id convenio");
-        self::$objWorksheet->setCellValueByColumnAndRow(1, 1, "Fecha inicial");
-        self::$objWorksheet->setCellValueByColumnAndRow(2, 1, "Fecha fin");
-        self::$objWorksheet->setCellValueByColumnAndRow(3, 1, "NIT empresa");
-        self::$objWorksheet->setCellValueByColumnAndRow(4, 1, "Razón");
-        self::$objWorksheet->setCellValueByColumnAndRow(5, 1, "Id prorroga");
+        self::$objWorksheet->setCellValueByColumnAndRow(0, 1, "Cod. Práctica")
+                ->setCellValueByColumnAndRow(1, 1, "Fecha inicio")
+                ->setCellValueByColumnAndRow(2, 1, "Fecha fin")
+                ->setCellValueByColumnAndRow(3, 1, "Salario")
+                ->setCellValueByColumnAndRow(4, 1, "Cod. estudiante")
+                ->setCellValueByColumnAndRow(5, 1, "Cod. docente")
+                ->setCellValueByColumnAndRow(6, 1, "Cod. responsable")
+                ->setCellValueByColumnAndRow(7, 1, "Cod. prórroga")
+                ->setCellValueByColumnAndRow(8, 1, "Cod. dependencia");
 
-        self::$objWorksheet->setAutoFilter('D1:F1');
+        self::$objWorksheet->setAutoFilter('B1:D1');
 
         $styleArray = array(
             'font' => array(
@@ -35,8 +38,8 @@ class UtilReporConvenio extends UtilReportes {
             )
         );
 
-        self::$objWorksheet->getStyle('A1:F1')->applyFromArray($styleArray);
-        self::$objWorksheet->getColumnDimension('A:F')->setAutoSize(true);
+        self::$objWorksheet->getStyle('A1:I1')->applyFromArray($styleArray);
+        self::$objWorksheet->getColumnDimension('A:I')->setAutoSize(true);
         /* self::$objWorksheet->getColumnDimension('B')->setAutoSize(true);
           self::$objWorksheet->getColumnDimension('C')->setAutoSize(true);
           self::$objWorksheet->getColumnDimension('D')->setAutoSize(true);
@@ -44,13 +47,11 @@ class UtilReporConvenio extends UtilReportes {
           self::$objWorksheet->calculateColumnWidths(); */
 
         $indexRow = 2;
-        $convenio = new Convenio();
-        $array = $convenio->select('')['rows'];
-        //error_log(print_r(json_encode($array), TRUE));
-        $vars = '';
+        $practica = new PracticaE();
+        $array = $practica->select('')['rows'];
+
         foreach ($array as $key => $value) {
             foreach ($array[$key]['cell'] as $key2 => $value2) {
-                $vars .= '' . $key2 . ' - ' . $value2 . '///';
                 self::$objWorksheet->setCellValueByColumnAndRow($key2, $indexRow, $value2);
                 //self::$objWorksheet->getCellByColumnAndRow($key2, $indexRow)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED);
             }
@@ -60,12 +61,12 @@ class UtilReporConvenio extends UtilReportes {
         self::cerrarLibro();
     }
 
-    private function crearHoja() {
+    private static function crearHoja($args) {
         self::$objWorksheet = self::$objPHPExcel->createSheet();
-        self::$objWorksheet->setTitle('convenio');
+        self::$objWorksheet->setTitle('practicas_externas');
         self::guardarLibro();
     }
 
 }
-
 ?>
+

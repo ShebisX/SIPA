@@ -1,22 +1,26 @@
 <?php
 
-class UtilReporPractica extends UtilReportes {
+class UtilReporPracticaI extends UtilReportes {
 
     private static $objWorksheet;
 
-    public function abrirHoja() {
+    public static function abrirHoja($args) {
         self::abrirLibro();
-        self::$objWorksheet = self::$objPHPExcel->getSheetByName('practica');
+        self::$objWorksheet = self::$objPHPExcel->getSheetByName('practicas_internas');
 
         if (self::$objWorksheet == null) {
             self::crearHoja();
         }
 
-        self::$objWorksheet->setCellValueByColumnAndRow(0, 1, "Id Práctica")
+        self::$objWorksheet->setCellValueByColumnAndRow(0, 1, "Cod. Práctica")
                 ->setCellValueByColumnAndRow(1, 1, "Fecha inicio")
                 ->setCellValueByColumnAndRow(2, 1, "Fecha fin")
                 ->setCellValueByColumnAndRow(3, 1, "Salario")
-                ->setCellValueByColumnAndRow(4, 1, "Id convenio");
+                ->setCellValueByColumnAndRow(4, 1, "Cod. estudiante")
+                ->setCellValueByColumnAndRow(5, 1, "Cod. docente")
+                ->setCellValueByColumnAndRow(6, 1, "Cod. responsable")
+                ->setCellValueByColumnAndRow(7, 1, "Cod. prórroga")
+                ->setCellValueByColumnAndRow(8, 1, "Cod. dependencia");
 
         self::$objWorksheet->setAutoFilter('B1:D1');
 
@@ -34,8 +38,8 @@ class UtilReporPractica extends UtilReportes {
             )
         );
 
-        self::$objWorksheet->getStyle('A1:E1')->applyFromArray($styleArray);
-        self::$objWorksheet->getColumnDimension('A:E')->setAutoSize(true);
+        self::$objWorksheet->getStyle('A1:I1')->applyFromArray($styleArray);
+        self::$objWorksheet->getColumnDimension('A:I')->setAutoSize(true);
         /* self::$objWorksheet->getColumnDimension('B')->setAutoSize(true);
           self::$objWorksheet->getColumnDimension('C')->setAutoSize(true);
           self::$objWorksheet->getColumnDimension('D')->setAutoSize(true);
@@ -45,7 +49,7 @@ class UtilReporPractica extends UtilReportes {
         $indexRow = 2;
         $practica = new PracticaI();
         $array = $practica->select('')['rows'];
-
+        
         foreach ($array as $key => $value) {
             foreach ($array[$key]['cell'] as $key2 => $value2) {
                 self::$objWorksheet->setCellValueByColumnAndRow($key2, $indexRow, $value2);
@@ -57,9 +61,9 @@ class UtilReporPractica extends UtilReportes {
         self::cerrarLibro();
     }
 
-    private function crearHoja() {
+    private static function crearHoja($args) {
         self::$objWorksheet = self::$objPHPExcel->createSheet();
-        self::$objWorksheet->setTitle('practica');
+        self::$objWorksheet->setTitle('practicas_internas');
         self::guardarLibro();
     }
 

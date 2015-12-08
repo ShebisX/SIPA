@@ -81,7 +81,7 @@ class UtilReportes {
         $datos = self::getGeneralData();
         $args['datos'] = ['/@nombre/' => $datos['nombre'], '/@apellido/' => $datos['apellido'], '/@cedula/' => $datos['cedula'], '/@rol/' => $datos['rol'], '/@data/' => $datos['data']]; //, '/@resolucion/' => '876543', '/@fecha/' => '12/12/2015'];
         $conv = self::generarDocumento($args);
-        error_log($conv);
+        //error_log($conv);
         echo json_encode($conv);
     }
 

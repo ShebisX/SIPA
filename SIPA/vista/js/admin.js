@@ -30,13 +30,13 @@ $(function () {
             clase: 'UtilReporConvenio',
             oper: 'abrirHoja'
         }, function (data) {
-            console.log(data);
+            //console.log(data);
         }, 'json');
     });
 
-    $("#btnDocPractica").on("click", function () {
+    $("#btnDocPracticas").on("click", function () {
         $.post("controlador/fachada.php", {
-            clase: 'UtilReporPractica',
+            clase: 'UtilReporPracticaI',
             oper: 'abrirHoja'
         }, function (data) {
             console.log(data);
