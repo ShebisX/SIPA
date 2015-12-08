@@ -13,8 +13,15 @@ $(document).ready(function () {
             //console.log(data);
             var html = '';
             $.each(data, function (key, value) {
-                html += '<br><p><b>' + key + ':</b> ' + value + '</p>';
-            });
+
+            var res = key.split("_");      
+            if(res.length>1){
+                html += '<br><p><b>' + res[0]+" "+res[1] + ':</b> ' + value + '</p>';
+
+            }else{
+                html += '<br><p><b>' + res[0] + ':</b> ' + value + '</p>';
+            }
+        });
 
             $("#contenido").html(html);
         }, 'json');
