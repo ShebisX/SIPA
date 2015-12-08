@@ -16,7 +16,7 @@ CREATE TABLE "dependencia" (
 	"nombre" varchar,
 	"pertenece_dependencia" varchar,
 	PRIMARY KEY("id_dependencia"),
-	CONSTRAINT "Ref_dependencias_to_dependencias" FOREIGN KEY ("pertenece_depencia")
+	CONSTRAINT "Ref_dependencias_to_dependencias" FOREIGN KEY ("pertenece_dependencia")
 		REFERENCES "dependencia"("id_dependencia")
 	MATCH SIMPLE
 	ON DELETE CASCADE
@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS "prorroga" CASCADE;
 -- CREATE TABLE prorroga
 CREATE TABLE "prorroga" (
 	"id_prorroga" varchar NOT NULL,
-	"id_convenio" varchar,
+	"nombre_convenio" varchar,
 	"fecha_inicio" date,
 	"fecha_fin" date,
 	PRIMARY KEY("id_prorroga")
@@ -357,6 +357,8 @@ INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo,
 INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('6','Carlos','Cuesta','8885545','docente','1234','carlos@sipa','calle 20a');
 INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('7','Camilo','Perez','8885545','director_programa','1234','camilo@sipa','calle 20a');
 
+INSERT INTO administrador(cod_administrador, cedula) values('1','1');
+
 INSERT INTO estudiante(codigo, programa, cedula) values('1','Ing sistemas','2');
 INSERT INTO estudiante(codigo, programa, cedula) values('2','Ing sistemas','3');
 
@@ -383,3 +385,6 @@ INSERT INTO localidad(cod, nombre, id_sucursal) values('1', 'Sector bomberos', '
 
 INSERT INTO practica(codigo, fecha_inicio, fecha_fin, salario, tipo, estudiante, docente, responsable, prorroga_id_prorroga) values('1','2015-07-15','2015-12-15',500000,'externa','2','1','1','1');
 INSERT INTO practica(codigo, fecha_inicio, fecha_fin, salario, tipo, estudiante, docente, responsable, prorroga_id_prorroga) values('2','2015-07-15','2015-12-15',500000,'interna','1','1','1','1');
+
+INSERT INTO practica_externa(id_practica, sucursal_id_sucursal) values('1','1');
+INSERT INTO practica_interna(id_practica, id_dependencia) values('2','2');
