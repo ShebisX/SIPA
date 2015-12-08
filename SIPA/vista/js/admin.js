@@ -41,6 +41,13 @@ $(function () {
         }, function (data) {
             console.log(data);
         }, 'json');
+
+        $.post("controlador/fachada.php", {
+            clase: 'UtilReporPracticaE',
+            oper: 'abrirHoja'
+        }, function (data) {
+            console.log(data);
+        }, 'json');
     });
 
     /*  function crearTablaUsuario() {
@@ -232,39 +239,39 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                //cosole.log(respuesta);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        //cosole.log(respuesta);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -350,39 +357,39 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                console.log(respuesta);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        console.log(respuesta);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -468,38 +475,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -589,38 +596,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -705,38 +712,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -795,38 +802,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -896,38 +903,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -988,38 +995,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -1085,38 +1092,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -1178,38 +1185,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -1265,38 +1272,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -1382,38 +1389,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }
@@ -1499,38 +1506,38 @@ $(function () {
             del: true,
             search: true
         },
-        {// Antes de enviar a Departamento->edit(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            beforeSubmit: function (postdata) {
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
 //              acceder a los datos de la fila seleccionada:
 //              var fila = $(this).getRowData($(this).getGridParam("selrow"));
 
 //              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
-                postdata.idNuevo = $('#id').val();
-                return[true, ''];
-            },
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {// Antes de enviar a Departamento->add(...) se agrega un POST
-            modal: true, jqModal: true,
-            width: 500,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {modal: true, jqModal: true,
-            width: 300,
-            afterSubmit: function (response, postdata) {
-                var respuesta = jQuery.parseJSON(response.responseText);
-                return [respuesta.ok, respuesta.mensaje, ''];
-            }
-        },
-        {multipleSearch: true, multipleGroup: true}
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
 
         )
     }

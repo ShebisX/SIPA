@@ -48,7 +48,7 @@ class UtilReporPracticaI extends UtilReportes {
 
         $indexRow = 2;
         $practica = new PracticaI();
-        $array = $practica->select('')['rows'];
+        $array = $practica->selectPracticas('')['rows'];
         
         foreach ($array as $key => $value) {
             foreach ($array[$key]['cell'] as $key2 => $value2) {
