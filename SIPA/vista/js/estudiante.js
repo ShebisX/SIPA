@@ -29,7 +29,7 @@ $(document).ready(function () {
         $.post("controlador/fachada.php", {
             clase: 'UtilReportes',
             oper: 'generarConvenio',
-            tipo: 'plantilla_convenio'
+            tipo: 'plantilla_constancia'
         }, function (data) {
             console.log(data);
             $('#contenido').html(data);

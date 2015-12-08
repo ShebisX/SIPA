@@ -2,7 +2,7 @@
 
 class Estudiante {
 
-    function inforactica($args) {
+    function infoPractica($args) {
         extract($args);
         session_start();
         $user = $_SESSION['user'];
