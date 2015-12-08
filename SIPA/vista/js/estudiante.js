@@ -50,6 +50,13 @@ $(document).ready(function () {
         }, 'json');
     });
 
+
+    $('#cambiarContrasena').on('click',function(){
+        $('#contenido').load('vista/html/cambioClave.html');
+    });
+
+
+
     $("#cerrarSesion").on('click', function () {
         console.log("data");
         $.post("controlador/fachada.php", {
