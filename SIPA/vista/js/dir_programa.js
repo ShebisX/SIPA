@@ -17,6 +17,10 @@ $(function () {
 
     });
 
+    $('#cambiarContrasena').on('click',function(){
+       $('#contenido').load('vista/html/cambioClave.html');
+    });
+
     $("#cerrarSesion").on('click', function () {
         console.log("Si");
         $.post("controlador/fachada.php", {
