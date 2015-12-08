@@ -25,7 +25,7 @@ $(document).ready(function () {
             clase: 'Estudiante',
             oper: 'comentarios'
         }, function (data) {
-            console.log(data);
+            //console.log(data);
             $('#contenido').html(data);
             //location.reload();
         }, 'json');
@@ -37,7 +37,7 @@ $(document).ready(function () {
             oper: 'generarConvenio',
             tipo: 'plantilla_constancia'
         }, function (data) {
-            console.log(data);
+            //console.log(data);
             $('#contenido').html(data);
             //location.reload();
         }, 'json');
