@@ -104,6 +104,11 @@ $(document).ready(function () {
 
     });
 
+    $('#cambiarContrasena').on('click',function(){
+        $('#contenido').load('vista/html/cambioClave.html');
+    });
+
+
     $("#cerrarSesion").on('click', function () {
         $.post("controlador/fachada.php", {
             clase: 'Usuario',
