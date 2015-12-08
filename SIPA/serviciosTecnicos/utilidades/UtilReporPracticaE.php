@@ -20,7 +20,7 @@ class UtilReporPracticaE extends UtilReportes {
                 ->setCellValueByColumnAndRow(5, 1, "Cod. docente")
                 ->setCellValueByColumnAndRow(6, 1, "Cod. responsable")
                 ->setCellValueByColumnAndRow(7, 1, "Cod. prórroga")
-                ->setCellValueByColumnAndRow(8, 1, "Cod. dependencia");
+                ->setCellValueByColumnAndRow(8, 1, "Cod. sucursal");
 
         self::$objWorksheet->setAutoFilter('B1:D1');
 
