@@ -1,0 +1,10 @@
+[08-Dec-2015 16:20:02 America/Bogota] ¡Pilas! Array
+(
+    [0] => 42883
+    [1] => 7
+    [2] => ERROR:  el operador no existe: character varying = integer
+LINE 1: ...ante e, practica p, comentarios c WHERE p.docente = 888 and ...
+                                                             ^
+HINT:  Ningún operador coincide con el nombre y el tipo de los argumentos. Puede ser necesario agregar conversiones explícitas de tipos.
+)
+

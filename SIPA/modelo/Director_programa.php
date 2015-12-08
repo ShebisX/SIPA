@@ -31,6 +31,25 @@ class Director_programa {
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
     }
+    function comentarios($args) {
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $sql = "select c.comentario,u1.nombre estudiante,u1.apellido est_apellido,u2.nombre docente,u2.apellido doc_apellido from comentarios c, usuario u1,docente d,usuario u2,estudiante e,practica p
+                where (e.cedula =u1.cedula and d.cedula =u2.cedula) and (p.estudiante = e.codigo and p.docente =d.cod_docente) and (p.codigo = c.practica_fk);";
+        if ($rs = UtilConexion::$pdo->query($sql)) {
+            $respuesta = '';
+            $cont = 0;
+            foreach ($rs as $row) {
+                $respuesta .= '<div><h3>Comentario ' . ++$cont . '</h3><p>' . $row['comentario'] . '</p><h5>' . $row['estudiante'] . ' ' . $row['est_apellido'] . '</h5><h5>' . $row['docente'] . ' ' . $row['doc_apellido'] . '</h5></div><br>';
+                //$respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+            }
+            echo json_encode($respuesta);
+        } else
+            echo UtilConexion::getEstado();
+    }
+
 
     function del($argumentos) {
         extract($argumentos);

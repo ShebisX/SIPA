@@ -10,7 +10,14 @@ $(function () {
     });
 
     $('#comentarios').on('click', function () {
-
+        $.post("controlador/fachada.php", {
+            clase: 'Director_programa',    
+            oper: 'comentarios'
+        }, function (data) {
+            //console.log(data);
+            $('#contenido').html(data);
+            //location.reload();
+        }, 'json');
     });
 
     $('#reportes').on('click', function () {
