@@ -49,16 +49,26 @@ class Usuario {
 
     public function redirigir($rol) {
         $menu = "";
-        if ($rol == 'admin') {
-            $menu = file_get_contents("../vista/html/admin.html");
-        } else if ($rol == 'estudiante') {
-            $menu = file_get_contents("../vista/html/estudiante.html");
-        } else if ($rol == 'docente') {
-            $menu = file_get_contents("../vista/html/docente.html");
-        } else if ($rol == 'pers_empresarial') {
-            $menu = file_get_contents("../vista/html/pers_empresarial.html");
-        }else if ($rol == 'Director_programa'){
-            $menu = file_get_contents("../vista/html/dir_programa.html");
+        switch ($rol) {
+            case 'admin':
+                $menu = file_get_contents("../vista/html/admin.html");
+                break;
+            case 'estudiante':
+                $menu = file_get_contents("../vista/html/estudiante.html");
+                break;
+            case 'docente':
+                $menu = file_get_contents("../vista/html/docente.html");
+                break;
+            case 'Representante_empresa':
+                $menu = file_get_contents("../vista/html/pers_empresarial.html");
+                break;
+            case 'Director_programa':
+                $menu = file_get_contents("../vista/html/dir_programa.html");
+                break;
+            case 'Responsable_practica':
+                //OJO! falta vista!
+                $menu = file_get_contents("../vista/html/responsable_practica.html");
+                break;
         }
 
         echo json_encode($menu);
