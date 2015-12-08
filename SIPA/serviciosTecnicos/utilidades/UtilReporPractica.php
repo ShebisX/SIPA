@@ -43,7 +43,7 @@ class UtilReporPractica extends UtilReportes {
           self::$objWorksheet->calculateColumnWidths(); */
 
         $indexRow = 2;
-        $practica = new Practica();
+        $practica = new PracticaI();
         $array = $practica->select('')['rows'];
 
         foreach ($array as $key => $value) {

@@ -37,6 +37,26 @@ class Estudiante {
             echo UtilConexion::getEstado();
     }
 
+    function comentarios($args) {
+        extract($args);
+        session_start();
+        $user = $_SESSION['user'];
+
+        $sql = "SELECT DISTINCT c.*, u2.nombre, u2.apellido FROM usuario u, usuario u2, estudiante e, practica p, comentarios c "
+                . "WHERE u.correo = 'yuliana@sipa' and p.estudiante = e.codigo and p.codigo = c.practica_fk and u2.cedula = c.usuario_fk;";
+        if ($rs = UtilConexion::$pdo->query($sql)) {
+            $respuesta = '';
+            $cont = 0;
+            foreach ($rs as $row) {
+                $respuesta .= '<div><h3>Comentario ' . ++$cont . '</h3><p>' . $row['comentario'] . '</p><h5>' . $row['nombre'] . ' ' . $row['apellido'] . '</h5></div><br>';
+                //$respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
+            }
+
+            echo json_encode($respuesta);
+        } else
+            echo UtilConexion::getEstado();
+    }
+
     /* function comentariosPractica($args) {
       extract($args);
       session_start();
