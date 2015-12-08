@@ -75,7 +75,7 @@ class Comentarios {
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'id' => $fila['cod'],
-                'cell' => [$fila['cod'], $fila['practica_fk'], $fila['comentarios'], $fila['usuario_fk']]
+                'cell' => [$fila['cod'], $fila['practica_fk'], $fila['comentario'], $fila['usuario_fk']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON
