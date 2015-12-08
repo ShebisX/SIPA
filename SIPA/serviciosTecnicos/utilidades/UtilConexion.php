@@ -48,6 +48,7 @@ class UtilConexion {
             $puerto = '5432';  // puerto postgres
             $usuario = 'postgres';
             $contrasena = 'admin';
+            // ver http://www.phpro.org/tutorials/Introduction-to-PHP-PDO.html
             self::$pdo = new PDO("pgsql:host=$servidor port=$puerto dbname=$baseDeDatos", $usuario, $contrasena);
         }
         return self::$conexion;
@@ -154,8 +155,7 @@ class UtilConexion {
                     foreach ($value as $k => $v)
                         $tmp_val[$k] = stripslashes($v);
                     $value = $tmp_val;
-                }
-                else
+                } else
                     for ($j = 0; $j < sizeof($value); $j++)
                         $value[$j] = stripslashes($value[$j]);
             else

@@ -70,7 +70,6 @@ class Convenio {
 
         $sql = "SELECT * FROM convenio $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
 
-        //echo($sql);
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'id' => $fila['id_convenio'],
@@ -81,6 +80,49 @@ class Convenio {
         // error_log(print_r($respuesta, TRUE));
         // error_log(print_r(json_encode($respuesta), TRUE));
         echo json_encode($respuesta);
+    }
+
+    function selectConvenios($argumentos) {
+        extract($argumentos);
+        $count = UtilConexion::$pdo->query("SELECT id_convenio FROM convenio")->rowCount();
+        // Calcula el total de páginas por consulta
+        if ($count > 0) {
+            $total_pages = ceil($count / $rows);
+        } else {
+            $total_pages = 0;
+        }
+
+        // Si por alguna razón página solicitada es mayor que total de páginas
+        // Establecer a página solicitada total paginas  (¿por qué no al contrario?)
+        if ($page > $total_pages) {
+            $page = $total_pages;
+        }
+
+        // Calcular la posición de la fila inicial
+        $start = $rows * $page - $rows;
+        //  Si por alguna razón la posición inicial es negativo ponerlo a cero
+        // Caso típico es que el usuario escriba cero para la página solicitada
+        if ($start < 0) {
+            $start = 0;
+        }
+
+        $respuesta = [
+            'total' => $total_pages,
+            'page' => $page,
+            'records' => $count
+        ];
+
+        $sql = "SELECT * FROM convenio";
+
+        foreach (UtilConexion::$pdo->query($sql) as $fila) {
+            $respuesta['rows'][] = [
+                'id' => $fila['id_convenio'],
+                'cell' => [$fila['id_convenio'], $fila['fecha_inicio'], $fila['fecha_fin'], $fila['nit_empresa'], $fila['razon'], $fila['prorroga_id_prorroga']]
+            ];
+        }
+        // Quite los comentarios para ver el array original y el array codificado en JSON
+        // error_log(print_r($respuesta, TRUE));
+        // error_log(print_r(json_encode($respuesta), TRUE));
         return $respuesta;
     }
 

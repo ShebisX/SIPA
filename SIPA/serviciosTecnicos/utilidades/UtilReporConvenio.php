@@ -45,8 +45,8 @@ class UtilReporConvenio extends UtilReportes {
 
         $indexRow = 2;
         $convenio = new Convenio();
-        $array = $convenio->select('')['rows'];
-        //error_log(print_r(json_encode($array), TRUE));
+        $array = $convenio->selectConvenios('')['rows'];
+        error_log(print_r(json_encode($array), TRUE));
         $vars = '';
         foreach ($array as $key => $value) {
             foreach ($array[$key]['cell'] as $key2 => $value2) {
