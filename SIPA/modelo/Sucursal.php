@@ -10,7 +10,7 @@ class Sucursal {
 
     function add($argumentos) {
         extract($argumentos);
-        UtilConexion::$pdo->exec("INSERT INTO sucursal VALUES ('$id_sucursal','$nombre','$direccion','$telefono','$nit_empresa')");
+        UtilConexion::$pdo->exec("INSERT INTO sucursal VALUES ('$id_sucursal','$nombre','$direccion','$nit_empresa', '$localidad')");
 //        otra manera de hacer lo mismo para cuando se necesite conocer el ID último
 //        $st = UtilConexion::$pdo->prepare("INSERT INTO departamento(id, nombre) VALUES(?, ?) RETURNING id");
 //        $st->execute(array($id, $nombre));
@@ -23,7 +23,7 @@ class Sucursal {
     function edit($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos,1));
-        $sql = "UPDATE sucursal SET nombre='$nombre',direccion='$direccion',telefono='$telefono', nit_empresa='$nit_empresa' WHERE  id_sucursal='$id_sucursal'";
+        $sql = "UPDATE sucursal SET nombre='$nombre',direccion='$direccion', nit_empresa='$nit_empresa' WHERE  id_sucursal='$id_sucursal'";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
@@ -75,7 +75,7 @@ class Sucursal {
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'id' => $fila['id_sucursal'],
-                'cell' => [$fila['id_sucursal'], $fila['nombre'], $fila['direccion'], $fila['telefono'], $fila['nit_empresa']]
+                'cell' => [$fila['id_sucursal'], $fila['nombre'], $fila['direccion'], $fila['nit_empresa']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

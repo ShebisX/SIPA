@@ -1,10 +1,16 @@
-[08-Dec-2015 16:20:02 America/Bogota] ¡Pilas! Array
+[09-Dec-2015 17:49:11 America/Bogota] ¡Pilas! Array
 (
-    [0] => 42883
+    [0] => 23503
     [1] => 7
-    [2] => ERROR:  el operador no existe: character varying = integer
-LINE 1: ...ante e, practica p, comentarios c WHERE p.docente = 888 and ...
-                                                             ^
-HINT:  Ningún operador coincide con el nombre y el tipo de los argumentos. Puede ser necesario agregar conversiones explícitas de tipos.
+    [2] => ERROR:  inserción o actualización en la tabla «sucursal» viola la llave foránea «Ref_sucursal_to_empresa»
+DETAIL:  La llave (nit_empresa)=(891806000-1) no está presente en la tabla «empresa».
+)
+
+[09-Dec-2015 17:50:56 America/Bogota] ¡Pilas! Array
+(
+    [0] => 23505
+    [1] => 7
+    [2] => ERROR:  llave duplicada viola restricción de unicidad «sucursal_pkey»
+DETAIL:  Ya existe la llave (id_sucursal)=(a).
 )
 

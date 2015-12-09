@@ -19,6 +19,7 @@ $(function () {
     $("#btnConvenio").on("click", crearTablaConvenio);
     $("#btnProrroga").on("click", crearTablaProrroga);
     $("#btnSucursal").on("click", crearTablaSucursal);
+    $("#btnTelefonoSucursal").on("click", crearTablaTelefonoSucursal);
     $("#btnDependencia").on("click", crearTablaDependencia);
     $("#btnLocalidad").on("click", crearTablaLocalidad);
     $("#btnPracticaI").on("click", crearTablaPracticaI);
@@ -1043,7 +1044,7 @@ $(function () {
                 clase: 'Sucursal',
                 oper: 'select'
             },
-            colNames: ['ID_SUCURSAL', 'NOMBRE', 'DIRECCION', 'TELEFONO', 'NIT_EMPRESA'],
+            colNames: ['ID_SUCURSAL', 'NOMBRE', 'DIRECCION', 'NIT_EMPRESA'],
             colModel: [
                 {name: 'id_sucursal', index: 'id_sucursal', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
@@ -1056,11 +1057,6 @@ $(function () {
                         }
                     }},
                 {name: 'direccion', index: 'direccion', width: 500, editable: true, editoptions: {size: 37,
-                        dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
-                {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
                         }
@@ -1543,5 +1539,91 @@ $(function () {
     }
     ;
 
+
+    function crearTablaTelefonoSucursal() {
+        //alert('holaaaaaa');
+
+        jQuery("#tablaTelefonoSucursal").jqGrid({
+            url: 'controlador/fachada.php',
+            datatype: "json",
+            mtype: 'POST',
+            postData: {
+                clase: 'Telefono_sucursal',
+                oper: 'select'
+            },
+            colNames: ['ID_SUCURSAL', 'TELEFONO'],
+            colModel: [
+                {name: 'id_sucursal', index: 'id_sucursal', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+                {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
+                        dataInit: function (elemento) {
+                            $(elemento).width(282)
+                        }
+                    }},
+            ],
+            rowNum: 100,
+            width: 700,
+            rowList: [50, 150, 1000],
+            pager: '#pTablaTelefonoSucursal',
+            sortname: 'nit',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Gesti&oacute;n de Sucursal",
+            multiselect: false,
+            editurl: "controlador/fachada.php?clase=Telefono_sucursal",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+
+        }).jqGrid('navGrid', '#pTablaTelefonoSucursal', {
+            refresh: true,
+            edit: false,
+            add: true,
+            del: true,
+            search: true
+        },
+                {// Antes de enviar a Departamento->edit(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    beforeSubmit: function (postdata) {
+//              acceder a los datos de la fila seleccionada:
+//              var fila = $(this).getRowData($(this).getGridParam("selrow"));
+
+//              agregar un parÃ¡metro a los datos enviados (ej. el ID introducido en el formulario de ediciÃ³n)
+                        postdata.idNuevo = $('#id').val();
+                        return[true, ''];
+                    },
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {// Antes de enviar a Departamento->add(...) se agrega un POST
+                    modal: true, jqModal: true,
+                    width: 500,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {modal: true, jqModal: true,
+                    width: 300,
+                    afterSubmit: function (response, postdata) {
+                        var respuesta = jQuery.parseJSON(response.responseText);
+                        return [respuesta.ok, respuesta.mensaje, ''];
+                    }
+                },
+                {multipleSearch: true, multipleGroup: true}
+
+        )
+    }
+    ;
+
+    $("#btnAddSucursal").on('click', function () {
+        $('#addSucursal').load('vista/html/addSucursal.html');
+    });
 });
 

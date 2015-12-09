@@ -6,27 +6,11 @@
  * and open the template in the editor.
  */
 
-class Localidad {
-
-    function getLocalidades($args)
-    {
-        extract($args);
-        $sql = "SELECT * FROM localidad";
-
-        if ($rs = UtilConexion::$pdo->query($sql)) {
-            foreach ($rs as $row) {
-                $respuesta .= '<option value="' . $row['cod'] . '">' . $row['nombre'].'</option>';
-                //$respuesta[ucfirst(strtolower($key))] = ucfirst(strtolower($value));
-            }
-
-            echo json_encode($respuesta);
-        } else
-            echo UtilConexion::getEstado();
-    }
+class Telefono_sucursal {
 
     function add($argumentos) {
         extract($argumentos);
-        UtilConexion::$pdo->exec("INSERT INTO localidad VALUES ('$cod','$nombre')");
+        UtilConexion::$pdo->exec("INSERT INTO telefono_sucursal VALUES ('$id_sucursal','$telefono')");
 //        otra manera de hacer lo mismo para cuando se necesite conocer el ID último
 //        $st = UtilConexion::$pdo->prepare("INSERT INTO departamento(id, nombre) VALUES(?, ?) RETURNING id");
 //        $st->execute(array($id, $nombre));
@@ -36,19 +20,19 @@ class Localidad {
         echo UtilConexion::getEstado();
     }
     
-    function edit($argumentos) {
+    /*function edit($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos,1));
-        $sql = "UPDATE localidad SET nombre='$nombre' WHERE  cod='$cod'";
+        $sql = "UPDATE telefono_sucursal SET nombre='$nombre',direccion='$direccion', nit_empresa='$nit_empresa' WHERE  id_sucursal='$id_sucursal'";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
-    }
+    }*/
 
      function del($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos, 1));
-        $sql = "DELETE FROM localidad WHERE cod= '$id'";
+        $sql = "DELETE FROM telefono_sucursal WHERE id_sucursal= '$id', telefono='$tel'";
         UtilConexion::$pdo->exec($sql);
         
         error_log($sql);
@@ -59,7 +43,7 @@ class Localidad {
     function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
-        $count = UtilConexion::$pdo->query("SELECT cod FROM localidad $where")->rowCount();
+        $count = UtilConexion::$pdo->query("SELECT id_sucursal, telefono FROM telefono_sucursal $where")->rowCount();
         // Calcula el total de páginas por consulta
         if ($count > 0) {
             $total_pages = ceil($count / $rows);
@@ -87,11 +71,11 @@ class Localidad {
             'records' => $count
         ];
 
-        $sql = "SELECT * FROM localidad $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
+        $sql = "SELECT * FROM telefono_sucursal $where ORDER BY $sidx $sord LIMIT $rows OFFSET $start";
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
-                'id' => $fila['cod'],
-                'cell' => [$fila['cod'], $fila['nombre'], $fila['id_sucursal']]
+                'id' => $fila['id_sucursal'],
+                'cell' => [$fila['id_sucursal'], $fila['telefono']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON
