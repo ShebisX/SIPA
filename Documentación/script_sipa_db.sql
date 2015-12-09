@@ -16,7 +16,7 @@ CREATE TABLE "dependencia" (
 	"nombre" varchar,
 	"pertenece_dependencia" varchar,
 	PRIMARY KEY("id_dependencia"),
-	CONSTRAINT "Ref_dependencias_to_dependencias" FOREIGN KEY ("pertenece_dependencia")
+	CONSTRAINT "Ref_dependencias_to_dependencias" FOREIGN KEY ("pertenece_depencia")
 		REFERENCES "dependencia"("id_dependencia")
 	MATCH SIMPLE
 	ON DELETE CASCADE
@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS "prorroga" CASCADE;
 -- CREATE TABLE prorroga
 CREATE TABLE "prorroga" (
 	"id_prorroga" varchar NOT NULL,
-	"nombre_convenio" varchar,
+	"id_convenio" varchar,
 	"fecha_inicio" date,
 	"fecha_fin" date,
 	PRIMARY KEY("id_prorroga")
@@ -349,42 +349,3 @@ CREATE TABLE "comentarios" (
 	NOT DEFERRABLE
 );
 
-INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('1','admin','admin','8885545','admin','admin','admin@sipa','calle 20a');
-INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('2','Daniela','Cruz','8885545','estudiante','1234','daniela@sipa','calle 20a');
-INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('3','Sebastian','Agudelo','8885545','estudiante','1234','sebastian@sipa','calle 20a');
-INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('4','Gean','Palacios','8885545','responsable_practica','1234','gean@sipa','calle 20a');
-INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('5','Yuliana','Velasquez','8885545','representante_empresa','1234','yuliana@sipa','calle 20a');
-INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('6','Carlos','Cuesta','8885545','docente','1234','carlos@sipa','calle 20a');
-INSERT INTO usuario(cedula, nombre, apellido, telefono, rol, contrasena, correo, direccion) values('7','Camilo','Perez','8885545','director_programa','1234','camilo@sipa','calle 20a');
-
-INSERT INTO administrador(cod_administrador, cedula) values('1','1');
-
-INSERT INTO estudiante(codigo, programa, cedula) values('1','Ing sistemas','2');
-INSERT INTO estudiante(codigo, programa, cedula) values('2','Ing sistemas','3');
-
-INSERT INTO dependencia(id_dependencia, descripcion, nombre, pertenece_dependencia) values('1','Aprendizaje de diferentes idiomas','Departamento Lenguas Modernas','1');
-INSERT INTO dependencia(id_dependencia, descripcion, nombre, pertenece_dependencia) values('2','Estudio de ...','Departamento computacion','2');
-
-INSERT INTO docente(cod_docente, dependencia, cedula) values('1','2','6');
-
-INSERT INTO responsable_practica(cod_responsable, cargo, cedula) values('1','Docente','4');
-
-INSERT INTO empresa(nit, nombre, tipo, razon_social) values('1','EmpoCaldas','Publica','Atencion a las obras en Caldas excepto Manizales');
-
-INSERT INTO representante_empresarial(cod_representante, cargo, cedula, empresa) values('1','Abogado','6','1');
-
-INSERT INTO director_programa(cod_director, programa, cedula) values('1','Ingenieria Sistemas','7');
-
-INSERT INTO prorroga(id_prorroga, nombre_convenio, fecha_inicio, fecha_fin) values('1', 'UniversidadCaldas-EmpoCaldas', '2011-10-10', '2016-10-10');
-
-INSERT INTO convenio(id_convenio, fecha_inicio, fecha_fin, nit_empresa, razon, prorroga_id_prorroga) values('1','2011-10-10','2016-10-10','1','Oportunidad de practica','1');
-
-INSERT INTO sucursal(id_sucursal, nombre, direccion, telefono, nit_empresa) values('1','EmpoCaldas Aranzazu','Aranzazu, Caldas','7785486','1');
-
-INSERT INTO localidad(cod, nombre, id_sucursal) values('1', 'Sector bomberos', '1');
-
-INSERT INTO practica(codigo, fecha_inicio, fecha_fin, salario, tipo, estudiante, docente, responsable, prorroga_id_prorroga) values('1','2015-07-15','2015-12-15',500000,'externa','2','1','1','1');
-INSERT INTO practica(codigo, fecha_inicio, fecha_fin, salario, tipo, estudiante, docente, responsable, prorroga_id_prorroga) values('2','2015-07-15','2015-12-15',500000,'interna','1','1','1','1');
-
-INSERT INTO practica_externa(id_practica, sucursal_id_sucursal) values('1','1');
-INSERT INTO practica_interna(id_practica, id_dependencia) values('2','2');
