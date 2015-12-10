@@ -23,7 +23,7 @@ class Sucursal {
     function edit($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos,1));
-        $sql = "UPDATE sucursal SET nombre='$nombre',direccion='$direccion', nit_empresa='$nit_empresa' WHERE  id_sucursal='$id_sucursal'";
+        $sql = "UPDATE sucursal SET nombre='$nombre',direccion='$direccion', nit_empresa='$nit_empresa',  localidad='$localidad'  WHERE  id_sucursal='$id_sucursal'";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();
@@ -39,6 +39,15 @@ class Sucursal {
         
         echo UtilConexion::getEstado();
      }
+
+    public function getSelect() {
+        $select = "<select>";
+        $select .= "<option value='0'>Seleccione una Localidad</option>";
+        foreach (UtilConexion::$pdo->query("SELECT id_sucursal, nombre FROM sucursal ORDER BY nombre") as $fila) {
+            $select .= "<option value='{$fila['id_sucursal']}'>{$fila['nombre']}</option>";
+        }
+        echo ($select . "</select>");
+    }
 
     function select($argumentos) {
         extract($argumentos);
@@ -75,7 +84,7 @@ class Sucursal {
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'id' => $fila['id_sucursal'],
-                'cell' => [$fila['id_sucursal'], $fila['nombre'], $fila['direccion'], $fila['nit_empresa']]
+                'cell' => [$fila['id_sucursal'], $fila['nombre'], $fila['direccion'], $fila['nit_empresa'],$fila['localidad']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON

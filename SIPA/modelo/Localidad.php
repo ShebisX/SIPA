@@ -56,6 +56,16 @@ class Localidad {
         echo UtilConexion::getEstado();
      }
 
+    public function getSelect() {
+        $select = "<select>";
+        $select .= "<option value='0'>Seleccione una Localidad</option>";
+        foreach (UtilConexion::$pdo->query("SELECT cod, nombre FROM localidad ORDER BY nombre") as $fila) {
+            $select .= "<option value='{$fila['cod']}'>{$fila['nombre']}</option>";
+        }
+        echo ($select . "</select>");
+    }
+
+
     function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
@@ -91,7 +101,7 @@ class Localidad {
         foreach (UtilConexion::$pdo->query($sql) as $fila) {
             $respuesta['rows'][] = [
                 'id' => $fila['cod'],
-                'cell' => [$fila['cod'], $fila['nombre'], $fila['id_sucursal']]
+                'cell' => [$fila['cod'], $fila['nombre']]
             ];
         }
         // Quite los comentarios para ver el array original y el array codificado en JSON
