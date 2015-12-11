@@ -1060,18 +1060,21 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'nit_empresa', index: 'nit_empresa', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'nit_empresa', index: 'nit_empresa', width: 500, editable: true, edittype:'select', 
+                    editoptions: {
                         dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
+                            $(elemento).width(292)}, 
+                            dataUrl:'controlador/fachada.php?clase=Localidad&oper=getSelectNIT',
+                    }
+                },
                 {name:'localidad', index:'localidad', hidden: false, width:200, editable:true, edittype:'select',
                     editoptions: {
-                        dataInit: function(elemento) {$(elemento).width(292)}, 
-                        dataUrl:'controlador/fachada.php?clase=Localidad&oper=getSelect',
+                        dataInit: function(elemento) {
+                            $(elemento).width(292)}, 
+                            dataUrl:'controlador/fachada.php?clase=Localidad&oper=getSelect',
         
                     }
-                }
+                },
             ],
 
             rowNum:200,
@@ -1108,7 +1111,7 @@ $(function () {
                 modal:true, jqModal:true,
                 width:465,
                 afterShowForm: function() {
-                    $('localidad').val(localidad)
+                    //$('localidad').val(localidad)
                 },
             },
             {modal:true, jqModal:true,
