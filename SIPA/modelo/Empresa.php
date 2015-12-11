@@ -40,7 +40,7 @@ class Empresa {
         echo UtilConexion::getEstado();
      }
 
-     public function getSelect() {
+    public function getSelect() {
         $select = "<select>";
         $select .= "<option value='0'>Seleccione una Empresa</option>";
         foreach (UtilConexion::$pdo->query("SELECT nit, nombre FROM empresa ORDER BY nombre") as $fila) {

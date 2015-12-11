@@ -1123,9 +1123,9 @@ function crearTablaSucursal() {
             {modal:true, jqModal:true,
                 width:300,
                 afterSubmit: function (response, postdata) {
-                        var respuesta = jQuery.parseJSON(response.responseText);
-                        return [respuesta.ok, respuesta.mensaje, ''];
-                    }
+                    var respuesta = jQuery.parseJSON(response.responseText);
+                    return [respuesta.ok, respuesta.mensaje, ''];
+                }
             },
             {multipleSearch:true, multipleGroup:true}
             )
@@ -1554,38 +1554,41 @@ function crearTablaTelefonoSucursal() {
             },
             colNames: ['ID_SUCURSAL', 'TELEFONO'],
             colModel: [
-            {name: 'id_sucursal', index: 'id_sucursal', width: 500, editable: true, editoptions: {size: 37,
+            {name: 'id_sucursal', index: 'id_sucursal', hidden: false, width: 200, editable: true, edittype: 'select',
+            editoptions: {
                 dataInit: function (elemento) {
-                    $(elemento).width(282)
-                }
-            }},
-            {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
-                dataInit: function (elemento) {
-                    $(elemento).width(282)
-                }
-            }},
-            ],
-            rowNum: 100,
-            width: 700,
-            rowList: [50, 150, 1000],
-            pager: '#pTablaTelefonoSucursal',
-            sortname: 'nit',
-            viewrecords: true,
-            sortorder: "asc",
-            caption: "Gesti&oacute;n de Sucursal",
-            multiselect: false,
-            editurl: "controlador/fachada.php?clase=Telefono_sucursal",
-            loadError: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.responseText);
+                    $(elemento).width(292)
+                },
+                dataUrl: 'controlador/fachada.php?clase=Sucursal&oper=getSelect',
             }
-
-        }).jqGrid('navGrid', '#pTablaTelefonoSucursal', {
-            refresh: true,
-            edit: false,
-            add: true,
-            del: true,
-            search: true
         },
+        {name: 'telefono', index: 'telefono', width: 500, editable: true, editoptions: {size: 37,
+            dataInit: function (elemento) {
+                $(elemento).width(282)
+            }
+        }},
+        ],
+        rowNum: 100,
+        width: 700,
+        rowList: [50, 150, 1000],
+        pager: '#pTablaTelefonoSucursal',
+        sortname: 'nit',
+        viewrecords: true,
+        sortorder: "asc",
+        caption: "Gesti&oacute;n de Sucursal",
+        multiselect: false,
+        editurl: "controlador/fachada.php?clase=Telefono_sucursal",
+        loadError: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+
+    }).jqGrid('navGrid', '#pTablaTelefonoSucursal', {
+        refresh: true,
+        edit: false,
+        add: true,
+        del: true,
+        search: true
+    },
                 {// Antes de enviar a Departamento->edit(...) se agrega un POST
                     modal: true, jqModal: true,
                     width: 500,

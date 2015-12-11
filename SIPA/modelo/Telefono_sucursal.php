@@ -23,7 +23,7 @@ class Telefono_sucursal {
     /*function edit($argumentos) {
         extract($argumentos);
         error_log(print_r($argumentos,1));
-        $sql = "UPDATE telefono_sucursal SET nombre='$nombre',direccion='$direccion', nit_empresa='$nit_empresa' WHERE  id_sucursal='$id_sucursal'";
+        $sql = "UPDATE telefono_sucursal SET telefono='$telefono' WHERE  id_sucursal='$id_sucursal'";
         error_log($sql);
         UtilConexion::$pdo->exec($sql);
         echo UtilConexion::getEstado();

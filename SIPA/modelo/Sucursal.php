@@ -42,7 +42,7 @@ class Sucursal {
 
     public function getSelect() {
         $select = "<select>";
-        $select .= "<option value='0'>Seleccione una Localidad</option>";
+        $select .= "<option value='0'>Seleccione una Sucursal</option>";
         foreach (UtilConexion::$pdo->query("SELECT id_sucursal, nombre FROM sucursal ORDER BY nombre") as $fila) {
             $select .= "<option value='{$fila['id_sucursal']}'>{$fila['nombre']}</option>";
         }
