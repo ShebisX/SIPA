@@ -1074,7 +1074,7 @@ $(function () {
                             dataUrl:'controlador/fachada.php?clase=Localidad&oper=getSelect',
         
                     }
-                },
+                }
             ],
 
             rowNum:200,
@@ -1111,7 +1111,7 @@ $(function () {
                 modal:true, jqModal:true,
                 width:465,
                 afterShowForm: function() {
-                    //$('localidad').val(localidad)
+                    //$('localidad').val(localidad);
                 },
             },
             {modal:true, jqModal:true,
