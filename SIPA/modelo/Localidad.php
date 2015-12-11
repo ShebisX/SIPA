@@ -56,9 +56,18 @@ class Localidad {
         echo UtilConexion::getEstado();
      }
 
+     public function getSelectNIT(){
+        $select = "<select>";
+        $select .= "<option value='0'>Seleccione una empresa</option>";
+        foreach (UtilConexion::$pdo->query("SELECT nit, nombre FROM empresa ORDER BY nombre") as $fila) {
+            $select .= "<option value='{$fila['nit']}'>{$fila['nombre']}</option>";
+        }
+        echo ($select . "</select>");
+     }
+
     public function getSelect() {
         $select = "<select>";
-        $select .= "<option value='0'>Seleccione una Localidad</option>";
+        $select .= "<option value='0'>Seleccione una localidad</option>";
         foreach (UtilConexion::$pdo->query("SELECT cod, nombre FROM localidad ORDER BY nombre") as $fila) {
             $select .= "<option value='{$fila['cod']}'>{$fila['nombre']}</option>";
         }

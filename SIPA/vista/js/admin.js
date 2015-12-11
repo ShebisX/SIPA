@@ -1035,16 +1035,16 @@ $(function () {
 
 
     function crearTablaSucursal() {
-        jQuery('#tablaSucursal').jqGrid({
-            url: 'controlador/fachada.php',
+        jqGridLocalidad = jQuery('#tablaSucursal').jqGrid({
+            url:'controlador/fachada.php',
             datatype: "json",
             mtype: 'POST',
             postData: {
                 clase: 'Sucursal',
-                oper: 'select'
+                oper:'select'
             },
-            colNames: ['ID_SUCURSAL', 'NOMBRE', 'DIRECCION', 'NIT_EMPRESA', 'LOCALIDAD'],
-            colModel: [
+            colNames:['ID_SUCURSAL', 'NOMBRE', 'DIRECCION', 'NIT_EMPRESA','LOCALIDAD'],
+            colModel:[
                 {name: 'id_sucursal', index: 'id_sucursal', width: 500, editable: true, editoptions: {size: 37,
                         dataInit: function (elemento) {
                             $(elemento).width(282)
@@ -1068,56 +1068,59 @@ $(function () {
                         dataUrl: 'controlador/fachada.php?clase=Empresa&oper=getSelect',
                     }
                 },
-                {name: 'localidad', index: 'localidad', hidden: false, width: 200, editable: true, edittype: 'select',
+                {name:'localidad', index:'localidad', hidden: false, width:200, editable:true, edittype:'select',
                     editoptions: {
-                        dataInit: function (elemento) {
-                            $(elemento).width(292)
-                        },
-                        dataUrl: 'controlador/fachada.php?clase=Localidad&oper=getSelect',
+                        dataInit: function(elemento) {
+                            $(elemento).width(292)}, 
+                            dataUrl:'controlador/fachada.php?clase=Localidad&oper=getSelect',
+        
                     }
                 }
             ],
-            rowNum: 200,
-            width: 700,
-            rowList: [200, 700, 1300],
+
+            rowNum:200,
+            width:700,
+            rowList:[200, 700, 1300],
             pager: '#pTablaSucursal',
             sortname: 'nit',
             viewrecords: true,
             sortorder: "asc",
-            caption: "Gesti&oacute;n de Sucursal",
+            caption:"Gesti&oacute;n de Sucursal",
             multiselect: false,
             editurl: "controlador/fachada.php?clase=Sucursal",
             /*onSelectRow: function(id) {
-             localidad = id
-             datosLocalidad = jQuery(jqGridLocalidad).getRowData(localidad);   // Recuperar los datos de la fila seleccionada
-             
-             }*/
+                localidad = id
+                datosLocalidad = jQuery(jqGridLocalidad).getRowData(localidad);   // Recuperar los datos de la fila seleccionada
+                
+            }*/
             loadError: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
             }
-
+            
         }).jqGrid('navGrid', '#pTablaSucursal', {
-            refresh: true,
-            edit: true,
-            add: true,
-            del: true,
-            search: true
-        },
-                {// Antes de enviar a obj->edit(...) se agrega un POST
-                    modal: true, jqModal: true,
-                    width: 465,
+                refresh: true,
+                edit: true,
+                add: true,
+                del: true,
+                search: true
+            }, 
+            {   // Antes de enviar a obj->edit(...) se agrega un POST
+                modal:true, jqModal:true,
+                width:465,
+            },
+            {   // Antes de enviar a obj->add(...) se agrega un POST
+                modal:true, jqModal:true,
+                width:465,
+                afterShowForm: function() {
+                    //$('localidad').val(localidad);
                 },
-                {// Antes de enviar a obj->add(...) se agrega un POST
-                    modal: true, jqModal: true,
-                    width: 465,
-                },
-                {modal: true, jqModal: true,
-                    width: 300
-                },
-                {multipleSearch: true, multipleGroup: true}
+            },
+            {modal:true, jqModal:true,
+                width:300
+            },
+            {multipleSearch:true, multipleGroup:true}
         )
-    }
-    ;
+    };
 
 
     function crearTablaDependencia() {
