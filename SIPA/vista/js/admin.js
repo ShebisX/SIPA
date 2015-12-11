@@ -1060,11 +1060,14 @@ $(function () {
                             $(elemento).width(282)
                         }
                     }},
-                {name: 'nit_empresa', index: 'nit_empresa', width: 500, editable: true, editoptions: {size: 37,
+                {name: 'nit_empresa', index: 'nit_empresa', hidden: false, width: 200, editable: true, edittype: 'select',
+                    editoptions: {
                         dataInit: function (elemento) {
-                            $(elemento).width(282)
-                        }
-                    }},
+                            $(elemento).width(292)
+                        },
+                        dataUrl: 'controlador/fachada.php?clase=Empresa&oper=getSelect',
+                    }
+                },
                 {name: 'localidad', index: 'localidad', hidden: false, width: 200, editable: true, edittype: 'select',
                     editoptions: {
                         dataInit: function (elemento) {

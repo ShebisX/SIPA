@@ -40,6 +40,15 @@ class Empresa {
         echo UtilConexion::getEstado();
      }
 
+     public function getSelect() {
+        $select = "<select>";
+        $select .= "<option value='0'>Seleccione una Empresa</option>";
+        foreach (UtilConexion::$pdo->query("SELECT nit, nombre FROM empresa ORDER BY nombre") as $fila) {
+            $select .= "<option value='{$fila['nit']}'>{$fila['nombre']}</option>";
+        }
+        echo ($select . "</select>");
+    }
+
     function select($argumentos) {
         extract($argumentos);
         $where = UtilConexion::getWhere($argumentos); // Se construye la clausula WHERE
